@@ -1,0 +1,46 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: XListCtrlDD - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP10.tmp" with contents
+[
+/nologo /MDd /W4 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_AFXEXT" /Fp"Debug/XListCtrlDD.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\通发\量热仪\程序\上位机\LRYCTRL\XListCtrl\XListCtrl\XListCtrl.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP10.tmp" 
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP11.tmp" with contents
+[
+/nologo /subsystem:windows /dll /incremental:yes /pdb:"Debug/XListCtrlDDDA.pdb" /debug /machine:I386 /out:"Debug/XListCtrlDDDA.dll" /implib:"Debug/XListCtrlDDDA.lib" /pdbtype:sept 
+".\Debug\AdvComboBox.obj"
+".\Debug\AdvComboEdit.obj"
+".\Debug\DropListBox.obj"
+".\Debug\DropScrollBar.obj"
+".\Debug\DropWnd.obj"
+".\Debug\StdAfx.obj"
+".\Debug\VisualStylesXP.obj"
+".\Debug\XCombo.obj"
+".\Debug\XComboList.obj"
+".\Debug\XEdit.obj"
+".\Debug\XHeaderCtrl.obj"
+".\Debug\XListCtrl.obj"
+".\Debug\XListCtrlDLL.obj"
+".\Debug\XListCtrlDLL.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP11.tmp"
+<h3>Output Window</h3>
+Compiling...
+XListCtrl.cpp
+d:\通发\量热仪\程序\上位机\lryctrl\xlistctrl\xlistctrl\xlistctrl.cpp(26) : fatal error C1853: 'Debug/XListCtrlDD.pch' is not a precompiled header file created with this compiler
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+MDIDDDA.exe - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

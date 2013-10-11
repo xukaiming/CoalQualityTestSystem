@@ -1,0 +1,2137 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\LRYCTRL.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+ICON_MAIN               ICON                    "res\\leaf.ico"
+IDR_LRYHOSTVIEW_TMPL    ICON                    "res\\idr_lryh.ico"
+IDR_MAINFRAME           ICON                    "res\\icon1.ico"
+IDR_LRYQRY_DOCTYPE      ICON                    "mdi.ico"
+IDR_LRYCTRTYPE          ICON                    "res\\LRYCTRLDoc.ico"
+IDI_CURVE               ICON                    "res\\CURVE.ICO"
+IDI_DEBUG               ICON                    "res\\Debug.ICO"
+IDI_OUT                 ICON                    "res\\OUTPUT.ICO"
+IDI_PARM                ICON                    "res\\PARRM.ICO"
+IDR_LRYEQRY_DOCTYPE     ICON                    "res\\idr_lrye.ico"
+IDI_ICON_ATTRIB         ICON                    "res\\Attr.ico"
+IDR_CLYHOSTVIEW_TMPL    ICON                    "res\\CLY.ico"
+IDR_CLYSQRY_DOCTYPE     ICON                    "res\\ico00001.ico"
+IDR_GFYHOSTVIEW_TMPL    ICON                    "res\\GFYHostView.ico"
+IDR_GYFXYHOSTVIEW_TMPL  ICON                    "res\\GyfxyHostView.ico"
+IDR_GYFXYDEBUGVIEW_TMPL ICON                    "res\\GyfxyDebugView.ico"
+IDR_DBQRYGVIEW_TMPL     ICON                    "res\\DBQryGView.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\mainfram.bmp"
+IDR_DB                  BITMAP                  "res\\db.bmp"
+IDB_IMAGELIST           BITMAP                  "res\\imagelis.bmp"
+IDB_IL_CLASS            BITMAP                  "res\\il_class.bmp"
+IDB_IL_TAB              BITMAP                  "res\\il_tab.bmp"
+IDB_BMPLEFT             BITMAP                  "res\\bleft.bmp"
+IDB_BMPDOWN             BITMAP                  "res\\adown.bmp"
+IDB_BMPUP               BITMAP                  "res\\aup.bmp"
+IDB_BMPRIGHT            BITMAP                  "res\\bright.bmp"
+IDB_CHECKBOXES          BITMAP                  "res\\CheckBoxes.bmp"
+IDB_OK                  BITMAP                  "res\\OK.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "工作实验"
+    BEGIN
+        MENUITEM "打开设备[&N]\tCtrl+T",            ID_TEST
+        MENUITEM SEPARATOR
+        MENUITEM "打印[&P]...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "打印预览[&V]",                    ID_FILE_PRINT_PREVIEW
+        MENUITEM "打印设置[&R]...",                 ID_FILE_PRINT_SETUP
+        MENUITEM "退出[&X]",                      ID_APP_EXIT
+    END
+    POPUP "系统设置"
+    BEGIN
+        MENUITEM "用户登录",                        ID_MENU_USERLOGIN
+        MENUITEM "注销登录",                        ID_MENU_USERLOGOUT
+        MENUITEM SEPARATOR
+        MENUITEM "修改用户资料",                      ID_SETUP_USERINFO
+        MENUITEM SEPARATOR
+        MENUITEM "设备属性",                        ID_DEVICE_ATTRIB
+        MENUITEM "压缩数据库",                       ID_COMPRESSDB
+        MENUITEM SEPARATOR
+        MENUITEM "注册控件(&R)",                    ID_32815
+        MENUITEM "串口设置",                        ID_SETUP_COMM
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "设备栏[&E]",                     CG_ID_VIEW_WORKSPACE
+    END
+    POPUP "窗口(&W)"
+    BEGIN
+        MENUITEM "层叠(&C)",                      ID_WINDOW_CASCADE
+        MENUITEM "平铺(&T)",                      ID_WINDOW_TILE_HORZ
+        MENUITEM "排列图标(&A)",                    ID_WINDOW_ARRANGE
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 LRYCTRL(&A)...",           ID_APP_ABOUT
+    END
+END
+
+IDR_LRYHOSTVIEW_TMPL MENU 
+BEGIN
+    POPUP "工作实验"
+    BEGIN
+        MENUITEM "打开设备[&N]\tCtrl+T",            ID_TEST
+        MENUITEM SEPARATOR
+        MENUITEM "打印[&P]...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "打印预览[&V]",                    ID_FILE_PRINT_PREVIEW
+        MENUITEM "打印设置[&R]...",                 ID_FILE_PRINT_SETUP
+        MENUITEM "退出[&X]",                      ID_APP_EXIT
+    END
+    POPUP "系统设置"
+    BEGIN
+        MENUITEM "用户登录",                        ID_MENU_USERLOGIN
+        MENUITEM "注销登录",                        ID_MENU_USERLOGOUT
+        MENUITEM SEPARATOR
+        MENUITEM "修改用户资料",                      ID_SETUP_USERINFO
+        MENUITEM SEPARATOR
+        MENUITEM "设备属性",                        ID_DEVICE_ATTRIB
+        MENUITEM "压缩数据库",                       ID_COMPRESSDB
+        MENUITEM SEPARATOR
+        MENUITEM "注册控件(&R)",                    ID_32815
+        MENUITEM "串口设置",                        ID_SETUP_COMM
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "设备栏[&E]",                     CG_ID_VIEW_WORKSPACE
+        MENUITEM "输出栏[&O]",                     ID_MENUITEM32786
+    END
+    POPUP "窗口(&W)"
+    BEGIN
+        MENUITEM "层叠(&C)",                      ID_WINDOW_CASCADE
+        MENUITEM "平铺(&T)",                      ID_WINDOW_TILE_HORZ
+        MENUITEM "排列图标(&A)",                    ID_WINDOW_ARRANGE
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 LRYCTRL(&A)...",           ID_APP_ABOUT
+    END
+END
+
+IDR_MENU_POP_DEV MENU 
+BEGIN
+    POPUP "_pop_"
+    BEGIN
+        MENUITEM "打开设备",                        ID_TEST
+        MENUITEM "设备属性",                        ID_DEVICE_ATTRIB
+        MENUITEM SEPARATOR
+        MENUITEM "系数修正",                        ID_CORR_FACT
+    END
+END
+
+IDR_POPUP_Q_DATABASE MENU 
+BEGIN
+    POPUP "_popup_"
+    BEGIN
+        MENUITEM "报表设计",                        ID_PRINT_REPORT_SETTING, GRAYED
+        MENUITEM "打印预览",                        ID_FILE_PRINT_PREVIEW, GRAYED
+        MENUITEM "打印报表",                        ID_FILE_PRINT, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "删除记录",                        ID_DELETE_RECORD, GRAYED
+        MENUITEM "复算弹筒发热量",                     ID_ANALYSE_DANTONG, GRAYED
+        MENUITEM "计算高低位和干基发热量",                 ID_ANALYSE_GAODIWEI, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "平均记录",                        ID_AVERAGE_MENU
+    END
+END
+
+IDR_LRYEQRY_DOCTYPE MENU 
+BEGIN
+    POPUP "工作实验"
+    BEGIN
+        MENUITEM "打开设备[&N]\tCtrl+T",            ID_TEST
+        MENUITEM SEPARATOR
+        MENUITEM "打印[&P]...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "打印预览[&V]",                    ID_FILE_PRINT_PREVIEW
+        MENUITEM "打印设置[&R]...",                 ID_FILE_PRINT_SETUP
+        MENUITEM "退出[&X]",                      ID_APP_EXIT
+    END
+    POPUP "系统设置"
+    BEGIN
+        MENUITEM "用户登录",                        ID_MENU_USERLOGIN
+        MENUITEM "注销登录",                        ID_MENU_USERLOGOUT
+        MENUITEM SEPARATOR
+        MENUITEM "修改用户资料",                      ID_SETUP_USERINFO
+        MENUITEM SEPARATOR
+        MENUITEM "设备属性",                        ID_DEVICE_ATTRIB
+        MENUITEM "压缩数据库",                       ID_COMPRESSDB
+        MENUITEM SEPARATOR
+        MENUITEM "注册控件(&R)",                    ID_32815
+        MENUITEM "串口设置",                        ID_SETUP_COMM
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "输出栏[&O]",                     ID_MENUITEM32786
+    END
+    POPUP "窗口(&W)"
+    BEGIN
+        MENUITEM "层叠(&C)",                      ID_WINDOW_CASCADE
+        MENUITEM "平铺(&T)",                      ID_WINDOW_TILE_HORZ
+        MENUITEM "排列图标(&A)",                    ID_WINDOW_ARRANGE
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 LRYCTRL(&A)...",           ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_E_DATABASE MENU 
+BEGIN
+    POPUP "_popup_"
+    BEGIN
+        MENUITEM "报表设计",                        ID_PRINT_REPORT_SETTING, GRAYED
+        MENUITEM "打印预览",                        ID_FILE_PRINT_PREVIEW, GRAYED
+        MENUITEM "打印报表",                        ID_FILE_PRINT, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "删除记录",                        ID_DELETE_RECORD, GRAYED
+        MENUITEM "修改样品质量",                      IDC_E_MODIFY, GRAYED
+    END
+END
+
+IDR_POPUP_PANES MENU 
+BEGIN
+    POPUP "PopupPanes"
+    BEGIN
+        MENUITEM "&Floating",                   ID_POPUP_FLOATING
+        MENUITEM "Doc&kable",                   ID_POPUP_DOCKABLE
+        MENUITEM "&Auto Hide",                  ID_POPUP_AUTOHIDE
+        MENUITEM "&Hide",                       ID_POPUP_HIDE
+    END
+END
+
+IDR_CLYHOSTVIEW_TMPL MENU 
+BEGIN
+    POPUP "工作实验"
+    BEGIN
+        MENUITEM "打开设备[&N]\tCtrl+T",            ID_TEST
+        MENUITEM SEPARATOR
+        MENUITEM "打印[&P]...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "打印预览[&V]",                    ID_FILE_PRINT_PREVIEW
+        MENUITEM "打印设置[&R]...",                 ID_FILE_PRINT_SETUP
+        MENUITEM "退出[&X]",                      ID_APP_EXIT
+    END
+    POPUP "系统设置"
+    BEGIN
+        MENUITEM "用户登录",                        ID_MENU_USERLOGIN
+        MENUITEM "注销登录",                        ID_MENU_USERLOGOUT
+        MENUITEM SEPARATOR
+        MENUITEM "修改用户资料",                      ID_SETUP_USERINFO
+        MENUITEM SEPARATOR
+        MENUITEM "设备属性",                        ID_DEVICE_ATTRIB
+        MENUITEM "压缩数据库",                       ID_COMPRESSDB
+        MENUITEM SEPARATOR
+        MENUITEM "注册控件(&R)",                    ID_32815
+        MENUITEM "串口设置",                        ID_SETUP_COMM
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "设备栏[&E]",                     CG_ID_VIEW_WORKSPACE
+        MENUITEM "输出栏[&O]",                     ID_MENUITEM32786
+        MENUITEM "硬件诊断",                        ID_DEBUG
+    END
+    POPUP "窗口(&W)"
+    BEGIN
+        MENUITEM "层叠(&C)",                      ID_WINDOW_CASCADE
+        MENUITEM "平铺(&T)",                      ID_WINDOW_TILE_HORZ
+        MENUITEM "排列图标(&A)",                    ID_WINDOW_ARRANGE
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 LRYCTRL(&A)...",           ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_S_DATABASE MENU 
+BEGIN
+    POPUP "_popup_"
+    BEGIN
+        MENUITEM "报表设计",                        ID_PRINT_REPORT_SETTING, GRAYED
+        MENUITEM "打印预览",                        ID_FILE_PRINT_PREVIEW, GRAYED
+        MENUITEM "打印报表",                        ID_FILE_PRINT, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "删除记录",                        ID_DELETE_RECORD, GRAYED
+        MENUITEM "复算样品记录",                      ID_ANALYSE_RECAL, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "计算校准系数",                      ID_CAL_COFF
+    END
+END
+
+IDR_MENU_HEAD MENU 
+BEGIN
+    POPUP "显示列"
+    BEGIN
+        MENUITEM "",                            ID_HEADER_START
+    END
+END
+
+IDR_GYFXYHOSTVIEW_TMPL MENU 
+BEGIN
+    POPUP "工作实验"
+    BEGIN
+        MENUITEM "打开设备[&N]\tCtrl+T",            ID_TEST
+        MENUITEM SEPARATOR
+        MENUITEM "打印[&P]...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "打印预览[&V]",                    ID_FILE_PRINT_PREVIEW
+        MENUITEM "打印设置[&R]...",                 ID_FILE_PRINT_SETUP
+        MENUITEM "退出[&X]",                      ID_APP_EXIT
+    END
+    POPUP "系统设置"
+    BEGIN
+        MENUITEM "用户登录",                        ID_MENU_USERLOGIN
+        MENUITEM "注销登录",                        ID_MENU_USERLOGOUT
+        MENUITEM SEPARATOR
+        MENUITEM "修改用户资料",                      ID_SETUP_USERINFO
+        MENUITEM SEPARATOR
+        MENUITEM "设备属性",                        ID_DEVICE_ATTRIB
+        MENUITEM "压缩数据库",                       ID_COMPRESSDB
+        MENUITEM SEPARATOR
+        MENUITEM "注册控件(&R)",                    ID_32815
+        MENUITEM "串口设置",                        ID_SETUP_COMM
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "设备栏[&E]",                     CG_ID_VIEW_WORKSPACE
+        MENUITEM "输出栏[&O]",                     ID_MENUITEM32786
+        MENUITEM SEPARATOR
+        MENUITEM "硬件诊断",                        ID_DEBUG
+        MENUITEM "实时重量",                        ID_BALANCE
+    END
+    POPUP "窗口(&W)"
+    BEGIN
+        MENUITEM "层叠(&C)",                      ID_WINDOW_CASCADE
+        MENUITEM "平铺(&T)",                      ID_WINDOW_TILE_HORZ
+        MENUITEM "排列图标(&A)",                    ID_WINDOW_ARRANGE
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 LRYCTRL(&A)...",           ID_APP_ABOUT
+    END
+END
+
+IDR_DBQRYGVIEW_TMPL MENU 
+BEGIN
+    POPUP "工作实验"
+    BEGIN
+        MENUITEM "打开设备[&N]\tCtrl+T",            ID_TEST
+        MENUITEM SEPARATOR
+        MENUITEM "打印[&P]...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "打印预览[&V]",                    ID_FILE_PRINT_PREVIEW
+        MENUITEM "打印设置[&R]...",                 ID_FILE_PRINT_SETUP
+        MENUITEM "退出[&X]",                      ID_APP_EXIT
+    END
+    POPUP "系统设置"
+    BEGIN
+        MENUITEM "用户登录",                        ID_MENU_USERLOGIN
+        MENUITEM "注销登录",                        ID_MENU_USERLOGOUT
+        MENUITEM SEPARATOR
+        MENUITEM "修改用户资料",                      ID_SETUP_USERINFO
+        MENUITEM SEPARATOR
+        MENUITEM "设备属性",                        ID_DEVICE_ATTRIB
+        MENUITEM "压缩数据库",                       ID_COMPRESSDB
+        MENUITEM SEPARATOR
+        MENUITEM "注册控件(&R)",                    ID_32815
+        MENUITEM "串口设置",                        ID_SETUP_COMM
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "设备栏[&E]",                     CG_ID_VIEW_WORKSPACE
+        MENUITEM "输出栏[&O]",                     ID_MENUITEM32786
+        MENUITEM SEPARATOR
+        MENUITEM "硬件诊断",                        ID_DEBUG
+        MENUITEM "实时重量",                        ID_BALANCE
+    END
+    POPUP "窗口(&W)"
+    BEGIN
+        MENUITEM "层叠(&C)",                      ID_WINDOW_CASCADE
+        MENUITEM "平铺(&T)",                      ID_WINDOW_TILE_HORZ
+        MENUITEM "排列图标(&A)",                    ID_WINDOW_ARRANGE
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 LRYCTRL(&A)...",           ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_G_DATABASE MENU 
+BEGIN
+    MENUITEM "_popup_",                     0
+END
+
+IDR_MENU_S_SAMPLE MENU 
+BEGIN
+    POPUP "_pop_"
+    BEGIN
+        MENUITEM "删除样品",                        ID__DELE_SAMPLE
+        MENUITEM "添加样品(&A)",                    ID__ADD_SAMPLE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_DELETE_RECORD,       VIRTKEY, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_FILE_CLOSE,          VIRTKEY, CONTROL, NOINVERT
+    VK_F5,          ID_RECORD_REFRESH,      VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 83
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于"
+FONT 9, "宋体", 0, 0, 0x0
+BEGIN
+    LTEXT           "煤炭质量综合分析系统",IDC_STATIC,49,7,82,8,SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2011-2012",IDC_STATIC,50,23,91,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+    ICON            IDR_MAINFRAME,IDC_STATIC,9,8,20,20
+    LTEXT           "长沙通发电气科技有限公司",IDC_STATIC,48,39,119,8,NOT WS_VISIBLE
+    LTEXT           "设计：许开明",IDC_STATIC,48,54,119,8,NOT WS_VISIBLE
+    LTEXT           "",IDC_DATE,48,68,119,8
+END
+
+IDD_DIALOG_CHANGEUSERINFO DIALOG  0, 0, 274, 107
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "更改用户信息"
+FONT 9, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确认",IDOK,217,2,50,14,WS_GROUP
+    PUSHBUTTON      "取消",IDCANCEL,217,24,50,14
+    LTEXT           "新用户名",65006,14,18,33,8
+    LTEXT           "新口令",65007,21,34,25,8
+    LTEXT           "验证口令",65008,14,52,33,8
+    EDITTEXT        ID_USERNAME,50,15,70,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_NEWPWD,50,32,70,14,ES_PASSWORD
+    EDITTEXT        ID_REPWD,50,49,70,14,ES_PASSWORD
+    LTEXT           "单位名称",1005,13,78,33,8
+    EDITTEXT        ID_UNIT,50,75,149,14,ES_AUTOHSCROLL
+    GROUPBOX        "",65009,6,2,201,98
+END
+
+IDD_DIALOG_COMM_HOOK DIALOGEX 0, 0, 425, 270
+STYLE DS_SETFONT | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CLIENTEDGE
+CAPTION "通信口诊断"
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    LTEXT           "COMPORT",IDC_STATIC_COM,9,10,85,8
+    EDITTEXT        ID_SEND_CNT,128,7,72,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        ID_RECEIVE_CNT,229,7,72,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        ID_EDT_CMD,7,35,294,28,ES_UPPERCASE | ES_AUTOHSCROLL
+    PUSHBUTTON      "CRC",ID_BTN_CRC,316,6,47,17
+    PUSHBUTTON      "退出",IDCANCEL,370,6,47,17
+    DEFPUSHBUTTON   "发送",ID_BTN_SEND,316,31,47,17,WS_DISABLED
+    PUSHBUTTON      "暂停",ID_BTN_PAUSE,370,31,47,17
+    LTEXT           "收发缓冲区",-1,9,68,41,9
+    LTEXT           "命令",-1,9,25,17,9
+    CONTROL         "显示时间",ID_CHK_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,360,56,43,10
+    RTEXT           "发送",-1,109,10,17,8
+    RTEXT           "接收",-1,206,10,17,8
+    CONTROL         "",IDC_RICHEDIT_REC,"RICHEDIT",TCS_HOTTRACK | TCS_VERTICAL | TCS_MULTISELECT | WS_BORDER | WS_VSCROLL | WS_TABSTOP,8,79,410,183
+END
+
+IDD_USR_LOGIN DIALOG  0, 0, 169, 97
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "系统登录"
+FONT 9, "宋体"
+BEGIN
+    RTEXT           "用户名",-1,25,21,25,8
+    DEFPUSHBUTTON   "确认",IDOK,27,78,50,14,WS_GROUP
+    PUSHBUTTON      "取消",IDCANCEL,100,78,50,14,WS_GROUP
+    EDITTEXT        ID_USER,53,18,79,14,ES_AUTOHSCROLL | WS_GROUP
+    GROUPBOX        "",-1,5,1,159,70
+    RTEXT           "口令",-1,32,48,17,8
+    EDITTEXT        ID_PWD,53,45,79,14,ES_PASSWORD | ES_AUTOHSCROLL | WS_GROUP
+END
+
+IDD_PROPPAGE_LRY_TEMP DIALOG  0, 0, 235, 156
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "温度曲线"
+FONT 9, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_CHART,5,5,215,140,ES_READONLY | WS_DISABLED | NOT WS_BORDER
+END
+
+IDD_DIALOG_COMM DIALOGEX 0, 0, 396, 150
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "通信口属性"
+FONT 14, "宋体", 400, 0, 0x86
+BEGIN
+    PUSHBUTTON      "增加",IDC_COMM_ADD,24,125,50,17,WS_DISABLED
+    PUSHBUTTON      "退出",IDCANCEL,320,125,50,17
+    RTEXT           "串行端口",IDC_STATIC,244,133,33,10,NOT WS_VISIBLE
+    LTEXT           "通信方式",IDC_STATIC,247,122,33,10,NOT WS_VISIBLE,WS_EX_RIGHT
+    LTEXT           "速率",IDC_STATIC,99,127,17,10,NOT WS_VISIBLE,WS_EX_RIGHT
+    LTEXT           "校验位",IDC_STATIC,123,127,25,10,NOT WS_VISIBLE,WS_EX_RIGHT
+    LTEXT           "停止位",IDC_STATIC,127,139,25,10,NOT WS_VISIBLE,WS_EX_RIGHT
+    LTEXT           "字节位",IDC_STATIC,96,137,25,10,NOT WS_VISIBLE,WS_EX_RIGHT
+    PUSHBUTTON      "保存",IDOK,172,125,50,17,WS_DISABLED
+    CONTROL         "",IDC_LIST_COMM,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,0,0,395,117
+END
+
+IDD_DIALOG_SELE DIALOG  0, 0, 190, 132
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "打印选择"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确认",IDOK,133,81,50,14
+    PUSHBUTTON      "取消",IDCANCEL,133,102,50,14
+    CONTROL         "打印报表",IDC_RADIO_PRINT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,133,64,48,10
+    CONTROL         "修改报表",IDC_RADIO_MODIFY,"Button",BS_AUTORADIOBUTTON,133,45,48,10
+    LISTBOX         IDC_LIST_FILE,7,7,117,118,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_PAGE_CURVE DIALOG  0, 0, 39, 175
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "温升曲线"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_TEST_QVXIAN,0,2,38,173,ES_MULTILINE | WS_DISABLED | NOT WS_BORDER
+END
+
+IDD_PAGE_DEBUG DIALOGEX 0, 0, 227, 148
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE | WS_CAPTION
+CAPTION "硬件诊断"
+FONT 9, "宋体", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      "点火",IDC_DEBUG_DIANHUO,158,12,50,14
+    PUSHBUTTON      "内桶进水",IDC_DEBUG_JINSHUI,158,28,50,14
+    PUSHBUTTON      "内桶放水",IDC_DEBUG_FANGSHUI,158,44,50,14
+    PUSHBUTTON      "内桶搅拌",IDC_DEBUG_JIAOBAN,158,60,50,14
+    EDITTEXT        IDC_DEBUG_SPEED,51,99,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "校正温度",IDC_STATIC,15,16,33,9
+    RTEXT           "搅拌速度",IDC_STATIC,13,102,35,9,NOT WS_GROUP
+    EDITTEXT        IDC_DEBUG_WENDU,51,14,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "探头电阻",IDC_STATIC,15,50,33,9
+    EDITTEXT        IDC_DEBUG_RT,51,48,61,14,ES_NUMBER | NOT WS_TABSTOP
+    EDITTEXT        IDC_DEBUG_V,51,65,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "探头电压",IDC_STATIC,15,68,33,9
+    EDITTEXT        IDC_DEBUG_AD,51,82,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "A/D读数",IDC_STATIC,15,84,33,9
+    GROUPBOX        "",IDC_STATIC,2,2,223,142,BS_RIGHT
+    LTEXT           "℃",IDC_STATIC,115,17,12,8
+    LTEXT           "mΩ",IDC_STATIC,115,51,12,8
+    LTEXT           "mV",IDC_STATIC,115,68,12,8
+    LTEXT           "Hex",IDC_STATIC,115,85,12,8
+    LTEXT           "r/m",IDC_STATIC,115,102,12,8
+    EDITTEXT        IDC_DEBUG_NEWID,51,116,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "新标识符",IDC_STATIC,13,118,35,9,NOT WS_GROUP
+    RTEXT           "实测温度",IDC_STATIC,15,34,33,9
+    EDITTEXT        IDC_DEBUG_WENDU2,51,31,61,14,ES_NUMBER | NOT WS_TABSTOP
+    LTEXT           "℃",IDC_STATIC,115,34,8,8
+    PUSHBUTTON      "改标识符",IDC_DEBUG_MODIFYID,157,92,50,14
+    LTEXT           "(1-254)",IDC_STATIC,115,118,28,8
+    PUSHBUTTON      "暂存",IDC_DEBUG_SAVE,126,31,21,14,NOT WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "注册",IDC_DEBUG_REGIST,158,123,50,14,WS_DISABLED
+    PUSHBUTTON      "登录",IDC_DEBUG_LOG,158,107,50,14,WS_DISABLED
+    PUSHBUTTON      "外筒搅拌",IDC_DEBUG_OUTJIAOBAN,158,77,50,14
+END
+
+IDD_PAGE_DEBUG1 DIALOG  0, 0, 227, 152
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE | WS_CAPTION
+CAPTION "硬件诊断"
+FONT 9, "宋体"
+BEGIN
+    PUSHBUTTON      "点火",IDC_DEBUG_DIANHUO,158,12,50,14,WS_DISABLED
+    PUSHBUTTON      "内桶进水",IDC_DEBUG_JINSHUI,158,28,50,14,WS_DISABLED
+    PUSHBUTTON      "内桶放水",IDC_DEBUG_FANGSHUI,158,44,50,14,WS_DISABLED
+    PUSHBUTTON      "内桶搅拌",IDC_DEBUG_JIAOBAN,158,60,50,14,WS_DISABLED
+    EDITTEXT        IDC_DEBUG_SPEED,51,99,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "校正温度",IDC_STATIC,15,16,33,9
+    RTEXT           "搅拌速度",IDC_STATIC,13,102,35,9,NOT WS_GROUP
+    EDITTEXT        IDC_DEBUG_WENDU,51,14,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "探头电阻",IDC_STATIC,15,50,33,9
+    EDITTEXT        IDC_DEBUG_RT,51,48,61,14,ES_NUMBER | NOT WS_TABSTOP
+    EDITTEXT        IDC_DEBUG_V,51,65,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "探头电压",IDC_STATIC,15,68,33,9
+    EDITTEXT        IDC_DEBUG_AD,51,82,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "A/D读数",IDC_STATIC,15,84,33,9
+    GROUPBOX        "",IDC_STATIC,2,2,223,125,BS_RIGHT
+    LTEXT           "℃",IDC_STATIC,115,17,12,8
+    LTEXT           "Ω",IDC_STATIC,115,51,12,8
+    LTEXT           "mV",IDC_STATIC,115,68,12,8
+    LTEXT           "Hex",IDC_STATIC,115,85,12,8
+    LTEXT           "r/m",IDC_STATIC,115,102,12,8
+    EDITTEXT        IDC_DEBUG_NEWID,51,113,61,14,ES_NUMBER | NOT WS_TABSTOP
+    RTEXT           "新标识符",IDC_STATIC,13,118,35,9,NOT WS_GROUP
+    RTEXT           "实测温度",IDC_STATIC,15,34,33,9
+    EDITTEXT        IDC_DEBUG_WENDU2,51,31,61,14,ES_NUMBER | NOT WS_TABSTOP
+    LTEXT           "℃",IDC_STATIC,115,34,8,8
+    PUSHBUTTON      "改标识符",IDC_DEBUG_MODIFYID,158,76,50,14,WS_DISABLED
+    LTEXT           "(1-254)",IDC_STATIC,115,118,28,8
+    PUSHBUTTON      "暂存",IDC_DEBUG_SAVE,126,31,21,14,WS_DISABLED
+    PUSHBUTTON      "登录",IDC_DEBUG_LOG,158,107,50,14,WS_DISABLED
+END
+
+IDD_PAGE_OUTINFO DIALOG  0, 0, 230, 177
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+CAPTION "试验结果"
+FONT 9, "宋体"
+BEGIN
+    CONTROL         "List1",IDC_LIST_OUT,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,0,2,229,143
+    EDITTEXT        IDC_EDIT_OUT,0,146,230,30,ES_AUTOHSCROLL | WS_DISABLED
+END
+
+IDD_PAGE_PARAM DIALOGEX 0, 0, 223, 180
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "试验参数"
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_SAMPLE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | WS_TABSTOP,73,4,81,15
+    COMBOBOX        IDC_TEST_YANGDANID,73,20,81,44,CBS_DROPDOWNLIST | WS_TABSTOP
+    COMBOBOX        IDC_TEST_TYPE,73,33,81,46,CBS_DROPDOWNLIST | WS_TABSTOP
+    COMBOBOX        IDC_TEST_YANGPINNUM,73,46,81,56,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TEST_LAIYANGQINGKUANG,73,60,70,12
+    EDITTEXT        IDC_TEST_E,73,73,56,12
+    EDITTEXT        IDC_TEST_YANGPINZHILIANG,73,86,56,12
+    EDITTEXT        IDC_TEST_DIANHUOSIZHILIANG,73,98,56,12
+    EDITTEXT        IDC_TEST_TIANJIAWUZHILIANG,73,110,56,12
+    EDITTEXT        IDC_TEST_TIANJIAWUZHILIANG2,73,122,56,12
+    EDITTEXT        IDC_TEST_KONGGANJISHUIFEN,73,135,30,12
+    EDITTEXT        IDC_TEST_LIUHANLIANG,73,148,30,12
+    EDITTEXT        IDC_TEST_QUANSHUIFEN,153,135,30,12
+    EDITTEXT        IDC_TEST_QINHANLIANG,153,148,30,12
+    EDITTEXT        IDC_TEST_TESTNUM,155,4,59,13,NOT WS_VISIBLE | WS_DISABLED
+    LTEXT           "试验内容",IDC_STATIC,37,35,33,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "硫含量Sad",IDC_STATIC,28,148,41,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "氧弹编号",IDC_STATIC,37,22,33,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "取样时间",IDC_STATIC,37,8,33,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "样品编号",IDC_STATIC,37,48,33,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "样品质量",IDC_STATIC,35,87,35,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "点火丝质量",IDC_STATIC,30,99,40,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "1#添加物质量",IDC_STATIC,16,111,54,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "氢含量Had",IDC_STATIC,114,149,36,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "2#添加物质量",IDC_STATIC,16,123,53,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "空干基水分Mad",IDC_STATIC,16,136,53,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "全水分Mt",IDC_STATIC,117,137,33,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "g",IDC_STATIC,132,87,8,8,NOT WS_GROUP
+    LTEXT           "g",IDC_STATIC,132,100,8,8,NOT WS_GROUP
+    LTEXT           "g",IDC_STATIC,132,111,8,8,NOT WS_GROUP
+    LTEXT           "g",IDC_STATIC,132,123,8,8,NOT WS_GROUP
+    LTEXT           "%",IDC_STATIC,106,137,8,8,NOT WS_GROUP
+    LTEXT           "%",IDC_STATIC,185,138,8,8,NOT WS_GROUP
+    LTEXT           "%",IDC_STATIC,106,149,8,8,NOT WS_GROUP
+    LTEXT           "%",IDC_STATIC,185,149,8,8,NOT WS_GROUP
+    LTEXT           "来样情况",IDC_STATIC,37,61,33,8,NOT WS_GROUP,WS_EX_RIGHT
+    CONTROL         "平行样",IDC_TEST_PINGXINGYANG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,165,48,40,10
+    LTEXT           "仪器热容量",IDC_STATIC,29,74,41,8,NOT WS_GROUP,WS_EX_RIGHT
+    LTEXT           "J/K",IDC_STATIC,132,76,13,8
+END
+
+IDD_LRY_FORM DIALOGEX 0, 0, 250, 258
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "开始试验",IDC_TEST_START,28,239,50,14
+    PUSHBUTTON      "关闭设备",ID_FILE_CLOSE,169,239,50,14,BS_NOTIFY
+    CONTROL         "Progress2",IDC_TEST_PROGRESS,"msctls_progress32",PBS_VERTICAL | WS_BORDER,7,215,236,19,WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+    PUSHBUTTON      "停止试验",IDC_TEST_STOP,98,239,50,14
+    PUSHBUTTON      "R",IDC_BUTTON1,225,239,12,14
+END
+
+IDD_SETUP_DEVICE DIALOGEX 0, 0, 243, 295
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "设备属性"
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_DEVICE_ROW_NO,31,10,25,13,ES_READONLY
+    CONTROL         "Spin1",IDC_DEVICE_SPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,53,7,11,14
+    EDITTEXT        IDC_DEVICE_NAME,83,10,63,13
+    COMBOBOX        IDC_DEVICE_TYPE,171,10,65,57,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_DEVICE_ID,31,30,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_COMM,31,44,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_PERIOD,31,58,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_R0,31,72,40,13
+    EDITTEXT        IDC_DEVICE_KB,31,100,69,13,WS_DISABLED
+    EDITTEXT        IDC_DEVICE_KC,31,114,69,13,WS_DISABLED
+    EDITTEXT        IDC_DEVICE_KD,31,128,69,13,WS_DISABLED
+    EDITTEXT        IDC_DEVICE_KE,31,142,69,13,WS_DISABLED
+    EDITTEXT        IDC_DEVICE_KF,31,156,69,13,WS_DISABLED
+    EDITTEXT        IDC_DEVICE_KG,31,170,69,13,WS_DISABLED
+    EDITTEXT        IDC_DEVICE_KH,31,184,69,13,WS_DISABLED
+    COMBOBOX        IDC_DEVICE_MODE,31,198,52,54,CBS_DROPDOWN | WS_DISABLED | WS_TABSTOP
+    CONTROL         "修正",IDC_DEVICE_XiuZheng,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,32,241,32,10
+    CONTROL         "自动打印",IDC_DEVICE_AUTOPRINT,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,32,254,48,10
+    EDITTEXT        IDC_DEVICE_ShuiZhiLiang,168,30,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_JinShui,168,44,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_FangShui,168,58,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_ChuQiJiaoBan,168,72,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_ChuQiJiaoBan2,168,86,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_MoQiJiaoBan,168,100,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_DianHuo,168,114,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_JiaDian,168,128,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_FenMing,168,142,40,13,ES_NUMBER
+    EDITTEXT        IDC_DEVICE_DianHuoWenCha,168,156,40,13
+    EDITTEXT        IDC_DEVICE_ZhongDianWenCha,168,170,40,13
+    EDITTEXT        IDC_DEVICE_PingXingYanPanDian,168,183,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEVICE_EJiChaPanDian,168,197,40,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEVICE_BengJiaSuanReZhi,168,211,40,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEVICE_DianHouSiReZhi,168,225,40,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEVICE_TianJiaWuReZhi1,168,239,40,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEVICE_TianJiaWuReZhi2,168,253,40,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "增加",IDC_DEVICE_ADD,15,273,50,15
+    PUSHBUTTON      "删除",IDC_DEVICE_DEL,69,273,50,15
+    PUSHBUTTON      "修改",IDC_DEVICE_MODIFY,123,273,50,15
+    PUSHBUTTON      "退出",IDCANCEL,178,273,50,15
+    LTEXT           "序号",-1,11,12,17,9,0,WS_EX_RIGHT
+    LTEXT           "名称",-1,63,12,17,9,0,WS_EX_RIGHT
+    LTEXT           "型号",-1,151,12,17,9,0,WS_EX_RIGHT
+    LTEXT           "标识",-1,11,32,16,9,0,WS_EX_RIGHT
+    RTEXT           "串口",-1,12,45,16,9
+    RTEXT           "扫描",-1,10,61,18,9
+    RTEXT           "R0",-1,19,73,9,9
+    RTEXT           "内桶水质量",-1,124,32,41,9
+    RTEXT           "内桶进水时间",-1,116,46,49,9
+    RTEXT           "内桶放水时间",-1,116,60,49,9
+    RTEXT           "初期搅拌时间1",-1,109,74,57,9
+    RTEXT           "末期搅拌时间",-1,116,102,49,9
+    RTEXT           "点火时间",-1,132,116,33,9
+    RTEXT           "探头加电时间",-1,116,130,49,9
+    RTEXT           "蜂鸣时间",-1,132,144,33,9
+    LTEXT           "(1-254)",-1,71,32,27,10
+    LTEXT           "mS",-1,73,61,9,8
+    LTEXT           "g",-1,210,33,8,8
+    LTEXT           "S",-1,210,47,8,8
+    LTEXT           "S",-1,210,60,8,8
+    LTEXT           "min",-1,210,74,13,8
+    LTEXT           "min",-1,210,103,12,8
+    LTEXT           "S",-1,210,117,8,8
+    LTEXT           "S",-1,210,131,8,8
+    LTEXT           "mS",-1,210,145,8,8
+    GROUPBOX        "",-1,7,21,229,249,WS_DISABLED
+    RTEXT           "初期搅拌时间2",-1,109,88,57,9
+    LTEXT           "min",-1,210,89,14,8
+    RTEXT           "点火成功温差",-1,110,158,55,9
+    RTEXT           "终点判定温差",-1,113,172,53,9
+    LTEXT           "℃",-1,210,159,8,8
+    LTEXT           "℃",-1,210,173,8,8
+    LTEXT           "Ω",-1,73,75,9,8
+    EDITTEXT        IDC_DEVICE_KA,31,86,69,13,WS_DISABLED
+    RTEXT           "Ka",-1,19,87,9,9
+    RTEXT           "Kb",-1,19,102,9,9
+    RTEXT           "Kc",-1,20,116,9,9
+    RTEXT           "Kd",-1,19,131,9,9
+    RTEXT           "Ke",-1,19,145,9,9
+    RTEXT           "Kf",-1,19,159,9,9
+    RTEXT           "Kg",-1,19,173,9,9
+    RTEXT           "Kh",-1,19,187,9,9
+    RTEXT           "苯甲酸热值",-1,124,215,41,9
+    RTEXT           "1#添加物热值",-1,114,242,51,9
+    RTEXT           "2#添加物热值",-1,116,255,50,9
+    RTEXT           "平行样判点",-1,125,186,41,9
+    RTEXT           "热容量判点(RSD)",-1,104,200,62,9
+    RTEXT           "算法",-1,13,200,16,9
+    LTEXT           "J",-1,210,186,8,8
+    LTEXT           "J/g",-1,210,214,14,8
+    LTEXT           "J/g",-1,210,228,17,8
+    LTEXT           "J/g",-1,210,242,14,8
+    RTEXT           "点火丝热值",-1,124,229,41,9
+    LTEXT           "J/g",-1,210,255,14,8
+END
+
+IDD_LOGIN DIALOG  0, 0, 169, 97
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "系统登录"
+FONT 9, "宋体"
+BEGIN
+    RTEXT           "用户名",IDC_STATIC,25,21,25,8
+    PUSHBUTTON      "确认",IDOK,27,78,50,14
+    PUSHBUTTON      "取消",IDCANCEL,100,78,50,14
+    EDITTEXT        IDC_REG_USERNAME,53,18,79,14,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_STATIC,5,1,159,70
+    RTEXT           "口令",IDC_STATIC,32,48,17,8
+    EDITTEXT        IDC_REG_PASS,53,45,79,14,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+IDD_RECAL_Q DIALOG  0, 0, 249, 173
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "复算弹筒发热量"
+FONT 9, "宋体"
+BEGIN
+    RTEXT           "试验编号",IDC_STATIC,12,17,33,9
+    RTEXT           "试验日期",IDC_STATIC,11,32,33,9
+    RTEXT           "试验方法",IDC_STATIC,11,46,33,9
+    RTEXT           "试验设备",IDC_STATIC,11,62,33,9
+    RTEXT           "氧弹编号",IDC_STATIC,11,76,33,9
+    RTEXT           "热容量",IDC_STATIC,130,17,33,9
+    RTEXT           "样品编号",IDC_STATIC,10,91,33,9
+    RTEXT           "样品质量",IDC_STATIC,130,32,33,9
+    RTEXT           "点火丝质量",IDC_STATIC,114,76,49,9
+    RTEXT           "1#添加物质量",IDC_STATIC,113,47,50,9
+    PUSHBUTTON      "退出",IDCANCEL,95,152,50,14
+    PUSHBUTTON      "计算弹筒发热量(Qb,ad)",IDC_RECALE_CAL,15,122,90,18
+    EDITTEXT        IDC_RECALE_TESTNUM,48,14,62,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_DATE,48,29,61,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_RECALE_MODE,48,44,61,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_DEVICE,48,59,61,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_AB,48,74,61,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_YANGPINNUM,48,90,61,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_E,167,14,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RECALE_YANGPINM,167,29,50,14,ES_AUTOHSCROLL
+    RTEXT           "2#添加物质量",IDC_STATIC,113,62,50,9
+    EDITTEXT        IDC_RECALE_M1,167,44,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RECALE_M2,167,59,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RECALE_MDH,167,74,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RECALE_Q,109,124,50,14,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_STATIC,7,2,235,111
+    LTEXT           "J/K",IDC_STATIC,220,17,13,8
+    LTEXT           "g",IDC_STATIC,221,31,8,8
+    LTEXT           "g",IDC_STATIC,221,46,8,8
+    LTEXT           "g",IDC_STATIC,221,61,8,8
+    LTEXT           "g",IDC_STATIC,221,76,8,8
+    LTEXT           "J/g",IDC_STATIC,163,126,13,8
+    RTEXT           "平行样编号",IDC_STATIC,119,91,43,9
+    EDITTEXT        IDC_RECALE_DUPLICATE_NO,167,90,50,14,ES_AUTOHSCROLL
+END
+
+IDD_CAL_GAODIQ DIALOG  0, 0, 265, 199
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "计算高低位、干基发热量"
+FONT 9, "宋体"
+BEGIN
+    RTEXT           "试验编号",IDC_STATIC,12,17,33,9
+    EDITTEXT        IDC_RECALE_TESTNUM,48,14,55,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_DATE,48,29,55,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_RECALE_MODE,48,44,55,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_DEVICE,48,59,55,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_AB,48,74,55,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_YANGPINNUM,48,89,55,14,ES_AUTOHSCROLL | WS_DISABLED
+    RTEXT           "全硫St",IDC_STATIC,148,17,33,9
+    RTEXT           "全水份Mt",IDC_STATIC,128,47,53,9
+    RTEXT           "空干基水份Mad",IDC_STATIC,118,32,63,9
+    RTEXT           "空干基氢含量Had",IDC_STATIC,118,62,63,9
+    RTEXT           "弹筒发热量Qb,ad",IDC_STATIC,118,77,63,9
+    EDITTEXT        IDC_CAL_St,185,14,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CAL_Mt,185,44,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CAL_Mad,185,29,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CAL_Had,185,59,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CAL_Qbad,185,74,40,14,ES_AUTOHSCROLL
+    RTEXT           "空干基高位发热量Qgr,ad",IDC_STATIC,12,124,94,9
+    EDITTEXT        IDC_CAL_Qgrad,109,121,40,14,ES_AUTOHSCROLL
+    LTEXT           "%",IDC_STATIC,229,17,8,8
+    LTEXT           "%",IDC_STATIC,229,32,8,8
+    LTEXT           "%",IDC_STATIC,229,48,8,8
+    LTEXT           "%",IDC_STATIC,229,62,8,8
+    LTEXT           "J/g",IDC_STATIC,229,76,22,8
+    LTEXT           "J/g",IDC_STATIC,153,124,22,8
+    RTEXT           "干基高位发热量Qgr,d",IDC_STATIC,12,138,94,9
+    EDITTEXT        IDC_CAL_Qgrd,109,136,40,14,ES_AUTOHSCROLL
+    LTEXT           "J/g",IDC_STATIC,153,139,22,8
+    RTEXT           "低位发热量Qnet,v,ar",IDC_STATIC,12,154,94,9
+    EDITTEXT        IDC_CAL_Qnetvar,109,151,40,15,ES_AUTOHSCROLL
+    LTEXT           "J/g",IDC_STATIC,153,154,22,8
+    GROUPBOX        "",IDC_STATIC,7,2,251,110
+    PUSHBUTTON      "计算",IDC_CAL,91,178,50,14
+    PUSHBUTTON      "退出",IDCANCEL,208,178,50,14
+    CONTROL         "全硫",IDC_QUANLIU,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE | WS_GROUP | WS_TABSTOP,202,124,32,10
+    CONTROL         "弹筒硫",IDC_DTLIU,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE | WS_TABSTOP,202,137,40,10
+    RTEXT           "试验日期",IDC_STATIC,11,32,33,9
+    RTEXT           "试验方法",IDC_STATIC,11,47,33,9
+    RTEXT           "试验设备",IDC_STATIC,11,62,33,9
+    RTEXT           "氧弹编号",IDC_STATIC,12,76,33,9
+    RTEXT           "样品编号",IDC_STATIC,11,91,33,9
+    PUSHBUTTON      "保存",IDC_SAVE,149,178,50,14
+END
+
+IDD_MODEFY_YANGPIN DIALOG  0, 0, 164, 91
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "修改样品质量"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_YangPin,63,35,58,14,ES_AUTOHSCROLL
+    LTEXT           "样品质量",IDC_STATIC,27,38,33,8
+    PUSHBUTTON      "确认",IDOK,27,70,50,14
+    PUSHBUTTON      "取消",IDCANCEL,90,70,50,14
+    LTEXT           "g",IDC_STATIC,123,38,8,8
+    GROUPBOX        "",IDC_STATIC,7,7,149,52
+    LTEXT           "样品编号",IDC_STATIC,27,17,33,8
+    LTEXT           "",IDC_MODIFY_NUM,65,17,72,8
+END
+
+IDD_CLYHOSTVIEW_FORM DIALOGEX 0, 0, 306, 258
+STYLE DS_SETFONT | WS_CHILD
+FONT 10, "MS Sans Serif", 400, 0, 0x0
+BEGIN
+    CONTROL         "Progress1",IDC_PROGRESS_STATE,"msctls_progress32",PBS_SMOOTH | PBS_VERTICAL | WS_BORDER,7,210,292,22,WS_EX_DLGMODALFRAME | WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+    EDITTEXT        IDC_EDIT_PNG,7,7,196,114,WS_DISABLED | NOT WS_BORDER
+    CONTROL         "List2",IDC_LIST_RESULT,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,128,292,76,WS_EX_CLIENTEDGE
+    DEFPUSHBUTTON   "开始实验",IDC_TEST_START,20,238,50,14
+    PUSHBUTTON      "系统复位",IDC_SYS_RST,233,7,50,14
+    PUSHBUTTON      "升温",IDC_WARM_UP,233,30,50,14
+    PUSHBUTTON      "气泵开",IDC_PUMB_UP,233,53,50,14
+    PUSHBUTTON      "搅拌开",IDC_JB,233,76,50,14
+    PUSHBUTTON      "添加样品",IDC_ADD_SAMPLE,233,99,50,14
+    PUSHBUTTON      "R",IDC_BUTTON_R,287,238,12,14,NOT WS_VISIBLE
+    PUSHBUTTON      "关闭设备",ID_FILE_CLOSE,234,238,50,14
+    PUSHBUTTON      "停止实验",IDC_TEST_STOP,128,238,50,14
+END
+
+IDD_DIALOG_CLY_DEBUG DIALOGEX 0, 0, 237, 161
+STYLE DS_SETFONT | WS_CHILD
+EXSTYLE WS_EX_CLIENTEDGE
+FONT 10, "System", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "+3",IDC_BTN_POS_MOV2,212,84,20,14
+    PUSHBUTTON      "移动",IDC_BTN_POS_MOV,212,100,20,14
+    EDITTEXT        IDC_EDIT_ID,165,134,32,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    PUSHBUTTON      "修改",IDC_BTN_ID,212,133,20,14
+    EDITTEXT        IDC_STATIC_TEMP_AD,47,15,43,12,0,WS_EX_RIGHT
+    EDITTEXT        IDC_STATIC_TEMP,47,30,43,12,0,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_TEMP_VOL,47,45,43,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_CUR_POS,47,85,43,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_DEST_POS,47,101,43,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "移动",IDC_BUTTON_MOVE,93,100,20,14
+    EDITTEXT        IDC_EDIT_SENSOR_AD,165,15,32,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_SENSOR,165,30,32,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_CURRENT,165,45,32,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_FREQ,165,60,32,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    PUSHBUTTON      "校准",IDC_BUTTON_FREQ_ADJ,212,59,20,14
+    EDITTEXT        IDC_EDIT_CURR_POS,165,85,32,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    CONTROL         "温度",IDC_STATIC,"Static",SS_SIMPLE | SS_WORDELLIPSIS,27,32,17,8
+    LTEXT           "电压",IDC_STATIC,27,47,17,8
+    LTEXT           "指示电极",IDC_STATIC,129,32,33,8
+    LTEXT           "电解电极",IDC_STATIC,129,47,33,8
+    LTEXT           "积分频率",IDC_STATIC,129,62,33,8
+    GROUPBOX        "高温炉",IDC_STATIC,8,4,109,69
+    GROUPBOX        "积分器",IDC_STATIC,124,4,109,69
+    GROUPBOX        "送样杆",IDC_STATIC,8,74,109,43
+    LTEXT           "当前位置",IDC_STATIC,11,87,33,8
+    LTEXT           "℃",IDC_STATIC,93,32,10,8
+    LTEXT           "mV",IDC_STATIC,93,47,11,8
+    LTEXT           "mV",IDC_STATIC,200,32,11,8
+    LTEXT           "mA",IDC_STATIC,200,47,11,8
+    LTEXT           "Hz",IDC_STATIC,200,61,10,8
+    LTEXT           "目标位置",IDC_STATIC,11,103,33,8
+    GROUPBOX        "标识符",IDC_STATIC,124,119,109,40
+    LTEXT           "标识符",IDC_STATIC,137,136,25,8
+    LTEXT           "电极AD值",IDC_STATIC,128,17,34,8
+    LTEXT           "AD值",IDC_STATIC,26,17,18,8
+    GROUPBOX        "样盘",IDC_STATIC,124,74,109,43
+    LTEXT           "当前位置",IDC_STATIC,129,87,33,8
+    LTEXT           "目标位置",IDC_STATIC,129,103,33,8
+    LTEXT           "样位1",IDC_STATIC,12,130,22,13
+    LTEXT           "高温位",IDC_STATIC,12,145,25,13
+    LTEXT           "放样位",IDC_STATIC,68,145,24,13
+    LTEXT           "样位N",IDC_STATIC,68,130,25,13
+    LTEXT           "",IDC_STATIC_POSN,96,130,17,13,SS_CENTERIMAGE
+    LTEXT           "",IDC_STATIC_HIGHT_POS,40,145,17,13,SS_CENTERIMAGE
+    LTEXT           "",IDC_STATIC_PUT_POS,96,145,17,13,SS_CENTERIMAGE
+    LTEXT           "",IDC_STATIC_POS1,40,130,17,13,SS_CENTERIMAGE
+    GROUPBOX        "传感器",IDC_STATIC,7,119,109,40
+    EDITTEXT        IDC_EDIT_DEST_POS,165,101,32,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+END
+
+IDD_DIALOG_CLY_SETUP DIALOGEX 0, 0, 270, 306
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "测硫仪属性"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "序号",IDC_STATIC,14,13,17,9,0,WS_EX_RIGHT
+    EDITTEXT        IDC_DEVICE_ROW_NO,45,12,25,12,ES_READONLY | ES_NUMBER
+    CONTROL         "",IDC_DEVICE_SPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,64,12,11,13
+    LTEXT           "名称",IDC_STATIC,79,13,17,9,0,WS_EX_RIGHT
+    EDITTEXT        IDC_DEVICE_NAME,100,12,63,12
+    LTEXT           "型号",IDC_STATIC,169,14,17,9,0,WS_EX_RIGHT
+    COMBOBOX        IDC_DEVICE_TYPE,191,12,65,57,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "标识",IDC_STATIC,33,46,17,9,0,WS_EX_RIGHT
+    LTEXT           "串口",IDC_STATIC,33,66,17,9,0,WS_EX_RIGHT
+    LTEXT           "扫描时间",IDC_STATIC,16,84,34,9,0,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_ID,57,43,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEVICE_COMM,57,62,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEVICE_PERIOD,57,81,51,14,ES_AUTOHSCROLL
+    LTEXT           "蜂鸣时间",IDC_STATIC,145,45,35,9,0,WS_EX_RIGHT
+    LTEXT           "试样类型",IDC_STATIC,147,64,33,9,0,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_BEEPTIME,187,43,51,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_SAMPLE_TYPE,187,62,51,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "修正",IDC_CHECK_FIX,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,166,84,32,10
+    GROUPBOX        "系统设置",IDC_STATIC,7,28,256,76
+    LTEXT           "预分解1",IDC_STATIC,21,126,29,8,0,WS_EX_RIGHT
+    LTEXT           "预分解2",IDC_STATIC,21,146,29,8,0,WS_EX_RIGHT
+    LTEXT           "高温分解",IDC_STATIC,17,166,33,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_PREDECOMPOSE1,57,123,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PREDECOMPOSE2,57,143,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DECOMPOSE,57,163,51,14,ES_AUTOHSCROLL
+    GROUPBOX        "时间",IDC_STATIC,143,115,114,66
+    LTEXT           "预分解1",IDC_STATIC,151,126,29,8,0,WS_EX_RIGHT
+    LTEXT           "预分解2",IDC_STATIC,151,146,29,8,0,WS_EX_RIGHT | WS_EX_RTLREADING
+    LTEXT           "结束延时",IDC_STATIC,147,166,33,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_PREDECOMPOSE1_TIME,187,123,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PREDECOMPOSE2_TIME,187,143,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DECOMPOSE_DELAY_TIME,187,163,51,14,ES_AUTOHSCROLL
+    GROUPBOX        "高温炉设置",IDC_STATIC,7,215,256,30
+    LTEXT           "分解温度",IDC_STATIC,18,229,33,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_DEST_TEMP,57,226,51,14,ES_AUTOHSCROLL
+    LTEXT           "温度系数",IDC_STATIC,148,229,33,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_TEMP_COFF,187,226,51,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "增加",IDC_DEVICE_ADD,7,288,50,14
+    PUSHBUTTON      "删除",IDC_DEVICE_DEL,75,288,50,14
+    PUSHBUTTON      "修改",IDC_DEVICE_MODIFY,143,288,50,14
+    PUSHBUTTON      "退出",IDCANCEL,211,288,50,14
+    GROUPBOX        "送样设置",IDC_STATIC,7,106,256,80
+    GROUPBOX        "位置",IDC_STATIC,14,115,124,66
+    LTEXT           "S",IDC_STATIC,241,125,8,8,0,WS_EX_RIGHT
+    LTEXT           "S",IDC_STATIC,241,145,8,8,0,WS_EX_RIGHT | WS_EX_RTLREADING
+    LTEXT           "S",IDC_STATIC,241,165,8,8,0,WS_EX_RIGHT
+    LTEXT           "mS",IDC_STATIC,111,84,12,9
+    LTEXT           "1-254",IDC_STATIC,111,46,18,9
+    LTEXT           "mS",IDC_STATIC,241,44,12,9
+    CONTROL         "自动硫",IDC_CHECK_AUTO,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,206,84,40,10
+    GROUPBOX        "转盘设置",IDC_STATIC,7,186,256,29
+    RTEXT           "移动到样位1",IDC_STATIC,6,198,45,8
+    LTEXT           "移动到样位N",IDC_STATIC,135,198,46,8
+    EDITTEXT        IDC_EDIT_POSN_TIM,187,195,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_POS1_TIM,57,195,51,14,ES_AUTOHSCROLL
+    RTEXT           "0.1S",IDC_STATIC,114,126,16,8
+    RTEXT           "0.1S",IDC_STATIC,114,145,16,8
+    RTEXT           "0.1S",IDC_STATIC,114,166,16,8
+    RTEXT           "0.1S",IDC_STATIC,113,198,16,8
+    RTEXT           "0.1S",IDC_STATIC,243,198,16,8
+    GROUPBOX        "电解设置",IDC_STATIC,6,246,258,40
+    EDITTEXT        IDC_EDIT_START_DJ,24,268,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_END_DJ,109,268,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DJ_COFF,194,268,51,14,ES_AUTOHSCROLL
+    LTEXT           "硫起始值(mV)",IDC_STATIC,23,257,48,8,0,WS_EX_RIGHT
+    LTEXT           "硫结束值(mV)",IDC_STATIC,108,257,48,8,0,WS_EX_RIGHT
+    LTEXT           "频率系数",IDC_STATIC,194,257,33,8,0,WS_EX_RIGHT
+END
+
+IDD_DIALOG_SETUP DIALOGEX 0, 0, 270, 265
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "测硫仪属性"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "序号",-1,14,13,17,9,0,WS_EX_RIGHT
+    EDITTEXT        IDC_DEVICE_ROW_NO,45,12,25,12,ES_READONLY | ES_NUMBER
+    CONTROL         "",IDC_DEVICE_SPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,64,12,11,13
+    LTEXT           "名称",-1,79,13,17,9,0,WS_EX_RIGHT
+    EDITTEXT        IDC_DEVICE_NAME,100,12,63,12
+    LTEXT           "型号",-1,169,14,17,9,0,WS_EX_RIGHT
+    COMBOBOX        IDC_DEVICE_TYPE,191,12,65,57,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "增加",IDC_DEVICE_ADD,7,244,50,14
+    PUSHBUTTON      "删除",IDC_DEVICE_DEL,75,244,50,14
+    PUSHBUTTON      "修改",IDC_DEVICE_MODIFY,143,244,50,14
+    PUSHBUTTON      "退出",IDCANCEL,211,244,50,14
+END
+
+IDD_DIALOG_CLY_COFF_ATTR DIALOGEX 0, 0, 247, 196
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "仪器系数"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_LIST_COFF,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,233,127
+    PUSHBUTTON      "Button2",IDC_COFF_DEL,68,169,50,14
+    PUSHBUTTON      "Button3",IDC_COFF_MODIFY,129,169,50,14
+    PUSHBUTTON      "Button4",IDCANCEL,190,169,50,14
+    PUSHBUTTON      "Button2",IDC_COFF_ADD,7,169,50,14
+END
+
+IDD_DIALOG_CLY_COFF_CAL DIALOGEX 0, 0, 316, 180
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "计算回归系数"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_LIST_TAB,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,302,118
+    PUSHBUTTON      "保存系数",IDC_SAVE_COFF,132,153,50,14,WS_DISABLED
+    PUSHBUTTON      "计算系数",IDC_CAL_COFF,25,153,50,14
+    PUSHBUTTON      "关闭",IDOK,239,153,50,14
+    LTEXT           "斜率",IDC_STATIC_SLOPE,24,135,59,8
+    LTEXT           "截距",IDC_STATIC_INTERCEPT,114,135,70,8
+    LTEXT           "R",IDC_STATIC_R,198,135,57,8
+    LTEXT           "合格",IDC_STATIC_RESULT,273,135,23,8
+END
+
+IDD_DIALOG_RECAL_S DIALOGEX 0, 0, 320, 118
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "复算硫含量"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "保存",ID_OK,135,90,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,241,90,50,14
+    DEFPUSHBUTTON   "复算",IDCAL,29,90,50,14
+    RTEXT           "试验编号",IDC_STATIC,19,10,33,9
+    RTEXT           "试验日期",IDC_STATIC,19,55,33,9
+    RTEXT           "试验设备",IDC_STATIC,19,70,33,9
+    RTEXT           "水分(Mad)",IDC_STATIC,160,39,48,9
+    RTEXT           "样品编号",IDC_STATIC,19,25,33,9
+    RTEXT           "样品质量",IDC_STATIC,175,24,33,9
+    EDITTEXT        IDC_RECALE_TESTNUM,55,7,88,13,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_YANGPINNUM,55,22,88,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RECALE_YANGPINM,213,22,88,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RECALE_Mad,213,37,88,13,ES_AUTOHSCROLL
+    RTEXT           "平行样编号",IDC_STATIC,165,9,43,9
+    EDITTEXT        IDC_RECALE_DUPLICATE_NO,213,7,88,13,ES_AUTOHSCROLL
+    RTEXT           "取样日期",IDC_STATIC,19,40,33,9
+    EDITTEXT        IDC_RECALE_IED,55,67,88,13,ES_AUTOHSCROLL | WS_DISABLED
+    CONTROL         "",IDC_DATETIMEPICKER,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,55,37,88,13
+    CONTROL         "",IDC_DATETIME_MEASURE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,55,52,88,13
+    RTEXT           "全硫(Sd)",IDC_STATIC,155,69,53,9
+    RTEXT           "全硫(Sad)",IDC_STATIC,149,54,59,9
+    EDITTEXT        IDC_RECALE_Sd,213,67,88,13,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RECALE_Sad,213,52,88,13,ES_AUTOHSCROLL | WS_DISABLED
+END
+
+IDD_GFYHOSTVIEW_FORM DIALOGEX 0, 0, 571, 258
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_PROGRESS_STATE,"msctls_progress32",PBS_SMOOTH | PBS_VERTICAL | WS_BORDER,24,204,520,18,WS_EX_DLGMODALFRAME | WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+    DEFPUSHBUTTON   "开始实验",IDC_TEST_START,286,228,50,14
+    PUSHBUTTON      "关闭设备",ID_FILE_CLOSE,456,228,50,14
+    CONTROL         "",IDC_LIST_RESULT,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SHAREIMAGELISTS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,38,557,143
+    PUSHBUTTON      "称量坩埚",ID_WEIGHT_POT,116,228,50,14
+    PUSHBUTTON      "称量样品",ID_WEIGHT_SAMPLE,201,228,50,14
+    PUSHBUTTON      "复位设备",IDC_RESET,31,228,50,14
+    PUSHBUTTON      "自动输入样品信息",IDC_BUTTON_AUTO_NO,31,18,86,14
+    PUSHBUTTON      "下载样品信息",IDC_BUTTON_SAMPLE_DN,227,18,86,14
+    PUSHBUTTON      "上载样品信息",IDC_BUTTON_SAMPLE_UD,423,18,86,14
+    DEFPUSHBUTTON   "停止实验",IDC_TEST_STOP,371,228,50,14
+    LTEXT           "右炉温度",IDC_STATIC_RIGHT_TEMP,22,196,33,8
+    LTEXT           "水分路炉温",IDC_STATIC_WATER_TEMP,223,183,41,8
+    LTEXT           "左炉温度",IDC_STATIC_LEFT_TEMP,24,182,33,8
+    LTEXT           "信息栏",IDC_STATIC_INFO,222,192,25,8
+END
+
+IDD_DIALOG_GYFXY_DEBUG DIALOGEX 0, 0, 379, 238
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "硬件诊断"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "左高温炉",IDC_STATIC,7,7,120,114
+    GROUPBOX        "右高温炉",IDC_STATIC,133,7,120,114
+    GROUPBOX        "水分炉",IDC_STATIC,7,126,120,109
+    GROUPBOX        "天平",IDC_STATIC,133,126,120,109
+    GROUPBOX        "开关",IDC_STATIC,259,7,120,114
+    GROUPBOX        "样盘",IDC_STATIC,259,126,120,51
+    PUSHBUTTON      "标识符",IDC_BUTTON_SETID,340,216,32,14
+    EDITTEXT        IDC_EDIT_ID,299,215,39,14,ES_AUTOHSCROLL
+    LTEXT           "标识符",IDC_STATIC,265,218,25,8
+    EDITTEXT        IDC_EDIT_LEFT_TEMP,45,20,40,14,ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "温度",IDC_STATIC,21,23,17,8
+    EDITTEXT        IDC_EDIT_LEFT_MV,45,39,40,14,ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "电压",IDC_STATIC,21,42,17,8
+    EDITTEXT        IDC_EDIT_LEFT_DEST,45,58,40,14,ES_AUTOHSCROLL
+    RTEXT           "目标",IDC_STATIC,21,61,17,8
+    RTEXT           "到顶",IDC_STATIC,21,80,16,8
+    RTEXT           "到底",IDC_STATIC,21,98,16,8
+    LTEXT           "",IDC_LEFT_POS_BOT,45,95,23,16,SS_CENTERIMAGE
+    LTEXT           "",IDC_LEFT_POS_TOP,45,76,23,16,SS_CENTERIMAGE
+    LTEXT           "℃",IDC_STATIC,93,24,9,8
+    LTEXT           "mV",IDC_STATIC,93,42,10,8
+    PUSHBUTTON      "升温",IDC_BUTTON_LEFT_WARM,91,58,32,14
+    PUSHBUTTON      "降",IDC_BUTTON_LEFT_DN,91,96,32,14
+    PUSHBUTTON      "升",IDC_BUTTON_LEFT_UP,91,77,32,14
+    EDITTEXT        IDC_EDIT_RIGHT_TEMP,169,20,40,14,ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "温度",IDC_STATIC,145,23,17,8
+    EDITTEXT        IDC_EDIT_RIGHT_MV,169,39,40,14,ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "电压",IDC_STATIC,145,42,17,8
+    EDITTEXT        IDC_EDIT_RIGHT_DEST,169,58,40,14,ES_AUTOHSCROLL
+    RTEXT           "目标",IDC_STATIC,145,58,17,8
+    RTEXT           "到顶",IDC_STATIC,141,80,20,8
+    RTEXT           "到底",IDC_STATIC,143,102,18,8
+    LTEXT           "",IDC_RIGHT_POS_BOT,169,94,23,16,SS_CENTERIMAGE
+    LTEXT           "",IDC_RIGHT_POS_TOP,169,76,23,16,SS_CENTERIMAGE
+    LTEXT           "℃",IDC_STATIC,217,23,9,8
+    LTEXT           "mV",IDC_STATIC,217,42,10,8
+    PUSHBUTTON      "升温",IDC_BUTTON_RIGHT_WARM,215,58,32,14
+    PUSHBUTTON      "降",IDC_BUTTON_RIGHT_DN,215,96,32,14
+    PUSHBUTTON      "升",IDC_BUTTON_RIGHT_UP,215,77,32,14
+    EDITTEXT        IDC_EDIT_WATER_STOVE_TEMP,43,138,40,14,ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "温度",IDC_STATIC,19,142,17,8
+    EDITTEXT        IDC_EDIT_WATER_STOVE_MV,43,158,40,14,ES_AUTOHSCROLL | ES_READONLY
+    RTEXT           "电压",IDC_STATIC,19,161,17,8
+    EDITTEXT        IDC_EDIT_WATER_STOVE_DEST,43,177,40,14,ES_AUTOHSCROLL
+    RTEXT           "目标",IDC_STATIC,19,180,17,8
+    RTEXT           "到顶",IDC_STATIC,17,199,18,8
+    RTEXT           "到底",IDC_STATIC,17,218,18,8
+    LTEXT           "",IDC_WATER_STOVE_POS_BOT,45,214,23,16,SS_CENTERIMAGE
+    LTEXT           "",IDC_WATER_STOVE_POS_TOP,45,194,23,16,SS_CENTERIMAGE
+    LTEXT           "℃",IDC_STATIC,91,143,9,8
+    LTEXT           "mV",IDC_STATIC,91,161,10,8
+    PUSHBUTTON      "升温",IDC_BUTTON_WATER_STOVE_WARM,89,177,32,14
+    PUSHBUTTON      "降",IDC_BUTTON_WATER_STOVE_DN,89,215,32,14
+    PUSHBUTTON      "升",IDC_BUTTON_WATER_STOVE_UP,89,196,32,14
+    EDITTEXT        IDC_EDIT_WEIGHT,169,138,40,14,ES_AUTOHSCROLL
+    LTEXT           "重量",IDC_STATIC,145,142,17,8
+    LISTBOX         IDC_LIST_WEIGHT,145,157,102,78,WS_TABSTOP
+    PUSHBUTTON      "清零",IDC_BUTTON_TARE,215,138,32,14
+    EDITTEXT        IDC_EDIT_CUR_POS,299,138,40,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "样位",IDC_STATIC,273,142,17,8
+    PUSHBUTTON      "旋转",IDC_BUTTON_SAMPLE_ROUND,341,138,32,14
+    LTEXT           "目标",IDC_STATIC,273,161,17,8
+    PUSHBUTTON      "移位",IDC_BUTTON_SAMPLENO_MOVE,341,158,32,14
+    PUSHBUTTON      "氧气开关",IDC_BUTTON_LEFT_OXYGEN,273,20,94,14
+    PUSHBUTTON      "氮气开关",IDC_BUTTON_RIGHT_OXYGEN,273,39,94,14
+    PUSHBUTTON      "左炉风扇",IDC_BUTTON_LEFT_FAN,273,58,94,14
+    PUSHBUTTON      "右炉风扇",IDC_BUTTON_RIGHT_FAN,273,77,94,14
+    PUSHBUTTON      "恒温炉风扇",IDC_BUTTON_WATER_STOVE,273,96,94,14
+    GROUPBOX        "标识符",IDC_STATIC,259,206,120,29
+    COMBOBOX        IDC_COMBO_DEST,299,159,40,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DIALOG_GYFXY_AUTO_NO DIALOGEX 0, 0, 337, 209
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "输入样品参数"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_LIST_WATER_ASH,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,19,152,128
+    CONTROL         "水分测试",IDC_CHECK_TEST_WATER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,152,48,10
+    CONTROL         "灰分测试",IDC_CHECK_TEST_ASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,165,48,10
+    CONTROL         "平行样",IDC_CHECK_WATER_ASH_PX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,165,40,10
+    CONTROL         "",IDC_LIST_VOL,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,174,19,152,128
+    CONTROL         "挥发分测试",IDC_CHECK_TEST_VOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,252,152,56,10
+    CONTROL         "平行样",IDC_CHECK_VOL_PX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,252,165,40,10
+    DEFPUSHBUTTON   "确定",IDOK,113,185,50,14
+    PUSHBUTTON      "取消",IDCANCEL,266,185,50,14
+    GROUPBOX        "挥发分实验编号",IDC_STATIC,169,7,157,173
+    GROUPBOX        "水灰实验编号",IDC_STATIC,7,7,157,173
+    CONTROL         "水分/挥发分同步编号",IDC_CHECK_SYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,188,91,10
+    COMBOBOX        IDC_COMBO_VOL_CNT,174,164,51,17,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_ASH_CNT,59,164,51,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "挥发分数量",IDC_STATIC,174,153,41,8
+    LTEXT           "水/灰数量",IDC_STATIC,62,153,36,8
+END
+
+IDD_DLG_GYFXY_BALANCE DIALOGEX 0, 0, 539, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "0.0000",IDC_STATIC_POT,150,7,382,40,0,WS_EX_RIGHT
+    LTEXT           "0.0000",IDC_STATIC_BALANCE,150,51,382,40,0,WS_EX_RIGHT
+    LTEXT           "0.0000",IDC_STATIC_SAMPLE,120,96,412,113,0,WS_EX_RIGHT
+    LTEXT           "坩埚重",IDC_STATIC_POT_LABEL,7,7,103,40
+    LTEXT           "实时重",IDC_STATIC_BALANCE_LABEL,7,51,103,40
+    LTEXT           "样重",IDC_STATIC_SAMPLE_LABEL,7,124,103,55
+END
+
+IDD_DIALOG_COMM_ADD DIALOGEX 0, 0, 203, 150
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "通信口属性"
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMM_MODE,56,39,48,42,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMM_BAUD,56,57,48,78,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMM_VERIFY,56,73,48,76,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMM_STOPBIT,56,89,48,42,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMM_BYTE,56,106,48,50,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "增加",IDC_COMM_ADD,138,15,50,17,WS_DISABLED
+    PUSHBUTTON      "修改",IDC_COMM_MODIFY,138,41,50,17,WS_DISABLED
+    PUSHBUTTON      "删除",IDC_COMM_DEL,138,65,50,17
+    PUSHBUTTON      "退出",IDCANCEL,138,120,50,17
+    RTEXT           "串行端口",IDC_STATIC,18,25,33,10
+    LTEXT           "通信方式",IDC_STATIC,18,41,33,10,0,WS_EX_RIGHT
+    LTEXT           "速率",IDC_STATIC,34,59,17,10,0,WS_EX_RIGHT
+    LTEXT           "校验位",IDC_STATIC,26,76,25,10,0,WS_EX_RIGHT
+    LTEXT           "停止位",IDC_STATIC,26,92,25,10,0,WS_EX_RIGHT
+    LTEXT           "字节位",IDC_STATIC,26,109,25,10,0,WS_EX_RIGHT
+    GROUPBOX        "",IDC_STATIC,13,8,109,128
+    COMBOBOX        IDC_COMM_ID,56,23,48,63,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DLG_GYFXY_SETUP DIALOGEX 0, 0, 320, 275
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "工业分析仪设备属性"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_DEVICE_ROW_NO,44,12,43,12,ES_READONLY | ES_NUMBER
+    CONTROL         "",IDC_DEVICE_SPIN,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,77,11,10,14
+    PUSHBUTTON      "增加",IDC_DEVICE_ADD,18,249,50,14
+    PUSHBUTTON      "删除",IDC_DEVICE_DEL,95,249,50,14
+    PUSHBUTTON      "修改",IDC_DEVICE_MODIFY,172,249,50,14
+    PUSHBUTTON      "退出",IDCANCEL,249,249,50,14
+    LTEXT           "序号",IDC_STATIC,18,14,17,9,0,WS_EX_RIGHT
+    LTEXT           "名称",IDC_STATIC,92,14,17,9,0,WS_EX_RIGHT
+    EDITTEXT        IDC_DEVICE_NAME,114,13,88,12
+    LTEXT           "型号",IDC_STATIC,209,15,17,9,0,WS_EX_RIGHT
+    COMBOBOX        IDC_DEVICE_TYPE,236,13,63,57,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_LIST_ATTR,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,33,306,206
+END
+
+IDD_DBQRYGVIEW DIALOG  0, 0, 320, 200
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "TODO: Place form controls on this dialog.",IDC_STATIC,24,42,280,8
+END
+
+IDD_REG_INFO DIALOGEX 0, 0, 316, 180
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "注册"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,43,159,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,223,159,50,14
+    EDITTEXT        IDC_EDIT_NEW_INFO,18,96,277,61,ES_MULTILINE | ES_AUTOVSCROLL
+    EDITTEXT        IDC_EDIT_OLD_INFO,18,20,277,61,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    LTEXT           "设备序列号",IDC_STATIC,18,8,41,8
+    LTEXT           "注册码",IDC_STATIC,18,83,25,8
+    PUSHBUTTON      "计算注册码",IDC_BUTTON_CALC,133,159,50,14
+    CONTROL         "",IDC_DATETIMEPICKER_LAST,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,195,81,100,15
+    LTEXT           "最终日期",IDC_STATIC,155,83,33,8
+END
+
+IDD_GYFXY_G5000_PAGE_PARAM DIALOGEX 0, 0, 451, 218
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "称坩埚",ID_WEIGHT_POT,380,48,50,14
+    PUSHBUTTON      "称样品",ID_WEIGHT_SAMPLE,380,69,50,14
+    PUSHBUTTON      "复位设备",IDC_RESET,380,6,50,14
+    PUSHBUTTON      "开炉门",IDC_BTN_COVER,380,27,50,14
+    PUSHBUTTON      "样位加",IDC_BTN_POS_ADD,380,90,50,14
+    PUSHBUTTON      "样位减",IDC_BTN_POS_DEC,380,111,50,14
+    CONTROL         "",IDC_LIST_SAMPLE,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,366,204
+END
+
+IDD_GYFXY_G5000_PAGE_SAMPLE_STATE DIALOGEX 0, 0, 451, 254
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "炉温",IDC_STATIC,31,16,17,8
+    LTEXT           "天平",IDC_STATIC,31,30,17,8
+    LTEXT           "氧气",IDC_STATIC,31,44,17,8
+    LTEXT           "氮气",IDC_STATIC,31,58,17,8
+    LTEXT           "样杆",IDC_STATIC,31,72,17,8
+    LTEXT           "炉门",IDC_STATIC,31,86,17,8
+    LTEXT           "样位",IDC_STATIC,31,100,17,8
+    LTEXT           "坩埚重",IDC_STATIC,31,114,25,8
+    LTEXT           "样品重",IDC_STATIC,31,128,25,8
+    LTEXT           "水分",IDC_STATIC,31,142,17,8
+    LTEXT           "挥发份",IDC_STATIC,31,156,25,8
+    LTEXT           "灰分",IDC_STATIC,31,170,17,8
+    LTEXT           "时间",IDC_STATIC,31,184,17,8
+    EDITTEXT        IDC_EDIT1,68,15,57,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,68,34,57,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT12,68,53,57,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT14,68,72,57,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT15,68,91,57,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT16,68,110,57,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT17,68,129,57,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,68,148,57,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,68,167,57,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,68,186,57,14,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "FileDescription", "煤质仪器综合分析系统"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "LRYCTRL"
+            VALUE "LegalCopyright", "版权所有 (C) 2011"
+            VALUE "OriginalFilename", "LRYCTRL.EXE"
+            VALUE "ProductName", "LRYCTRL 应用程序"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 76
+    END
+
+    IDD_DIALOG_SELE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 183
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 125
+    END
+
+    IDD_PAGE_CURVE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 38
+        TOPMARGIN, 2
+    END
+
+    IDD_PAGE_DEBUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 225
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 145
+    END
+
+    IDD_PAGE_DEBUG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 225
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 127
+    END
+
+    IDD_PAGE_OUTINFO, DIALOG
+    BEGIN
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_PAGE_PARAM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 215
+        VERTGUIDE, 14
+        VERTGUIDE, 96
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 169
+    END
+
+    IDD_LRY_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 243
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 253
+    END
+
+    IDD_SETUP_DEVICE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 288
+    END
+
+    IDD_LOGIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 164
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 92
+    END
+
+    IDD_RECAL_Q, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 242
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 166
+    END
+
+    IDD_CAL_GAODIQ, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 258
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 192
+    END
+
+    IDD_MODEFY_YANGPIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 157
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 84
+    END
+
+    IDD_CLYHOSTVIEW_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 255
+    END
+
+    IDD_DIALOG_CLY_DEBUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 234
+        BOTTOMMARGIN, 159
+    END
+
+    IDD_DIALOG_CLY_SETUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 263
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 299
+    END
+
+    IDD_DIALOG_SETUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 263
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 258
+    END
+
+    IDD_DIALOG_CLY_COFF_ATTR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 240
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 189
+    END
+
+    IDD_DIALOG_CLY_COFF_CAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+
+    IDD_DIALOG_RECAL_S, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 111
+    END
+
+    IDD_GFYHOSTVIEW_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 564
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 251
+    END
+
+    IDD_DIALOG_GYFXY_DEBUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 372
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 231
+    END
+
+    IDD_DIALOG_GYFXY_AUTO_NO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 330
+        VERTGUIDE, 330
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 202
+    END
+
+    IDD_DLG_GYFXY_BALANCE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 532
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 209
+    END
+
+    IDD_DLG_GYFXY_SETUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 268
+    END
+
+    IDD_DBQRYGVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 193
+    END
+
+    IDD_REG_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+
+    IDD_GYFXY_G5000_PAGE_PARAM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 444
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 211
+    END
+
+    IDD_GYFXY_G5000_PAGE_SAMPLE_STATE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 444
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 245
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_TEST
+    BUTTON      ID_QRY_E
+    BUTTON      ID_QRY_Q
+    SEPARATOR
+    BUTTON      ID_QRY_S
+    SEPARATOR
+    BUTTON      ID_QRY_G
+    SEPARATOR
+    BUTTON      ID_MENU_USERLOGIN
+    BUTTON      ID_MENU_USERLOGOUT
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_FILE_PRINT_PREVIEW
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_DB TOOLBAR  19, 17
+BEGIN
+    BUTTON      ID_RECORD_FIRST
+    BUTTON      ID_RECORD_PREV
+    BUTTON      ID_RECORD_NEXT
+    BUTTON      ID_RECORD_LAST
+    BUTTON      ID_RECORD_REFRESH
+    BUTTON      ID_DATETIME_START
+    BUTTON      ID_DATETIME_END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PAGE_PARAM DLGINIT
+BEGIN
+    IDC_TEST_YANGDANID, 0x403, 6, 0
+0xd141, 0xb5f5, 0x00af, 
+    IDC_TEST_YANGDANID, 0x403, 6, 0
+0xd142, 0xb5f5, 0x00af, 
+    IDC_TEST_TYPE, 0x403, 7, 0
+0xa2b7, 0xc8c8, 0xbfc1, "\000" 
+    IDC_TEST_TYPE, 0x403, 7, 0
+0xc8c8, 0xddc8, 0xbfc1, "\000" 
+    IDC_TEST_YANGPINNUM, 0x403, 7, 0
+0xbdb1, 0xd7bc, 0xe1cb, "\000" 
+    IDC_TEST_YANGPINNUM, 0x403, 5, 0
+0xe6c3, 0xdbb7, "\000" 
+    IDC_TEST_YANGPINNUM, 0x403, 3, 0
+0xbac3, "\000" 
+    0
+END
+
+IDD_SETUP_DEVICE DLGINIT
+BEGIN
+    IDC_DEVICE_MODE, 0x403, 5, 0
+0xf0c8, 0xbdb7, "\000" 
+    IDC_DEVICE_MODE, 0x403, 5, 0
+0xfab9, 0xeab1, "\000" 
+    IDC_DEVICE_MODE, 0x403, 9, 0
+0xfab9, 0xeab1, 0xecbf, 0xd9cb, "\000" 
+    0
+END
+
+IDD_DIALOG_CLY_DEBUG DLGINIT
+BEGIN
+    IDC_COMBO_DEST_POS, 0x403, 7, 0
+0xc5b7, 0xf9d1, 0xbbce, "\000" 
+    IDC_COMBO_DEST_POS, 0x403, 8, 0
+0xa4d4, 0xd6b7, 0xe2bd, 0x0031, 
+    IDC_COMBO_DEST_POS, 0x403, 8, 0
+0xa4d4, 0xd6b7, 0xe2bd, 0x0032, 
+    IDC_COMBO_DEST_POS, 0x403, 7, 0
+0xdfb8, 0xc2ce, 0xbbce, "\000" 
+    0
+END
+
+IDD_DIALOG_CLY_SETUP DLGINIT
+BEGIN
+    IDC_COMBO_SAMPLE_TYPE, 0x403, 5, 0
+0xd8d6, 0xcdd3, "\000" 
+    IDC_COMBO_SAMPLE_TYPE, 0x403, 3, 0
+0xbac3, "\000" 
+    0
+END
+
+IDD_DIALOG_COMM_ADD DLGINIT
+BEGIN
+    IDC_COMM_MODE, 0x403, 6, 0
+0x5352, 0x3834, 0x0035, 
+    IDC_COMM_MODE, 0x403, 6, 0
+0x5352, 0x3332, 0x0032, 
+    IDC_COMM_BAUD, 0x403, 6, 0
+0x3931, 0x3032, 0x0030, 
+    IDC_COMM_BAUD, 0x403, 5, 0
+0x3639, 0x3030, "\000" 
+    IDC_COMM_BAUD, 0x403, 5, 0
+0x3834, 0x3030, "\000" 
+    IDC_COMM_BAUD, 0x403, 5, 0
+0x3432, 0x3030, "\000" 
+    IDC_COMM_BAUD, 0x403, 5, 0
+0x3231, 0x3030, "\000" 
+    IDC_COMM_BAUD, 0x403, 4, 0
+0x3036, 0x0030, 
+    IDC_COMM_BAUD, 0x403, 4, 0
+0x3033, 0x0030, 
+    IDC_COMM_VERIFY, 0x403, 5, 0
+0x4f4e, 0x454e, "\000" 
+    IDC_COMM_VERIFY, 0x403, 4, 0
+0x444f, 0x0044, 
+    IDC_COMM_VERIFY, 0x403, 5, 0
+0x5645, 0x4e45, "\000" 
+    IDC_COMM_VERIFY, 0x403, 5, 0
+0x414d, 0x4b52, "\000" 
+    IDC_COMM_VERIFY, 0x403, 6, 0
+0x5053, 0x4341, 0x0045, 
+    IDC_COMM_STOPBIT, 0x403, 2, 0
+0x0031, 
+    IDC_COMM_STOPBIT, 0x403, 4, 0
+0x2e31, 0x0035, 
+    IDC_COMM_STOPBIT, 0x403, 2, 0
+0x0032, 
+    IDC_COMM_BYTE, 0x403, 2, 0
+0x0038, 
+    IDC_COMM_BYTE, 0x403, 2, 0
+0x0037, 
+    IDC_COMM_BYTE, 0x403, 2, 0
+0x0036, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+1                       RT_MANIFEST             "RES\\LRYCTRL.EXE.MANIFEST"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_PNG_GREY            PNG                     "res\\Box_Grey.png"
+IDB_PNG_ORG             PNG                     "res\\Box_Orange.png"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "煤炭质量综合分析系统"
+    IDR_LRYCTRTYPE          "\nLry\nLry\n\n\nLRYCTRL.Document\nLRYCTR Document"
+    IDR_LRYQRY_DOCTYPE      "\n量热仪发热量查询\n量热仪发热量查询\nn\nLRYQRYL.Document\nLRYQRY Document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "LRYCTRL"
+    AFX_IDS_IDLEMESSAGE     "就绪"
+    ID_COMPRESSDB           "压缩数据库 \n压缩数据库 \n"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "扩展名"
+    ID_INDICATOR_CAPS       "大写"
+    ID_INDICATOR_NUM        "数字"
+    ID_INDICATOR_SCRL       "滚动"
+    ID_INDICATOR_OVR        "改写"
+    ID_INDICATOR_REC        "记录"
+    ID_INDICATOR_COMPRESSDB "压缩数据库"
+    ID_INDICATOR_DATETIMER  "系统时间 "
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "建立新文档\n新建"
+    ID_FILE_OPEN            "打开一个现有文档\n打开"
+    ID_FILE_CLOSE           "关闭活动文档\n关闭"
+    ID_FILE_SAVE            "保存活动文档\n保存"
+    ID_FILE_SAVE_AS         "将活动文档以一个新文件名保存\n另存为"
+    ID_FILE_PRINT           "打印报表\n打印报表\n"
+    ID_FILE_PRINT_PREVIEW   "打印预览\n打印预览\n"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "显示程序信息，版本号和版权\n关于"
+    ID_APP_EXIT             "退出应用程序；提示保存文档\n退出"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "打开该文档"
+    ID_FILE_MRU_FILE2       "打开该文档"
+    ID_FILE_MRU_FILE3       "打开该文档"
+    ID_FILE_MRU_FILE4       "打开该文档"
+    ID_FILE_MRU_FILE5       "打开该文档"
+    ID_FILE_MRU_FILE6       "打开该文档"
+    ID_FILE_MRU_FILE7       "打开该文档"
+    ID_FILE_MRU_FILE8       "打开该文档"
+    ID_FILE_MRU_FILE9       "打开该文档"
+    ID_FILE_MRU_FILE10      "打开该文档"
+    ID_FILE_MRU_FILE11      "打开该文档"
+    ID_FILE_MRU_FILE12      "打开该文档"
+    ID_FILE_MRU_FILE13      "打开该文档"
+    ID_FILE_MRU_FILE14      "打开该文档"
+    ID_FILE_MRU_FILE15      "打开该文档"
+    ID_FILE_MRU_FILE16      "打开该文档"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "切换到下一个窗格\n下一窗格"
+    ID_PREV_PANE            "切换回前一个窗格\n前一窗格"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "为活动文档打开另一个窗口\n新建窗口"
+    ID_WINDOW_ARRANGE       "将图标排列在窗口底部\n排列图标"
+    ID_WINDOW_CASCADE       "排列窗口成相互重叠\n层叠窗口"
+    ID_WINDOW_TILE_HORZ     "排列窗口成互不重叠\n平铺窗口"
+    ID_WINDOW_TILE_VERT     "排列窗口成互不重叠\n平铺窗口"
+    ID_WINDOW_SPLIT         "将活动的窗口分隔成窗格\n分隔"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "删除被选对象\n删除"
+    ID_EDIT_CLEAR_ALL       "全部删除\n全部删除"
+    ID_EDIT_COPY            "复制被选对象并将其置于剪贴板上\n复制"
+    ID_EDIT_CUT             "剪切被选对象并将其置于剪贴板上\n剪切"
+    ID_EDIT_FIND            "查找指定的正文\n查找"
+    ID_EDIT_PASTE           "插入剪贴板内容\n粘贴"
+    ID_EDIT_REPEAT          "重复上一步操作\n重复"
+    ID_EDIT_REPLACE         "用不同的正文替换指定的正文\n替换"
+    ID_EDIT_SELECT_ALL      "选择整个文档\n选择全部"
+    ID_EDIT_UNDO            "撤消最后一步操作\n撤消"
+    ID_EDIT_REDO            "重新执行先前已撤消的操作\n重新执行"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n显隐工具栏"
+    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n显隐状态栏"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "改变窗口大小"
+    AFX_IDS_SCMOVE          "改变窗口位置"
+    AFX_IDS_SCMINIMIZE      "将窗口缩小成图标"
+    AFX_IDS_SCMAXIMIZE      "把窗口放大到最大尺寸"
+    AFX_IDS_SCNEXTWINDOW    "切换到下一个文档窗口"
+    AFX_IDS_SCPREVWINDOW    "切换到先前的文档窗口"
+    AFX_IDS_SCCLOSE         "关闭活动的窗口并提示保存所有文档"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "把窗口恢复到正常大小"
+    AFX_IDS_SCTASKLIST      "激活任务表"
+    AFX_IDS_MDICHILD        "激活该窗口"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TEST                 "打开设备,开始测试\n打开设备,开始测试\n"
+    ID_QRY_E                "热容量查询\n热容量查询\n"
+    ID_QRY_Q                "发热量查询\n发热量查询\n"
+    ID_MENU_USERLOGIN       "用户登录\n用户登录\n"
+    ID_MENU_USERLOGOUT      "注销当前登录\n注销当前登录\n"
+    ID_PRINT                "打印报表\n打印报表\n"
+    ID_PRINT_VIEW           "打印预览\n打印预览\n"
+    ID_RECORD_REFRESH       "刷新纪录\n刷新纪录\n"
+    ID_VIEW_DBBAR           "查询工具栏\n查询工具栏\n"
+    ID_DATETIME_START       "开始日期\n开始日期\n"
+    ID_DATETIME_END         "结束日期\n结束日期\n"
+    ID_DEVICE               "设备名称\n设备名称\n"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_RECORD_FIRST         "第一条记录\n第一条记录\n"
+    ID_RECORD_LAST          "最后一条记录\n最后一条记录\n"
+    ID_RECORD_NEXT          "下一条记录\n下一条记录\n"
+    ID_RECORD_PREV          "上一条记录\n上一条记录\n"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_BOMB_NO              "氧弹编号\n氧弹编号\n"
+    CG_ID_VIEW_WORKSPACE    "设备栏[&E]\n设备栏[&E]\n"
+    ID_DEVICE_ATTRIB        "设备属性\n设备属性\n"
+    ID_PRINT_SET            "打印设置"
+    ID_SETUP_USERINFO       "修改用户资料\n修改用户资料\n"
+    IDC_E_MODIFY            "修改样品质量\n修改样品质量\n"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_DELETE_RECORD        "删除记录\n删除记录\n"
+    ID_ANALYSE_DANTONG      "复算弹筒发热量\n\\复算弹筒发热量\n"
+    ID_ANALYSE_GAODIWEI     "计算高低位和干基发热量\n计算高低位和干基发热量\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COL_1               "实验编号"
+    IDS_COL_2               "实验内容"
+    IDS_COL_3               "样品编号"
+    IDS_COL_4               "设备名称"
+    IDS_COL_5               "氧弹编号"
+    IDS_COL_6               "样品质量"
+    IDS_COL_7               "热容量"
+    IDS_COL_8               "极差"
+    IDS_COL_9               "取舍"
+    IDS_COL_10              "弹筒发热量"
+    IDS_COL_11              "高位发热量"
+    IDS_COL_12              "低位发热量"
+    IDS_COL_13              "样位"
+    IDS_COL_14              "水分"
+    IDS_COL_15              "挥发分"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_PRINT_REPORT_SETTING "报表设计\n报表设计\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDR_LRYHOSTVIEW_TMPL    "\n量热仪\n量热仪\n\n\nLRYCTRL.Document\nLRYCTR Document"
+    IDR_LRYEQRY_DOCTYPE     "\n量热仪热容量查询\n量热仪热容量查询\nn\nLRYERYL.Document\nLRYERY Document"
+    IDR_CLYSQRY_DOCTYPE     "\n全硫查询\n全硫查询\nn\nSQUERY.Document\nSQUERY.Document"
+    IDR_CLYHOSTVIEW_TMPL    "\n测硫仪\n测硫仪\n\n\nLRYCTRL.Document\nLRYCTR Document"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COL_16              "灰分"
+    IDS_COL_17              "标煤编号"
+    IDS_COL_18              "挥发分Vd"
+    IDS_COL_19              "灰分Ad"
+    IDS_COL_20              "序号"
+    IDS_COL_21              "挥发分系数"
+    IDS_COL_22              "灰分系数"
+    ID_STR_DEV_CLY          "测硫仪"
+    ID_STR_DEV_LRY          "量热仪"
+    ID_STR_DEV_GYFXY        "工业分析仪"
+    ID_STR_DEV_GYFXY2       "工业分析仪II"
+    IDS_STRING107           "-"
+    IDS_STRING111           "-"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENUITEM32800        "系数修正\n系数修正\n"
+    ID_CORR_FACT            "系数修正\n系数修正"
+    ID_DEBUG                "硬件诊断\n\\硬件诊断\n"
+    ID_QRY_S                "硫含量查询\n硫含量查询\n"
+    ID_ANALYSE_RECAL        "修改样品质量,样品编号\n修改样品质量,样品编号\n"
+    ID_ANALYSE_RECAL_STD    "计算干基硫\n计算干基硫\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDR_DB                  "显示或隐藏查询工具栏"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_AVERAGE_MENU         "平均记录|原始记录\n平均记录|原始记录\n"
+    ID_QRY_G                "工业分析仪结果查询\n工业分析仪结果查询\n"
+    ID__ADD_SAMPLE          "添加样品"
+    ID__DELE_SAMPLE         "删除样品"
+END
+
+STRINGTABLE 
+BEGIN
+    IDR_GYFXYHOSTVIEW_TMPL  "\n工业分析仪\n工业分析仪\n工业分析仪\nGyfxyHostView Files (*.gyf)\n.gyf\nGyfxyHostView.Document\nGyfxyHostView Document"
+    IDR_GYFXYDEBUGVIEW_TMPL "GyfxyDebugView\nGyfxyDebugView\nGyfxyDebugView\nGyfxyDebugView Files (*.gyf)\n.gyf\nGyfxyDebugView.Document\nGyfxyDebugView Document"
+    IDR_DBQRYGVIEW_TMPL     "工业分析仪查询\n工业分析仪查询\n工业分析仪查询\nLRYCTRL Files (*.dbqG)\n.dbqG\nDBQryGView.Document\nDBQryGView Document"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\LRYCTRL.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

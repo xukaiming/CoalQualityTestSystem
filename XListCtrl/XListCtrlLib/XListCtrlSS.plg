@@ -1,0 +1,67 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: XListCtrlSS - Win32 Release Unicode--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSPD.tmp" with contents
+[
+/nologo /MT /W4 /GX /O2 /D "NDEBUG" /D "_UNICODE" /D "UNIOCODE" /D "WIN32" /D "_WINDOWS" /D "XLISTCTRLLIB_STATIC" /FR"Release_Unicode/" /Fp"Release_Unicode/XListCtrlSS.pch" /Yu"stdafx.h" /Fo"Release_Unicode/" /Fd"Release_Unicode/" /FD /c 
+"D:\通发\量热仪\程序\上位机\LRYCTRL\XListCtrl\XListCtrl\AdvComboBox.cpp"
+"D:\通发\量热仪\程序\上位机\LRYCTRL\XListCtrl\XListCtrl\XListCtrl.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSPD.tmp" 
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSPE.tmp" with contents
+[
+/nologo /out:"Release_Unicode\XListCtrlSSRU.lib" 
+".\Release_Unicode\AdvComboBox.obj"
+".\Release_Unicode\AdvComboEdit.obj"
+".\Release_Unicode\DropListBox.obj"
+".\Release_Unicode\DropScrollBar.obj"
+".\Release_Unicode\DropWnd.obj"
+".\Release_Unicode\StdAfx.obj"
+".\Release_Unicode\VisualStylesXP.obj"
+".\Release_Unicode\XCombo.obj"
+".\Release_Unicode\XComboList.obj"
+".\Release_Unicode\XEdit.obj"
+".\Release_Unicode\XHeaderCtrl.obj"
+".\Release_Unicode\XListCtrl.obj"
+]
+Creating command line "link.exe -lib @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSPE.tmp"
+<h3>Output Window</h3>
+Compiling...
+AdvComboBox.cpp
+D:\通发\量热仪\程序\上位机\LRYCTRL\XListCtrl\XListCtrl\VisualStylesXP.h(53) : fatal error C1083: Cannot open include file: 'uxtheme.h': No such file or directory
+XListCtrl.cpp
+Generating Code...
+Error executing cl.exe.
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSPF.tmp" with contents
+[
+/nologo /o"Release_Unicode/XListCtrlSS.bsc" 
+".\Release_Unicode\StdAfx.sbr"
+".\Release_Unicode\AdvComboBox.sbr"
+".\Release_Unicode\AdvComboEdit.sbr"
+".\Release_Unicode\DropListBox.sbr"
+".\Release_Unicode\DropScrollBar.sbr"
+".\Release_Unicode\DropWnd.sbr"
+".\Release_Unicode\VisualStylesXP.sbr"
+".\Release_Unicode\XCombo.sbr"
+".\Release_Unicode\XComboList.sbr"
+".\Release_Unicode\XEdit.sbr"
+".\Release_Unicode\XHeaderCtrl.sbr"
+".\Release_Unicode\XListCtrl.sbr"]
+Creating command line "bscmake.exe @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSPF.tmp"
+Creating browse info file...
+BSCMAKE: error BK1506 : cannot open file '.\Release_Unicode\AdvComboBox.sbr': No such file or directory
+Error executing bscmake.exe.
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+XListCtrlSSRU.lib - 2 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

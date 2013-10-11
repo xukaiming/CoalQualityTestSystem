@@ -1,0 +1,14 @@
+//
+// LRYCTRL.RC2 - resources Microsoft Visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+	#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Add manually edited resources here...
+//#include <XTToolkitPro.rc>
+//#include <Styles/Office2007Black/Office2007Black.rc>
+/////////////////////////////////////////////////////////////////////////////

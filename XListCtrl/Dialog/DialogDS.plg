@@ -1,0 +1,140 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: XListCtrlDS - Win32 Debug Unicode--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP410.tmp" with contents
+[
+/nologo /MDd /W4 /Gm /GX /ZI /Od /D "_DEBUG" /D "_UNICODE" /D "UNICODE" /D "WIN32" /D "_WINDOWS" /D "XLISTCTRLLIB_STATIC" /D "_AFXDLL" /Fp"Debug_Unicode/XListCtrlDS.pch" /Yu"stdafx.h" /Fo"Debug_Unicode/" /Fd"Debug_Unicode/" /FD /GZ /c 
+"F:\XListCtrl_demo\XListCtrl\AdvComboBox.cpp"
+"F:\XListCtrl_demo\XListCtrl\AdvComboEdit.cpp"
+"F:\XListCtrl_demo\XListCtrl\DropListBox.cpp"
+"F:\XListCtrl_demo\XListCtrl\DropScrollBar.cpp"
+"F:\XListCtrl_demo\XListCtrl\DropWnd.cpp"
+"F:\XListCtrl_demo\XListCtrl\VisualStylesXP.cpp"
+"F:\XListCtrl_demo\XListCtrl\XCombo.cpp"
+"F:\XListCtrl_demo\XListCtrl\XComboList.cpp"
+"F:\XListCtrl_demo\XListCtrl\XEdit.cpp"
+"F:\XListCtrl_demo\XListCtrl\XHeaderCtrl.cpp"
+"F:\XListCtrl_demo\XListCtrl\XListCtrl.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP410.tmp" 
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP411.tmp" with contents
+[
+/nologo /MDd /W4 /Gm /GX /ZI /Od /D "_DEBUG" /D "_UNICODE" /D "UNICODE" /D "WIN32" /D "_WINDOWS" /D "XLISTCTRLLIB_STATIC" /D "_AFXDLL" /Fp"Debug_Unicode/XListCtrlDS.pch" /Yc"stdafx.h" /Fo"Debug_Unicode/" /Fd"Debug_Unicode/" /FD /GZ /c 
+"F:\XListCtrl_demo\XListCtrlLib\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP411.tmp" 
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP412.tmp" with contents
+[
+/nologo /out:"Debug_Unicode\XListCtrlDSDU.lib" 
+.\Debug_Unicode\AdvComboBox.obj
+.\Debug_Unicode\AdvComboEdit.obj
+.\Debug_Unicode\DropListBox.obj
+.\Debug_Unicode\DropScrollBar.obj
+.\Debug_Unicode\DropWnd.obj
+.\Debug_Unicode\StdAfx.obj
+.\Debug_Unicode\VisualStylesXP.obj
+.\Debug_Unicode\XCombo.obj
+.\Debug_Unicode\XComboList.obj
+.\Debug_Unicode\XEdit.obj
+.\Debug_Unicode\XHeaderCtrl.obj
+.\Debug_Unicode\XListCtrl.obj
+]
+Creating command line "link.exe -lib @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP412.tmp"
+<h3>Output Window</h3>
+Compiling...
+StdAfx.cpp
+Compiling...
+AdvComboBox.cpp
+AdvComboEdit.cpp
+DropListBox.cpp
+DropScrollBar.cpp
+DropWnd.cpp
+VisualStylesXP.cpp
+XCombo.cpp
+XComboList.cpp
+XEdit.cpp
+XHeaderCtrl.cpp
+XListCtrl.cpp
+Generating Code...
+Creating library...
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP413.bat" with contents
+[
+@echo off
+mkdir ..\bin 2> nul
+copy .\Debug_Unicode\XListCtrlDSDU.lib ..\bin 1> nul
+]
+Creating command line "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP413.bat"
+Copying file...
+<h3>
+--------------------Configuration: DialogDS - Win32 Debug Unicode--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug_Unicode/XListCtrlTest.res" /d "_DEBUG" /d "_AFXDLL" "F:\XListCtrl_demo\Dialog\XListCtrlTest.rc"" 
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP414.tmp" with contents
+[
+/nologo /MDd /W4 /Gm /GX /ZI /Od /I "..\XListCtrl" /D "_DEBUG" /D "_UNICODE" /D "UNICODE" /D "WIN32" /D "_WINDOWS" /D "XLISTCTRLLIB_STATIC" /D "_AFXDLL" /FR"Debug_Unicode/" /Fp"Debug_Unicode/DialogDS.pch" /Yu"stdafx.h" /Fo"Debug_Unicode/" /Fd"Debug_Unicode/" /FD /GZ /c 
+"F:\XListCtrl_demo\Dialog\About.cpp"
+"F:\XListCtrl_demo\Dialog\InitList.cpp"
+"F:\XListCtrl_demo\Dialog\XHyperLink.cpp"
+"F:\XListCtrl_demo\Dialog\XListCtrlTest.cpp"
+"F:\XListCtrl_demo\Dialog\XListCtrlTestDlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP414.tmp" 
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP415.tmp" with contents
+[
+/nologo /MDd /W4 /Gm /GX /ZI /Od /I "..\XListCtrl" /D "_DEBUG" /D "_UNICODE" /D "UNICODE" /D "WIN32" /D "_WINDOWS" /D "XLISTCTRLLIB_STATIC" /D "_AFXDLL" /FR"Debug_Unicode/" /Fp"Debug_Unicode/DialogDS.pch" /Yc"stdafx.h" /Fo"Debug_Unicode/" /Fd"Debug_Unicode/" /FD /GZ /c 
+"F:\XListCtrl_demo\Dialog\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP415.tmp" 
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP416.tmp" with contents
+[
+/nologo /entry:"wWinMainCRTStartup" /subsystem:windows /incremental:yes /pdb:"Debug_Unicode/DialogDSDU.pdb" /debug /machine:I386 /out:"Debug_Unicode\DialogDSDU.exe" /pdbtype:sept /libpath:"..\bin" 
+.\Debug_Unicode\About.obj
+.\Debug_Unicode\InitList.obj
+.\Debug_Unicode\StdAfx.obj
+.\Debug_Unicode\XHyperLink.obj
+.\Debug_Unicode\XListCtrlTest.obj
+.\Debug_Unicode\XListCtrlTestDlg.obj
+.\Debug_Unicode\XListCtrlTest.res
+\XListCtrl_demo\XListCtrlLib\Debug_Unicode\XListCtrlDSDU.lib
+]
+Creating command line "link.exe @C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP416.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+About.cpp
+InitList.cpp
+XHyperLink.cpp
+Automatically linking with XListCtrlDSDU.lib
+XListCtrlTest.cpp
+XListCtrlTestDlg.cpp
+Automatically linking with XListCtrlDSDU.lib
+Generating Code...
+Automatically linking with XListCtrlDSDU.lib
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug_Unicode/DialogDS.bsc"  .\Debug_Unicode\StdAfx.sbr .\Debug_Unicode\About.sbr .\Debug_Unicode\InitList.sbr .\Debug_Unicode\XHyperLink.sbr .\Debug_Unicode\XListCtrlTest.sbr .\Debug_Unicode\XListCtrlTestDlg.sbr"
+Creating browse info file...
+<h3>Output Window</h3>
+Creating temporary file "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP418.bat" with contents
+[
+@echo off
+mkdir ..\bin 2> nul
+copy .\Debug_Unicode\DialogDSDU.exe ..\bin 1> nul
+]
+Creating command line "C:\DOCUME~1\ALLEN\LOCALS~1\Temp\RSP418.bat"
+Copying file...
+
+
+
+<h3>Results</h3>
+DialogDSDU.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
