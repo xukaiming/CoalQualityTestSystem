@@ -11,13 +11,13 @@ class  CGyfxyImageSlave ;
 #define FUZZY_ARRAY_SIZE 3
 
 enum SIDE{MIDDLE=0,LEFT,RIGHT};
-class CGyfxyRDB_G5200  : public CGyfxyRDB
+class CGyfxyRDB_BaseRdb  : public CGyfxyRDB
 {
 public:
-	CGyfxyRDB_G5200();
+	CGyfxyRDB_BaseRdb();
 	
-	virtual ~CGyfxyRDB_G5200();
-	DECLARE_DYNCREATE(CGyfxyRDB_G5200)
+	virtual ~CGyfxyRDB_BaseRdb();
+	DECLARE_DYNCREATE(CGyfxyRDB_BaseRdb)
 	BOOL UpdateParamFromDB(void);
 public:
 	////设备属性
@@ -123,6 +123,7 @@ public:
 		private:
 			static int QualityWater; 
 			static int ResultWater	;
+			int	iSampleCnt;
 			enum METAGE_TYPE{S_WEIGHT_POT=0,S_WEIGHT_SAMPLE,S_TEST_WATER,S_WEIGHT_COVER,S_TEST_VOL,S_TEST_ASH};
 			
 			
@@ -138,7 +139,7 @@ public:
 				CString	m_TestType;				//测试方法
 				FLOAT   m_SampleWeight;			//样品质量
 				DATE	m_dtTestDateTime;		//试验日期
-				int		SampleNO;				//样位
+				char	SampleNO;				//样位
 				FLOAT	m_fMad;					//水分百分比
 				FLOAT	m_fVad;					//挥发分 百分比
 				FLOAT	m_fAad;					//灰分百分比
@@ -171,7 +172,7 @@ public:
 				enum STATE {S_WEIGHT_POT=0,S_WEIGHT_SAMPLE,S_TEST_WATER,S_WEIGHT_COVER,S_TEST_VOL,S_TEST_ASH};
 
 				UCHAR cItem;    //试验内容：b0=1:水分，b1=1:挥发分，b2=1:灰分
-				UCHAR reserve; 
+				UCHAR cStabState; 
 				
 				S_Sample()
 				{ 
@@ -179,7 +180,7 @@ public:
 				}
 				void SetDefault()
 				{
-					reserve		= 0;
+					cStabState		= 0;
 					cItem		= 0;
 					cCSta		= 0;
 					cSta		= 0;
@@ -210,7 +211,7 @@ public:
 			设备属性
 			*/
 			public: 
-			virtual void BuildAutoNO();
+			virtual void BuildAutoNO();			//生成自动编号
 			///////////////////////////////////////////////////////////////
 			virtual void SaveResult2DB();		//批量保存到数据库中
 			virtual void UpdateResultToDB();    //更新数据库...
@@ -220,9 +221,11 @@ public:
 			_RecordsetPtr pRsTempDB;
 			void LoadSampleFromTempTab(int cSamplePos);
 			void UpdateTempTabField(int cSamplePos);
+
 			void AppendResult2TempTab(int cSamplePos);	//添加数据到临时数据库表格里
 			void UpdateResult2TempTab(int cSamplePos);  //修改数据到临时数据库表格里
 			void LoadResultFromTempTab(int cSamplePos);	//从临时数据库中载入
+
 			void BatchUpdateDB2TempTab(CString m_strInstName);		//批量更新到临时数据库中
 			void CreateTempTab(void);			//创建临时数据库,以备断点续作
 			void ClearTempTab(void);
@@ -235,7 +238,7 @@ public:
 			////////////////////////////////////////////////////////////////
 		
 			////////////////////////////////////////////////////////////////
-			void SetDefaultSample(CXListCtrl &m_pListCtrl);			
+			void SetDefaultSample(CXListCtrl &m_pListCtrl,int iRowCnt = 24);			
 			void CalcAllResult();
 			void CalcResult(int cSamplePos);
 			//从内存镜像中更新列表
@@ -247,7 +250,7 @@ public:
 			void RefreshSampleData(OUT CGyfxyImageSlave *pImageSlave,IN int SampleNO,IN int EnableMask,IN int DisableMask);
 			void RefreshSampleData(OUT CGyfxyImageSlave *pImageSlave,OUT int SampleNO,OUT int WorkType );
 			void RefreshSampleData(IN CGyfxyImageSlave *pImageSlave);
-			void RefreshSampleData(IN CGyfxyImageSlave *pImageSlave,IN int SampleNO);
+			void RefreshSampleData(IN CGyfxyImageSlave *pImageSlave,IN int SampleNO);//更新rdb
 			
 			//////////////////////////////////////////////////////////////////////////
 			
@@ -342,25 +345,26 @@ public:
 	{
 		struct 	
 		{	
-			UINT BALANCE_MOTOR_UP	:1;		//称样上升			0
-			UINT BALANCE_MOTOR_DN	:1;		//称样下降			1
-			UINT LEFT_MOTOR_UP		:1;		//左炉上升			2
-			UINT LEFT_MOTOR_DN		:1;		//左炉下降			3
+			UINT BALANCE_MOTOR_UP			:1;		//称样上升			0
+			UINT BALANCE_MOTOR_DN			:1;		//称样下降			1
+
+			UINT LEFT_MOTOR_UP				:1;		//左炉上升			2
+			UINT LEFT_MOTOR_DN				:1;		//左炉下降			3
 		
-			UINT RIGHT_MOTOR_UP		:1;		//右炉上升			4
-			UINT RIGHT_MOTOR_DN		:1;		//右炉下降			5
+			UINT RIGHT_MOTOR_UP				:1;		//右炉上升			4
+			UINT RIGHT_MOTOR_DN				:1;		//右炉下降			5
 
-			UINT Reserve1			:2;		//本来留着准备交流电机控制样盘转动的	6
+			UINT Reserve1					:2;		//本来留着准备交流电机控制样盘转动的	6
 
-			UINT LEFT_OXYGEN		:1;		//左炉氧气开关		8
-			UINT RIGHT_OXYGEN		:1;		//右炉氧气开关		9
+			UINT LEFT_OXYGEN				:1;		//左炉氧气开关		8
+			UINT RIGHT_NITROGEN				:1;		//右炉氧气开关		9
 
-			UINT WATER_STOVE_FAN	:1;		//水分炉子交流风扇	10
-			UINT LEFT_STOVE_FAN		:1;		//左炉风扇			11
-			UINT RIGHT_STOVE_FAN	:1;		//右炉风扇			12
+			UINT WATER_STOVE_FAN			:1;		//水分炉子交流风扇	10
+			UINT LEFT_STOVE_FAN_COVER		:1;		//左炉风扇+开盖 			11
+			UINT RIGHT_STOVE__DRAFT_FAN		:1;		//右炉风扇+ 水排风	12
 	
-			UINT SPK				:1;		//蜂鸣器			13
-			UINT Reserve2			:2;		// 
+			UINT SPK						:1;		//蜂鸣器			13
+			UINT Reserve2					:2;		// 
 			
 		};
 		UCHAR   coil8;
@@ -381,9 +385,9 @@ public:
 			UINT	LEFT_STOVE_BOT			:1;  //低位
 			UINT    WATER_STOVE_PUT			:1;  //放样区	
 			UINT    WATER_STOVE_WEIGH		:1;  //称样区 
-			UINT    SAMPLE_POS_1			:1;  //样位1
+			
 			UINT    SAMPLE_POS_N			:1;  // 
-
+			UINT    SAMPLE_POS_1			:1;  //样位1
 			UINT    ReserveKey3				:16;	
 		};
 		UCHAR   cInputReg8;
@@ -438,7 +442,7 @@ public:
 		int Reserve;						//复位输入端口
 	}MtrState; 
 	///////////////////////////////////////////////////////////
-	enum REST_STATE{REST_INIT=0,REST_START,REST_SAMPLEDISH,
+	enum REST_STATE{REST_INIT=0,REST_START,REST_SAMPLEDISH,REST_POS1,
 		REST_END}; //复位状态
 	short ResetState; 
 	short ErrorFlag;	//错误标志
@@ -448,10 +452,10 @@ public:
 	//	T_WARM_HIGH,T_TEST_VOL	};	
 	
 	enum TEST_STATE {T_INIT=0,
-		T_WARM_WATER,T_TEST_WATER,T_WATERCOOL,T_WEIGHT_WATER,T_WATER_END,
-		T_WARM_HIGH1,T_TEST_VOL,T_BURN_VOL,T_WEIGHT_VOL,T_VOL_END,
-		T_WARM_HIGH2,T_TEST_ASH,T_BURN_ASH,T_WEIGHT_ASH,T_ASH_END,	
-		T_END};///测试状态
+		T_WARM_WATER,T_TEST_WATER,T_WATERCOOL,T_WEIGHT_WATER,T_WATER_RESERVE1,T_WATER_RESERVE2,T_WATER_RESERVE3,T_WATER_RESERVE4,T_WATER_END,
+		T_WARM_HIGH1,T_TEST_VOL,T_BURN_VOL,T_WEIGHT_VOL,T_VOL_RESERVE1,T_VOL_RESERVE2,T_VOL_RESERVE3,T_VOL_RESERVE4,T_VOL_END,
+		T_WARM_HIGH2,T_TEST_ASH,T_BURN_ASH,T_WEIGHT_ASH,T_ASH_RESERVE1,T_ASH_RESERVE2,T_ASH_RESERVE3,T_ASH_RESERVE4,T_ASH_END,	
+		T_COOL1,T_COOL2,T_COOL3,T_COOL4,T_END};///测试状态
 	long TestState;
 	enum METAGE_STATE {M_INIT=0,M_POS,M_TARE,M_METAGE,M_SAVE,M_NEXTPOS,M_END};//称量状态		
 	long MetageState;
@@ -462,7 +466,7 @@ public:
 		UCHAR cSta;     //当前试验状态,00-无坩埚,01-等待(有坩埚),02-称坩埚,03-称样,04-水分,05-挥发分,06-灰分,07-试验完成.08-烧坩埚
 		UCHAR cCSta;    //试验完成状态,b0-称坩埚,b1-称样,b2-水分,b3-挥发分,b4-灰分,b5-烧坩埚,b7-试验完成
 		UCHAR cItem;    //试验内容：b0=1:水分，b1=1:挥发分，b2=1:灰分
-		UCHAR reserve;
+		UCHAR cStabState;  //是否稳定b0-称坩埚不稳定,b1-称样不稳定,b2-水分不稳定,b3-挥发分不稳定,b4-灰分不稳定
 		union UQUALITY{
 			struct{
 			long  lMPot;    //坩埚质量(unit=0.1mg)

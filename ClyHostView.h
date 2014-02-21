@@ -79,6 +79,7 @@ private:
 	int m_iTimer;
 	int m_iMax;
 	int m_iCount;
+	CStringArray comboArray;
 private:
 	BOOL IsEdit( CWnd* pWnd );
 

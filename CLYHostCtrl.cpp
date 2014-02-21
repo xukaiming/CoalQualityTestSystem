@@ -52,8 +52,12 @@ CCLYHostCtrl::~CCLYHostCtrl()
 		 {
  			pRdb->result.m_bReadResult = FALSE;
 			PostM(_T("等待实验.."),0,SCH_CMD_ENTEST); 		
+			//TODO:增加样位转动，样位到位后停止，然后启动实验
 			if(pRdb->status.m_bStartTest)   //如果样品作样未完毕,继续下一次
-				AddCommand(COMMAND_CQD,0);
+			{  
+				//AddCommand(COMMAND_CQD,0);
+				m_pOwner->SendMessage(WM_COMMAND,IDC_TEST_START); 
+			}
 		 }
 		 break;
 	 case TEST_INIT:
@@ -116,7 +120,7 @@ CCLYHostCtrl::~CCLYHostCtrl()
 			(sizeof(pImageSlave->PosCtrl)+
 			sizeof(pImageSlave->cID)+
 			sizeof(pImageSlave->cTestState)+
-			sizeof(pImageSlave->bAutoCly)+
+			sizeof(pImageSlave->cReserve)+
 			sizeof(pImageSlave->cResetState)+ 
 			sizeof(pImageSlave->cStateTime)+
 			sizeof(pImageSlave->cTestTimer)+
@@ -149,27 +153,21 @@ CCLYHostCtrl::~CCLYHostCtrl()
 			(unsigned short *)&pImageSlave->DownloadWorkParam 
 			);  
 		if((WaitT35()==WAIT_TIMEOUT)&&((length=pModbusMaster->Respond(buf))!=0))
-		  {	
-			  /*
+		{	
 			if((iResult = pModbusMaster->DecodeWriteMultipleRegister(buf,length))>=0)
 			{
 				Beep(1000,50);
 				PostM(_T("等待试验..."),0,SCH_CMD_LOGOK);   
 				AddCycCommand(COMMAND_RDI,0);	//下载数据OK后循环读数
-			}
-			*/
-		  }	/*
-			UCHAR	cID;                					//IED站号  
-			UCHAR	cTestState;
-			UCHAR   bAutoCly;								//自动测硫仪
-			UCHAR   cResetState;
-			*/
+			}			
+		}	
+		/*
 		pModbusMaster->FunctionWriteMultipleRegister(
 			(unsigned char)pRdb->m_bID,
 			(unsigned short*)&pImageSlave->cID-(unsigned short*)pImageSlave,//需要读取的字符串首地址
 			(sizeof(pImageSlave->cID)
 			+sizeof(pImageSlave->cTestState)
-			+sizeof(pImageSlave->bAutoCly)
+			+sizeof(pImageSlave->cReserve)
 			+sizeof(pImageSlave->cResetState)
 			)/sizeof(SHORT), 
 			(unsigned short *)&pImageSlave->cID 
@@ -183,6 +181,7 @@ CCLYHostCtrl::~CCLYHostCtrl()
 				AddCycCommand(COMMAND_RDI,0);	//下载数据OK后循环读数
 			}
 		}	
+		*/
 		break;
 	case COMMAND_RDI:			//数据报告			
  		pModbusMaster->FunctionRead((unsigned char)pRdb->m_bID,READ_HOLDING_REGISTER,
@@ -198,7 +197,7 @@ CCLYHostCtrl::~CCLYHostCtrl()
 			sizeof(pImageSlave->cID)+
 			sizeof(pImageSlave->cTestState)+
 			sizeof(pImageSlave->cStateTime)+
-			sizeof(pImageSlave->bAutoCly)+
+			sizeof(pImageSlave->cReserve)+
 			sizeof(pImageSlave->cResetState)+
 			sizeof(pImageSlave->cTestTimer)  
 			)/sizeof(short)
@@ -243,7 +242,7 @@ CCLYHostCtrl::~CCLYHostCtrl()
 					if(DecryptDevInfo()>0) 
 						AddCommand(COMMAND_RRT,0);  //查询设备类型				
 				}   
-			} */
+			} */ 
 			AddCommand(COMMAND_RRT,0);  //查询设备类型
 			iResult = 1;	
 			
@@ -255,9 +254,9 @@ CCLYHostCtrl::~CCLYHostCtrl()
 			pImageSlave->Cmd.CmdType	= CMD_START_MEASURE;
 		else
 			pImageSlave->Cmd.CmdType	= CMD_STOP_MEASURE;
-		pImageSlave->Cmd.CmdParam1	= 0;
-		pImageSlave->Cmd.CmdParam2	= 0;
-		pImageSlave->Cmd.CmdParam3	= 0; 
+		pImageSlave->Cmd.CmdParam1	= cCommandParam1;
+		pImageSlave->Cmd.CmdParam2	= cCommandParam2;
+		pImageSlave->Cmd.CmdParam3	= cCommandParam3; 
 		pModbusMaster->FunctionWriteMultipleRegister(
 			(unsigned char)pRdb->m_bID,
 			(unsigned short*)&pImageSlave->Cmd-(unsigned short*)pImageSlave,//需要读取的字符串首地址
@@ -479,3 +478,11 @@ double CCLYHostCtrl::ADtoVol(long ADVAlue)
 
  
 
+
+DWORD CCLYHostCtrl::WaitT35(void)
+{
+	double *pdMsPerByte = &pModbusMaster->m_pPort->iMsPerByte;
+	int sendbyteLength = pModbusMaster->SendLength;
+	double dSendTime = *pdMsPerByte*sendbyteLength*2.0f;
+	return WaitForSingleObject(m_hModbusShutdownEvent,T35*2+dSendTime);
+}

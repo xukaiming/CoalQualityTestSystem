@@ -5,7 +5,7 @@
 #include "gyfxyrdb.h"
 #include "GyfxyHostCtrl.h"
 #include "GyfxyDebugView.h"
-#include "ChildFrm.h "
+#include "ChildFrm.h"
 
 class CGyfxyHostDoc : public CIEDDocument
 {
@@ -31,10 +31,14 @@ protected:
 public:
 	// //virtual GetHostParam(CString sDeviceName,CString sDeviceType);
 	virtual BOOL GetHostParam(CString sDeviceName , CString sDeviceType);
-	CGyfxyRDB_G5200 GyfxyRDB;
+	CGyfxyRDB_BaseRdb GyfxyRDB;
 	CGyfxyHostCtrl *pHostCtrl;
 	CFrameWnd *pDebugWnd  ;
 	CFrameWnd *pBalanceWnd;
 	afx_msg void OnDebug();
 	afx_msg void OnBalance();
+	afx_msg void OnWeightWater();
+	afx_msg void OnWeightVol();
+	afx_msg void OnWeightAsh();
 };
+

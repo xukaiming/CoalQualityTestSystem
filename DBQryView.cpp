@@ -192,8 +192,7 @@ void CDBQryView::FillList()
 }
 
 void CDBQryView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
-{
-	// TODO: Add your control notification handler code here
+{ 
 	
 	int iCursor;
 	CListCtrl * ListCtrl = (CListCtrl *)&GetListCtrl();
@@ -208,9 +207,7 @@ void CDBQryView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 }
 
 int CDBQryView::OnCreate(LPCREATESTRUCT lpCreateStruct)
-{ 
-
-	// TODO:  Add your specialized creation code here
+{  
 	if (CListView::OnCreate(lpCreateStruct) == -1)
 		return -1; 
  
@@ -251,9 +248,7 @@ int CDBQryView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 
 void CDBQryView::OnUpdate(CView* pSender, LPARAM lHint, CObject *pHint)
-{
-	// TODO: Add your specialized code here and/or call the base class
-	// TODO: Add your specialized code here and/or call the base class
+{ 
 	CListCtrl  *ListCtrl = (CListCtrl  *)&GetListCtrl();  
 	CDBQryDocument *pDoc = (CDBQryDocument *)GetDocument();
 	CDBQryDocument::CRowObj *rowInfo;
@@ -309,8 +304,7 @@ void CDBQryView::OnUpdateMenuState1(CCmdUI* pCmdUI)
 }
 
 void CDBQryView::OnPrintReportSetting()
-{
-	// TODO: Add your command handler code here
+{ 
 	OnFilePrintPreview();
 }
 
@@ -329,8 +323,7 @@ void CDBQryView::OnFilePrintPreview()
 }
 
 void CDBQryView::OnFilePrint()
-{
-	// TODO: Add your command handler code here
+{ 
 	OnFilePrintPreview();
 }
 
@@ -513,8 +506,7 @@ void CDBQryView::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 
 void CDBQryView::OnNMCustomdraw(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR); 
-	// TODO: Add your control notification handler code here
+	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);  
 	*pResult = 0;
 
 }

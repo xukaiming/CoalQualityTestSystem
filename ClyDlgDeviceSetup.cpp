@@ -58,6 +58,7 @@ void CClyDlgDeviceSetup::UpdateWinText(void)
 	//////////////////////////////////////////////////////////////////////
 	SetDlgItemInt(IDC_EDIT_POS1_TIM,pAtt->m_sPos1TimeOutTime);
 	SetDlgItemInt(IDC_EDIT_POSN_TIM,pAtt->m_sPosNTimeOutTime);
+	SetDlgItemInt(IDC_EDIT_MAX_TESTTIME,pAtt->sMaxTestTime);
 	((CButton*)GetDlgItem(IDC_CHECK_AUTO)) ->SetCheck(pAtt->m_bAutoCly) ; 
 	SetDlgItemInt(IDC_EDIT_START_DJ,pAtt->m_fStartDJVol);
 	SetDlgItemInt(IDC_EDIT_END_DJ,pAtt->m_fEndDJVol);
@@ -107,6 +108,7 @@ void CClyDlgDeviceSetup::GetParamFromDlg(void)
 	//////////////////////////////////////////////////////////////////////
 	pAtt->m_sPos1TimeOutTime	= GetDlgItemInt(IDC_EDIT_POS1_TIM);
 	pAtt->m_sPosNTimeOutTime	= GetDlgItemInt(IDC_EDIT_POSN_TIM );
+	pAtt->sMaxTestTime			= GetDlgItemInt(IDC_EDIT_MAX_TESTTIME );
 	pAtt->m_bAutoCly			= ((CButton*)GetDlgItem(IDC_CHECK_AUTO)) ->GetCheck() ; 
 	GetDlgItem(IDC_EDIT_START_DJ) ->GetWindowText(str);  
 	pAtt->m_fStartDJVol			=  _tcstod(str,NULL);

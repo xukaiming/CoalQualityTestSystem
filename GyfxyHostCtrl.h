@@ -41,7 +41,7 @@ public:
 
 protected: 
 public:
-	CGyfxyRDB_G5200			* pRdb;
+	CGyfxyRDB_BaseRdb	* pRdb;
 	CGyfxyImageSlave	* pImageSlave;
 	TCHAR str[MAX_PATH];
 private:
@@ -64,7 +64,7 @@ public:
 		CMD_START_TEST,		//∆Ù∂Ø≤‚ ‘
 		CMD_STOP_TEST 			//Õ£÷π≤‚ ‘
 		};
-	enum WEIGHT_TYPE{POT=0,SAMPLE};
+	enum WEIGHT_TYPE{T_POT=0,T_SAMPLE,T_WATER,T_COVER,T_VOL,T_ASH};
 	enum METAGE_SPEED{T_NORMAL=0,T_QUICK};
 	
 	virtual void SetRDB(CRDB * pRdb);

@@ -51,18 +51,16 @@ void CGyfxyBlanceView::Dump(CDumpContext& dc) const
 	CFormView::Dump(dc);
 }
 #endif
-CGyfxyHostDoc_G5200  * CGyfxyBlanceView::GetDocument() 
+CGyfxyHostDoc* CGyfxyBlanceView::GetDocument() 
 {
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CGyfxyHostDoc_G5200)));
-	return (CGyfxyHostDoc_G5200*)m_pDocument;
-} 
-
-
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CGyfxyHostDoc)));
+	return (CGyfxyHostDoc*)m_pDocument;
+}  
 #else
-CGyfxyHostDoc_G5200  * CGyfxyBlanceView::GetDocument() 
+CGyfxyHostDoc* CGyfxyBlanceView::GetDocument() 
 {
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CGyfxyHostDoc_G5200)));
-	return (CGyfxyHostDoc_G5200*)m_pDocument;
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CGyfxyHostDoc)));
+	return (CGyfxyHostDoc*)m_pDocument;
 } 
 #endif //_DEBUG
  
@@ -71,8 +69,7 @@ CGyfxyHostDoc_G5200  * CGyfxyBlanceView::GetDocument()
 
 void CGyfxyBlanceView::OnPaint()
 {
-	CPaintDC dc(this); // device context for painting
-	// TODO: Add your message handler code here
+	CPaintDC dc(this); // device context for painting 
 	// Do not call CFormView::OnPaint() for painting messages
 }
 

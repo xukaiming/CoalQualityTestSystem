@@ -63,7 +63,7 @@ void CGyfxyAutoSampNODlg::MakeSYNCSampleInfo(void)
 	int SampleCnt = 0;
 	int VolSampleCnt=0,WaterSampleCnt=0,AshSampleCnt=0; //已被分配样品数目
 	int DisableMask,EnableMask;
-	CGyfxyRDB_G5200::ALLSample *pSampleInfo = &pRdb->SampleArray;
+	CGyfxyRDB_BaseRdb::ALLSample *pSampleInfo = &pRdb->SampleArray;
 	if(bTestVolPX_Checked)  //平行样测试
 	{ 
 		VolFixCnt = 1;
@@ -111,13 +111,13 @@ void CGyfxyAutoSampNODlg::MakeSYNCSampleInfo(void)
 						pSampleInfo->Sample[i+3+j*MAX_SAMPLE_CNT/2].cSampleName = SampleName;
 					}
 					//1.2号位放置挥发分坩埚
-					EnableMask = bTestVol_Checked?CGyfxyRDB_G5200::ALLSample::TEST_VOL:0;
+					EnableMask = bTestVol_Checked?CGyfxyRDB_BaseRdb::ALLSample::TEST_VOL:0;
 					DisableMask = ~EnableMask;
 					pSampleInfo->RefreshSampleData(pImg,i+1+j*MAX_SAMPLE_CNT/2,EnableMask,DisableMask);
 					pSampleInfo->RefreshSampleData(pImg,i+2+j*MAX_SAMPLE_CNT/2,EnableMask,DisableMask);
 					//3.4号放置水灰分坩埚
-					EnableMask = (bTest_Ash_Checked?CGyfxyRDB_G5200::ALLSample::TEST_ASH:0)|
-						(bTest_Water_Checked?CGyfxyRDB_G5200::ALLSample::TEST_WATER:0);
+					EnableMask = (bTest_Ash_Checked?CGyfxyRDB_BaseRdb::ALLSample::TEST_ASH:0)|
+						(bTest_Water_Checked?CGyfxyRDB_BaseRdb::ALLSample::TEST_WATER:0);
 					DisableMask = ~EnableMask;
 					pSampleInfo->RefreshSampleData(pImg,i+3+j*MAX_SAMPLE_CNT/2,EnableMask,DisableMask);
 					pSampleInfo->RefreshSampleData(pImg,i+4+j*MAX_SAMPLE_CNT/2,EnableMask,DisableMask);	   
@@ -164,12 +164,12 @@ void CGyfxyAutoSampNODlg::MakeSYNCSampleInfo(void)
 							pSampleInfo->Sample[i+2+k+j*MAX_SAMPLE_CNT/2].cSampleName = SampleName; 
 						}
 						//1.2号位放置挥发分坩埚
-						EnableMask = bTestVol_Checked?CGyfxyRDB_G5200::ALLSample::TEST_VOL:0;
+						EnableMask = bTestVol_Checked?CGyfxyRDB_BaseRdb::ALLSample::TEST_VOL:0;
 						DisableMask = ~EnableMask;
 						pSampleInfo->RefreshSampleData(pImg,i+1+j*MAX_SAMPLE_CNT/2+k,EnableMask,DisableMask); 
 						//3.4号放置水灰分坩埚
-						EnableMask = (bTest_Ash_Checked?CGyfxyRDB_G5200::ALLSample::TEST_ASH:0)|
-							(bTest_Water_Checked?CGyfxyRDB_G5200::ALLSample::TEST_WATER:0);
+						EnableMask = (bTest_Ash_Checked?CGyfxyRDB_BaseRdb::ALLSample::TEST_ASH:0)|
+							(bTest_Water_Checked?CGyfxyRDB_BaseRdb::ALLSample::TEST_WATER:0);
 						DisableMask = ~EnableMask;
 						pSampleInfo->RefreshSampleData(pImg,i+3+j*MAX_SAMPLE_CNT/2+k,EnableMask,DisableMask);   
 					}

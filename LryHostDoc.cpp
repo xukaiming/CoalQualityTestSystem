@@ -176,7 +176,7 @@ CString CLryHostDoc::GetCurrentSeleString()
 
 BOOL CLryHostDoc::SaveModified() 
 {
-	// TODO: Add your specialized code here and/or call the base class
+	
 	CString strIEDName;
 	strIEDName.Format(_T("确定停止%s实验并退出吗？"),LryRdb.m_szName);
 	if((!IsModified()||

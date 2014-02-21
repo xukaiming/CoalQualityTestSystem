@@ -28,6 +28,10 @@
 #define IDD_DLG_GYFXY_SETUP             115
 #define IDD_DBQRYGVIEW                  116
 #define IDR_DBQRYGVIEW_TMPL             117
+#define IDD_GYFXYHOSTVIEW_G5000         118
+#define IDR_GYFXYHOSTVIEW_G5000_TMPL    119
+#define IDD_GYFXYHOSTVIEW_G5200         120
+#define IDR_GYFXYHOSTVIEW_G5200_TMPL    121
 #define IDR_MAINFRAME                   128
 #define IDR_LRYCTRTYPE                  129
 #define IDR_LRYQRY_DOCTYPE              130
@@ -168,6 +172,7 @@
 #define IDC_EDIT_PNG                    1024
 #define IDC_BUTTON_LEFT_UP2             1024
 #define IDC_BUTTON_RIGHT_UP             1024
+#define IDC_BTN_POS_DEC2                1024
 #define IDC_TEST_PROGRESS               1025
 #define IDC_DEVICE_KH                   1025
 #define IDC_JB                          1025
@@ -281,11 +286,15 @@
 #define IDC_EDIT_END_DJ                 1076
 #define IDC_DATE                        1076
 #define IDC_EDIT14                      1076
+#define IDC_WATER_STOVE_POS_TOP2        1076
+#define IDC_PIN1                        1076
 #define ID_RECEIVE_CNT                  1077
 #define IDC_DEBUG_START                 1077
 #define IDC_EDIT_DJ_COFF                1077
 #define IDC_EDIT15                      1077
 #define IDC_EDIT16                      1078
+#define IDC_EDIT_DJ_COFF2               1078
+#define IDC_EDIT_MAX_TESTTIME           1078
 #define IDC_DEBUG_SAVE                  1079
 #define IDC_BUTTON_SETID                1079
 #define IDC_EDIT17                      1079
@@ -401,6 +410,7 @@
 #define IDC_BTN_COVER                   1134
 #define IDC_RECALE_E                    1135
 #define IDC_CAL_St                      1135
+#define ID_WEI                          1135
 #define IDC_CAL_Mt                      1136
 #define IDC_RECALE_YANGPINM             1136
 #define IDC_RECALE_M1                   1137
@@ -473,10 +483,20 @@
 #define ID__32824                       32824
 #define ID__ADD_SAMPLE                  32825
 #define ID__DELE_SAMPLE                 32826
+#define ID_32827                        32827
+#define ID_32828                        32828
+#define ID_32829                        32829
+#define ID_32830                        32830
+#define ID_32831                        32831
+#define ID_32832                        32832
+#define ID_32833                        32833
+#define ID_32834                        32834
+#define ID_WEIGHT_WATER                 32835
+#define ID_WEIGHT_VOL                   32836
+#define ID_WEIGHT_ASH                   32837
 #define ID_COMPRESSDB                   57346
-#define ID_WEIGHT_POT                   57603
-#define ID_WEIGHT_POT2                  57604
-#define ID_WEIGHT_SAMPLE                57604
+#define ID_WEIGHT_POT                   57613
+#define ID_WEIGHT_SAMPLE                57614
 #define ID_INDICATOR_COMPRESSDB         59142
 #define ID_INDICATOR_DATETIMER          59143
 #define IDS_COL_1                       61217
@@ -519,8 +539,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        212
-#define _APS_NEXT_COMMAND_VALUE         32827
-#define _APS_NEXT_CONTROL_VALUE         1135
-#define _APS_NEXT_SYMED_VALUE           118
+#define _APS_NEXT_COMMAND_VALUE         32838
+#define _APS_NEXT_CONTROL_VALUE         1136
+#define _APS_NEXT_SYMED_VALUE           122
 #endif
 #endif

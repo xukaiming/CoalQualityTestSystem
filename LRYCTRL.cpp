@@ -42,7 +42,10 @@
 #include "CLyHostDoc.h"
 //工业分析仪
 #include "GyfxyHostDoc1.h"
-#include "GyfxyHostView.h" 
+#include "GyfxyHostDoc2.h"
+#include "GyfxyHostView.h"  
+#include "GyfxyHostView_G5000.h"
+#include "GyfxyHostView_G5200.h"
 #include "DBQryGDocument.h" 
 #include "DBQryGView.h"
 //调试工具
@@ -60,6 +63,8 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+#define CMultiDocTemplate CMyMultiDocTemplate
 
 /////////////////////////////////////////////////////////////////////////////
 // CLRYCTRLApp
@@ -99,6 +104,10 @@ CLRYCTRLApp theApp;
 // CLRYCTRLApp initialization
 BOOL CLRYCTRLApp::InitInstance()
 { 	
+
+
+
+
     SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)CrashHandler); //挂载异常捕获
 	 
 	//创建互斥量,防止程序运行两次	 
@@ -228,14 +237,14 @@ BOOL CLRYCTRLApp::InitInstance()
 		RUNTIME_CLASS(CMDIChildWnd),		// frame class
 		RUNTIME_CLASS(CDBQrySView));		// view class
 	AddDocTemplate(pDocTemplate);
-
+	/*
 	pDocTemplate = new CMultiDocTemplate(
 			IDR_GYFXYHOSTVIEW_TMPL,         //工业分析仪1      
 			RUNTIME_CLASS(CGyfxyHostDoc),
 			RUNTIME_CLASS(CClyChildWnd),
-			RUNTIME_CLASS(CGyfxyHostView_G5200));
+			RUNTIME_CLASS(CGyfxyHostView));
 	AddDocTemplate(pDocTemplate);
-
+	*/
 
 	pDocTemplate = new CMultiDocTemplate(    //工业分析仪查询
 		IDR_DBQRYGVIEW_TMPL,
@@ -243,7 +252,24 @@ BOOL CLRYCTRLApp::InitInstance()
 		RUNTIME_CLASS(CChildFrame),
 		RUNTIME_CLASS(CDBQryGView));
 	AddDocTemplate(pDocTemplate);
-	
+
+	{
+		pDocTemplate = new CMultiDocTemplate(
+			//IDR_GYFXYHOSTVIEW_G5000_TMPL,
+			IDR_GYFXYHOSTVIEW_TMPL,
+			RUNTIME_CLASS(CGyfxyHostDoc_G5000),
+			RUNTIME_CLASS(CClyChildWnd),
+			RUNTIME_CLASS(CGyfxyHostView_G5000));
+		AddDocTemplate(pDocTemplate);
+	}
+	{
+		pDocTemplate = new CMultiDocTemplate(
+			IDR_GYFXYHOSTVIEW_TMPL,
+			RUNTIME_CLASS(CGyfxyHostDoc_G5200),
+			RUNTIME_CLASS(CClyChildWnd),
+			RUNTIME_CLASS(CGyfxyHostView_G5200));
+		AddDocTemplate(pDocTemplate);
+	}
 /*
 	pDocTemplate = new CMultiDocTemplate(
 		IDR_CLYHOSTVIEW_TMPL,
@@ -340,7 +366,7 @@ void CLRYCTRLApp::OnAppAbout()
 
 BOOL CLRYCTRLApp::OnIdle(LONG lCount) 
 {
-	// TODO: Add your specialized code here and/or call the base class
+	
 	CString strTimer;
 	CMainFrame *pFrame;
 	CTime   time;
@@ -1043,17 +1069,24 @@ CString VariantToStr(const COleVariant& var)
 BOOL CLRYCTRLApp::OpenNewDocument(CDocument **pDoc ,const CString &strTarget)
 {
 	CString strDocName;
-	CDocTemplate * pSelectedTemplate;
+	CMultiDocTemplate * pSelectedTemplate;
+	CString strGyfxy;
+	strGyfxy.LoadString(ID_STR_DEV_GYFXY);
  
 	POSITION pos = GetFirstDocTemplatePosition();
 	while(pos!=NULL)
 	{
-		pSelectedTemplate = (CDocTemplate*)GetNextDocTemplate(pos);
+		pSelectedTemplate = (CMultiDocTemplate*)GetNextDocTemplate(pos);
 		ASSERT(pSelectedTemplate!=NULL);
 		ASSERT(pSelectedTemplate->IsKindOf(RUNTIME_CLASS(CDocTemplate)));
 		pSelectedTemplate->GetDocString(strDocName,CDocTemplate::docName);
-		if(strDocName==strTarget)
-		{
+		if (strDocName==strGyfxy)
+		{ 
+			if(pSelectedTemplate->IsThisGyfxyDocTemp()) 
+				*pDoc = pSelectedTemplate->OpenDocumentFile(NULL);
+		}
+		else if(strDocName==strTarget)
+		{ 
 			*pDoc = pSelectedTemplate->OpenDocumentFile(NULL);
 			return TRUE;
 		}
@@ -1269,7 +1302,7 @@ void CLRYCTRLApp::InitGDIPlus()
 int CLRYCTRLApp::Run() 
  {
  
- 	// TODO: Add your specialized code here and/or call the base class
+ 	
  	int i;
  #ifdef _DEBUG
  	i = CWinApp::Run();
@@ -1411,7 +1444,7 @@ BOOL GetALinearRegressionEquation(IN double MatrixX[],IN double MatrixY[],IN int
 	//得到斜率和截距
 	R = CheckCorrelationcoeffR(Lxx,Lyy,Lxy);
 	//有效性检查   //Correlation coefficient 
-	if(R<0.95)
+	if(R<0.99)
 		bResult = FALSE;
 	return bResult;
 }
@@ -1507,4 +1540,9 @@ void COfficeTreeCtrl::OnLButtonDblClk(UINT nFlags, CPoint point)
 	// TODO: Add your message handler code here and/or call default
 
 	CXTPOfficeBorder<CTreeCtrl>::OnLButtonDblClk(nFlags, point);
+}
+
+void CLRYCTRLApp::AddDocTemplate(CDocTemplate* pTemplate)
+{
+	CWinApp::AddDocTemplate(pTemplate);
 }

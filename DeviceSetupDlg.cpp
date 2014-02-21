@@ -54,9 +54,7 @@ BOOL CDeviceSetupDlg::OnInitDialog()
 	SetIcon(AfxGetApp()->LoadIcon(IDI_ICON_ATTRIB),FALSE);
 	//IDI_ICON_ATTRIB
 	((CSpinButtonCtrl*)GetDlgItem(IDC_DEVICE_SPIN))->SetRange(1,2);
-	
-	// TODO: Add extra initialization here
-
+	 
 	BOOL bResult = TRUE;	
 	pRsDev.CreateInstance("ADODB.Recordset");  
 	SQL();
@@ -119,9 +117,7 @@ void CDeviceSetupDlg::RefreshRDB()
  
 void CDeviceSetupDlg::OnDestroy() 
 {
-	CDialog::OnDestroy();
-	
-	// TODO: Add your message handler code here
+	CDialog::OnDestroy(); 
 	if(pRsDev->State==adStateOpen)
 		pRsDev->Close();	
 }

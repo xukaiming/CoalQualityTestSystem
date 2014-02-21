@@ -286,7 +286,7 @@ void CMainFrame::InitComm()
 				COleVariant  fStopBit	= Rs->Fields->GetItem("ֹͣλ")->Value;
 
 				if(CString(nPortType.bstrVal)=="RS485")  
-					dwCommEvents = EV_RXCHAR ;
+					dwCommEvents = EV_RXCHAR|EV_BREAK;//|EV_TXEMPTY ;
 				else
 					dwCommEvents = EV_RXCHAR;
 				CString StrVerify = (LPCSTR)_bstr_t(strVerify);
@@ -294,8 +294,7 @@ void CMainFrame::InitComm()
 				if(m_pComPort[i].InitPort(this,nID.iVal,nBaud.iVal,StrVerify[0],nByte.iVal,fStopBit.fltVal,dwCommEvents))
 				{
 					//m_pComPort[i].StartMonitoring(); 
-					pModbusMaster[i].SetPort(&m_pComPort[i]);
-					
+					pModbusMaster[i].SetPort(&m_pComPort[i]);					
 				}
 				else
 				{

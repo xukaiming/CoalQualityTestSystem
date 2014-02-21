@@ -18,7 +18,7 @@ protected:
 
 public:
 	enum { IDD = IDD_DLG_GYFXY_BALANCE };
-	CGyfxyHostDoc_G5200  * GetDocument() ;
+	CGyfxyHostDoc  * GetDocument() ;
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 #ifndef _WIN32_WCE
@@ -32,7 +32,7 @@ private:
 	CLiquidCrystalLabel Label1;
 	CLiquidCrystalLabel label2;
 	CLiquidCrystalLabel label3;
-	CGyfxyRDB_G5200 *pGyfxyRdb;
+	CGyfxyRDB_BaseRdb *pGyfxyRdb;
 	CGyfxyHostCtrl *pHostCtrl; 
 	////////////////////////////////////  
 protected:

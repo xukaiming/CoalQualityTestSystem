@@ -8,14 +8,14 @@
 #include "TextProgressCtrl.h"
 #include "afxcmn.h"
 #include "xlistctrl.h"// CGyfxyHostView_G5200 form view 
-class CGyfxyHostView_G5200 : public CFormView
+class CGyfxyHostView : public CFormView
 {
-	DECLARE_DYNCREATE(CGyfxyHostView_G5200)
-
-protected:
-	
-	CGyfxyHostView_G5200();           // protected constructor used by dynamic creation
-	virtual ~CGyfxyHostView_G5200();
+	CGyfxyHostView();
+	DECLARE_DYNCREATE(CGyfxyHostView)
+public:
+	explicit CGyfxyHostView(UINT nIDTemplate);           
+protected:   
+	virtual ~CGyfxyHostView();
 
 public:
 	enum { IDD = IDD_GFYHOSTVIEW_FORM };
@@ -27,15 +27,15 @@ public:
 #endif
 #endif
 public:
-	CGyfxyHostDoc_G5200  * GetDocument() ;
+	CGyfxyHostDoc  * GetDocument() ;
 	CGyfxyHostCtrl * pGyfxyHostCtrl;
-	CGyfxyRDB_G5200		*pRdb;
+	CGyfxyRDB_BaseRdb		*pRdb;
 	CGyfxyImageSlave *pImg;
-	CGyfxyRDB_G5200::ALLSample::S_Sample *pSample ; 
+	CGyfxyRDB_BaseRdb::ALLSample::S_Sample *pSample ; 
 	CGyfxyAutoSampNODlg pDlg;
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-
+	virtual void InitUI();
 	DECLARE_MESSAGE_MAP()
 public:
 	virtual void OnInitialUpdate();
@@ -74,7 +74,7 @@ public:
 	afx_msg void OnBnClickedButtonSampleDn(); 
 	afx_msg void OnLvnColumnclickListResult(NMHDR *pNMHDR, LRESULT *pResult); 
 	afx_msg void OnTimer(UINT_PTR nIDEvent); 
-	afx_msg void OnBnClickedTestStop();
+	afx_msg void OnBnClickedTestStop(); 
 };
 #endif
 

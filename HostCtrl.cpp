@@ -48,7 +48,10 @@ void CHostCtrl::AddCommand(UCHAR cCommand, UCHAR cCommandParameter1,UCHAR cComma
 	{
 		pOneCmd = (Cmd::ONECMD *)Command.OneCmdArray.GetTail();
 		if((pOneCmd->m_cCommand!=cCommand)||													//命令不同
-			((pOneCmd->m_cCommand==cCommand)&&(pOneCmd->m_cCommandParam1!=cCommandParameter1))) //命令相同而参数不同
+			(pOneCmd->m_cCommandParam1!=cCommandParameter1)||
+			(pOneCmd->m_cCommandParam2!=cCommandParameter2)||
+			(pOneCmd->m_cCommandParam3!=cCommandParameter3)
+			) 
 		{
 			pOneCmd = new Cmd::ONECMD();
 			pOneCmd->m_cCommand=cCommand;

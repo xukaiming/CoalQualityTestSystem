@@ -163,7 +163,7 @@ void CLryQDBQryView::FillList()
 
 void CLryQDBQryView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint) 
 {
-	// TODO: Add your specialized code here and/or call the base class
+	
 	CListCtrl  *ListCtrl = (CListCtrl  *)&GetListCtrl();
 	CLryQDBQryDoc *pDoc = (CLryQDBQryDoc *)GetDocument();
 	CLryQDBQryDoc::CRowObj *rowInfo;
@@ -299,7 +299,7 @@ void CLryQDBQryView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CLryQDBQryView::OnDraw(CDC* pDC) 
 {
-	// TODO: Add your specialized code here and/or call the base class
+	
 	CDocument* pDoc = GetDocument();	
 	
 }
@@ -312,7 +312,7 @@ void CLryQDBQryView::OnInitialUpdate()
 {
 	CListView::OnInitialUpdate();
 	
-	// TODO: Add your specialized code here and/or call the base class
+	
 	//打印设置初始化
 	LPCTSTR dbName = _T("HRDRECORD");
 

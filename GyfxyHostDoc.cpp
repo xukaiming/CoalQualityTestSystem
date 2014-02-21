@@ -32,6 +32,9 @@ CGyfxyHostDoc::~CGyfxyHostDoc()
 BEGIN_MESSAGE_MAP(CGyfxyHostDoc, CIEDDocument)
 	ON_COMMAND(ID_DEBUG, &CGyfxyHostDoc::OnDebug)
 	ON_COMMAND(ID_BALANCE, &CGyfxyHostDoc::OnBalance)
+	ON_COMMAND(ID_WEIGHT_WATER, &CGyfxyHostDoc::OnWeightWater)
+	ON_COMMAND(ID_WEIGHT_VOL, &CGyfxyHostDoc::OnWeightVol)
+	ON_COMMAND(ID_WEIGHT_ASH, &CGyfxyHostDoc::OnWeightAsh)
 END_MESSAGE_MAP()
 
 
@@ -72,13 +75,14 @@ void CGyfxyHostDoc::Serialize(CArchive& ar)
 
 BOOL CGyfxyHostDoc::GetHostParam(CString sDeviceName , CString sDeviceType)
 {
-	ASSERT(GyfxyRDB.IsKindOf(RUNTIME_CLASS(CGyfxyRDB_G5200))); 
+	ASSERT(GyfxyRDB.IsKindOf(RUNTIME_CLASS(CGyfxyRDB))); 
 	return GyfxyRDB.LoadParamFromDB(sDeviceName,sDeviceType);  
 }
 
 void CGyfxyHostDoc::OnDebug()
 { 
-	if((pDebugWnd==NULL)||(pDebugWnd!=NULL&&!IsWindow(pDebugWnd->m_hWnd)))
+	if((pDebugWnd==NULL)
+		||(pDebugWnd!=NULL&&!IsWindow(pDebugWnd->m_hWnd)))
 	{	
 		CDocTemplate *pDocTemplate = new CMultiDocTemplate(
 			IDR_GYFXYHOSTVIEW_TMPL,
@@ -115,4 +119,19 @@ void CGyfxyHostDoc::OnBalance()
 	{ 
 		((CMDIFrameWnd *)AfxGetMainWnd())->MDIActivate(pBalanceWnd);
 	}
+}
+
+void CGyfxyHostDoc::OnWeightWater()
+{
+	pHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_WEIGHT,CGyfxyHostCtrl::T_WATER );
+}
+
+void CGyfxyHostDoc::OnWeightVol()
+{
+	pHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_WEIGHT,CGyfxyHostCtrl::T_VOL );
+}
+
+void CGyfxyHostDoc::OnWeightAsh()
+{
+	pHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_WEIGHT,CGyfxyHostCtrl::T_ASH );
 }

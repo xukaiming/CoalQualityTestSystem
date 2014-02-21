@@ -57,6 +57,7 @@ private:
 public:
 	int DecryptDevInfo(void);
 	void EncryptDevInfo(byte *pSecuriteArrary,Encpypt *pEncrypt);
+	virtual DWORD WaitT35(void);
 };
 
 #endif // !defined(AFX_CLYHOSTCTRL_H__8AC1B9A7_69D5_468A_89CC_1AE709610EE7__INCLUDED_)

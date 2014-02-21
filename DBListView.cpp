@@ -87,9 +87,7 @@ void CDBListView::OnInitialUpdate()
 	//
 	m_HeaderCtrl.EnablePopupMenus(TRUE) ; 
 	UpdateHeaderMenu();
-
-	
-	// TODO: Add your specialized code here and/or call the base class
+ 
 }
 
 void CDBListView::UpdateHeaderMenu(void)
@@ -98,8 +96,7 @@ void CDBListView::UpdateHeaderMenu(void)
 }
 
 void CCustomMenuHeaderCtrl::OnRButtonDown(UINT nFlags, CPoint point)
-{
-	// TODO: Add your message handler code here and/or call default
+{ 
 
 	//* */CXTHeaderCtrl::OnRButtonDown(nFlags, point);
 	CPoint pt = m_pt = point;

@@ -45,8 +45,6 @@ END_MESSAGE_MAP()
 BOOL CCReCalQ::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
-	
-	// TODO: Add extra initialization here
 	SQL();
 	RefreshDataQ();
 	UpWindowsText();
@@ -105,8 +103,7 @@ void CCReCalQ::RefreshDataQ()
 }
 
 void CCReCalQ::OnRecaleCal() 
-{
-	// TODO: Add your control notification handler code here
+{ 
 	GetParamFromDlg();
 	m_RDB.ReCalculateQ();	 
 	UpWindowsText();

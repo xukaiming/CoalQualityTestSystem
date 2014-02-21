@@ -15,7 +15,10 @@
 #include "resource.h"       // main symbols
 #include "Template.H"
 
-#include "UserLogon.h"
+#include "UserLogon.h" 
+#include "MyMultiDocTemplate.h" 
+
+//#define CDocTemplate CMyDocTemplate  
 /////////////////////////////////////////////////////////////////////////////
 // CLRYCTRLApp:
 // See LRYCTRL.cpp for the implementation of this class
@@ -109,6 +112,8 @@ public:
 	void OpenSingleDoc(CString DocTypeName);
 	afx_msg void OnCorrFact();
 	afx_msg void OnUpdateMenu(CCmdUI *pCmdUI);
+	// void CWinApp::(* )
+	void AddDocTemplate(CDocTemplate* pTemplate);
 };
 
 AFX_INLINE BOOL CreateImageList(CImageList& il, UINT nID)

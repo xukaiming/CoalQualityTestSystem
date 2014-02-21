@@ -426,7 +426,7 @@ int CComPort::WriteDirect(unsigned char *Buf, DWORD Count)
 	{
 		if(GetLastError() == ERROR_IO_PENDING)
 		{
-			GetOverlappedResult(m_hComm,&WriteOv, &dwBytesWritten, TRUE ) ;
+			GetOverlappedResult(m_hComm,&WriteOv, &dwBytesWritten, TRUE ) ;    //被拔了也不退出
 			dwBytesSent += dwBytesWritten;
 		}
 		else

@@ -65,8 +65,7 @@ CEditListCtrl::~CEditListCtrl()
 }
  
 BOOL CEditListCtrl::PreTranslateMessage(MSG* pMsg)
-{
-	// TODO: Add your specialized code here and/or call the base class
+{ 
 	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_TAB)  //按TAB键盘
 	{
 		CommitEditCtrl();
@@ -138,8 +137,7 @@ BOOL CEditListCtrl::PreTranslateMessage(MSG* pMsg)
 }
 
 BOOL CEditListCtrl::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
-{
-	// TODO: Add your specialized code here and/or call the base class
+{ 
 	switch (((NMHDR*)lParam)->code)    //修改列表宽度的时候
 	{
 	case HDN_BEGINTRACKW:    
@@ -169,8 +167,11 @@ void CEditListCtrl::ShowEditCtrl(void)
 		return;
 	}
 
-	CRect rect;
+	CRect rect,ViewRect,HeadRect;
 	GetSubItemRect(m_iRow, m_iCol, LVIR_LABEL, rect);
+	GetClientRect(&ViewRect);
+	GetHeaderCtrl()->GetClientRect(HeadRect);
+	ViewRect.top+=HeadRect.Height();
 	if (m_pctrlEdit == NULL)
 	{
 		m_pctrlEdit = new CEdit;
@@ -180,7 +181,12 @@ void CEditListCtrl::ShowEditCtrl(void)
 	}
 	else
 	{
-		m_pctrlEdit->SetWindowPos(NULL, rect.left, rect.top, rect.Width(), rect.Height(), SWP_SHOWWINDOW);
+		POINT  pt;
+		pt.x = rect.left;
+		pt.y = rect.bottom;
+		//if(PtInRect(&ViewRect,pt)) 
+			m_pctrlEdit->SetWindowPos(NULL, rect.left, rect.top, rect.Width(), rect.Height(), SWP_SHOWWINDOW);
+	
 	}
 
 	TCHAR szItem[256] = {0};
@@ -556,9 +562,7 @@ void CEditListCtrl::OnSetFocus(CWnd* pOldWnd)
  {
 	 if (CListCtrl::OnCreate(lpCreateStruct) == -1)
 		 return -1;
-
-	 // TODO:  Add your specialized creation code here 	//
-	  
+ 
 	return 0;
  }
 
@@ -570,16 +574,11 @@ void CEditListCtrl::OnSetFocus(CWnd* pOldWnd)
 	 {
 	 case 0: 
 		 break;
-	 case 1: 
-		 ShowEditCtrl();
-		 break;
-	 case 2:
-		 //ShowDateTimePicker();
-		 ShowEditCtrl();
-		 break;
-	 case 3:
-		 ShowEditCtrl();
-	 case 4:
+	 case 1:  
+	 case 2: 
+	 case 3:  
+	 case 4: 
+	 case 5:
 		 ShowEditCtrl();
 		 break;
 	 }

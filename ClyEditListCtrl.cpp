@@ -119,11 +119,20 @@ BOOL CClyEditListCtrl::ValidCheck(int nRow, int nCol, LPCTSTR lpszText)
 	COleDateTime time = COleDateTime::GetCurrentTime();
 	COleVariant vtime(lpszText);     //将字符串转换为时间
 	double temp;
+	int sampleNO;
+	CString strNO;
 	switch (nCol)
 	{ 
 	case 1:  
 		break;
 	case 2:
+		sampleNO = _tcstol(lpszText,NULL,10); 
+		sampleNO = sampleNO==0?1:sampleNO;
+		strNO.Format(_T("%d"),sampleNO);
+
+		_tcscpy((TCHAR*)lpszText,strNO);	
+		break;
+	case 3:
 		try
 		{
 			vtime.ChangeType(VT_DATE);
@@ -136,13 +145,13 @@ BOOL CClyEditListCtrl::ValidCheck(int nRow, int nCol, LPCTSTR lpszText)
 		}
 
 		break;
-	case 3:  //样品重量
+	case 4:  //样品重量
 		temp = _tcstod(lpszText,NULL);
 		if((temp<100)&&(temp>5))
 			_stprintf((TCHAR*)lpszText,_T("%2.2f"),temp);
 		else
 			_stprintf((TCHAR*)lpszText,_T("%2.2f"),50.0f); 
-	case 4:  //水分百分比 
+	case 5:  //水分百分比 
 		temp = _tcstod(lpszText,NULL);
 		if(temp<100)
 			_stprintf((TCHAR*)lpszText,_T("%2.2f"),temp);
@@ -182,4 +191,5 @@ void CClyEditListCtrl::SetFontHeight(int iHeight)
 	*/
 	font->CreateFontIndirect(&lf);  
 	SetFont(font);  
+	Invalidate(TRUE);
 }

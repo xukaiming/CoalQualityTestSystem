@@ -100,8 +100,7 @@ CString CDBQrySView::DBVariantToStr(_variant_t var,CString ParamName)
 // 重载该函数以将所选行的整行高亮显示.
 void CDBQrySView::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
-	CDBQryView::DrawItem(lpDrawItemStruct);
-	// TODO:  Add your code to draw the specified item
+	CDBQryView::DrawItem(lpDrawItemStruct); 
 }
 
 void CDBQrySView::OnContextMenu(CWnd* pWnd, CPoint point)
@@ -318,8 +317,7 @@ void CDBQrySView::OnUpdateMenuState1(CCmdUI* pCmdUI)
 	}
 }
 void CDBQrySView::OnCalCoff()
-{
-	// TODO: Add your command handler code here 
+{ 
 	CCalCoffDlg calDlg; 
 	calDlg.pParentListView = this;
 	calDlg.pParentListCtrl = &GetListCtrl();
@@ -338,8 +336,7 @@ void CDBQrySView::OnCalCoff()
 }
 
 void CDBQrySView::OnAnalyseRecal()
-{
-	// TODO: Add your command handler code here
+{ 
 	CClyRDB clyRdb;
 	int nItemIndex;
 	//clyRdb.InitRDB()

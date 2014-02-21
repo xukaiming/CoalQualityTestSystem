@@ -192,8 +192,8 @@ void CLryEDBQryView::OnInitialUpdate()
 
 void CLryEDBQryView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint) 
 {
-	// TODO: Add your specialized code here and/or call the base class
-	// TODO: Add your specialized code here and/or call the base class
+	
+	
 	CListCtrl  *ListCtrl = (CListCtrl  *)&GetListCtrl();
 	CLryEDBQryDoc *pDoc = (CLryEDBQryDoc *)GetDocument();
 	CLryEDBQryDoc::CRowObj *rowInfo;

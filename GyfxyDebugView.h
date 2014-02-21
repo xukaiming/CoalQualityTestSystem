@@ -1,9 +1,10 @@
 #pragma once
+class CGyfxyHostDoc;
 
-#include "GyfxyHostDoc.h"
 #include "GyfxyRDB.h"	// Added by ClassView
 #include "GyfxyHostCtrl.h"
 #include "Picture.h"
+#include "GyfxyHostDoc.h"
 // CGyfxyDebugView form view
 
 class CGyfxyDebugView : public CFormView
@@ -15,12 +16,13 @@ protected:
 	virtual ~CGyfxyDebugView();
 
 public:
-	enum { IDD = IDD_DIALOG_GYFXY_DEBUG };
+	enum { IDD = IDD_DIALOG_GYFXY_DEBUG }; 
+	CGyfxyHostDoc* GetDocument(void);
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 #ifndef _WIN32_WCE
 	virtual void Dump(CDumpContext& dc) const;
-#endif
+#endif 
 #endif
 
 protected:
@@ -28,7 +30,7 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 private:
-	CGyfxyRDB_G5200 *pGyfxyRdb;
+	CGyfxyRDB_BaseRdb *pGyfxyRdb;
 	CGyfxyHostCtrl *pHostCtrl;
 	CFont	*pHexFont; 
 	long	DestTemp[3];  //×ó,ÓÒ,Ë®
@@ -40,6 +42,7 @@ public:
 	CPicture m_bRightStoveBot;
 	CPicture m_bWaterStoveTop;
 	CPicture m_bWaterStoveBot;
+	CPicture m_bPin1;
 public:
 	virtual void OnInitialUpdate();
 	afx_msg void OnBnClickedButtonLeftOxygen();	
@@ -64,6 +67,8 @@ public:
 	afx_msg void OnBnClickedButtonRightWarm();
 	afx_msg void OnBnClickedButtonWaterStoveWarm();
 	afx_msg void OnBnClickedButtonSetid();
+	//  
+	
 };
 
 

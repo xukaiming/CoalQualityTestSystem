@@ -130,7 +130,7 @@ void CClyHostView::OnInitialUpdate()
 	m_CurveEdit.ClearData();
 	m_CurveEdit.pRDB=(CClyRDB*)pDoc->pRDB;
 	m_ResultListCtrl.FillHeaderCtrl(pDoc);
-	m_ResultListCtrl.SetColumnWidth(2,120);
+	m_ResultListCtrl.SetColumnWidth(3,120);
 #ifndef _DEBUG 
 //	SetTimer(TIME_EVENT_ISLOGIN,10000,NULL);
 #endif
@@ -280,7 +280,15 @@ void CClyHostView::OnDestroy()
 }
 
 void CClyHostView::InitParamFromDB()
-{
+{	
+	comboArray.RemoveAll();
+	CString strNO;
+	for (int i=1;i<=pCLYHostCtrl->pRdb->attrib.m_MaxSampleCnt;i++)
+	{
+		strNO.Format(_T("%d"),i);
+		comboArray.Add(strNO);
+	}
+	
 
 }
 
@@ -421,32 +429,40 @@ LRESULT CClyHostView::OnImageDataChange(WPARAM sText, LPARAM lP)
 
 void CClyHostView::OnTestStart() 
 {
-	// TODO: Add your control notification handler code here
+	CClyRDB * pRDB = pCLYHostCtrl->pRdb; 
+	//
+	if(pRDB->result.m_ResultNO>=m_ResultListCtrl.GetItemCount())       //如果样品数目不够，添加一条样品记录
+	{
+		SendMessage(WM_COMMAND,IDC_ADD_SAMPLE,0);
+	} 
+	GetParamFromDlg(pRDB);  //得到 样位信息
+	//
 	if((pCLYHostCtrl->pRdb->status.Temperature<pCLYHostCtrl->pRdb->attrib.m_sDestTemp-10)&&
 		(ID_CANCEL==AfxMessageBox(_T("貌似还没有到设定温度\n是否强制开始试验?"),MB_OKCANCEL+MB_ICONQUESTION))
 		)
 		return;
 	pCLYHostCtrl->pRdb->status.m_bStartTest = TRUE;
-	m_CurveEdit.ClearData(); 
+	m_CurveEdit.ClearData();  
+	
+	pCLYHostCtrl->AddCommand(COMMAND_MTR_POS,0);	//停止
+	pCLYHostCtrl->AddCommand(COMMAND_MTR_POS,pRDB->result.m_pos);	
+	
 	pCLYHostCtrl->AddCommand(COMMAND_CQD,0);	
 }
 
 void CClyHostView::OnTestStop() 
-{
-	// TODO: Add your control notification handler code here 
+{ 
 	pCLYHostCtrl->AddCommand(COMMAND_CTZ,0);
 	pCLYHostCtrl->pRdb->status.m_bStartTest  = FALSE;
 }
 
 void CClyHostView::OnSysRst() 
-{
-	// TODO: Add your control notification handler code here
+{ 
 	pCLYHostCtrl->AddCommand(COMMAND_RES,0);	
 }
 
 void CClyHostView::OnWarmUp() 
-{
-	// TODO: Add your control notification handler code here	
+{ 	
 	AI_CONTROL *pCtrl =  &pCLYHostCtrl->pImageSlave->Ai_CTRL;
 #ifdef _DEBUG
 	if(0==pCtrl->WarmFlag)
@@ -461,13 +477,11 @@ void CClyHostView::OnWarmUp()
 
 
 void CClyHostView::OnDraw(CDC* pDC)
-{
-	// TODO: Add your specialized code here and/or call the base class
+{ 
 }
 
 void CClyHostView::OnTimer(UINT_PTR nIDEvent)
-{
-	// TODO: Add your message handler code here and/or call default
+{ 
 
 	CString Percent;
 	switch(nIDEvent)
@@ -507,17 +521,24 @@ void CClyHostView::OnTimer(UINT_PTR nIDEvent)
 	default:
 		break;
 	}	
-	CFormView::OnTimer(nIDEvent); 
+	CFormView::OnTimer(nIDEvent);  
 }
 
 
 void CClyHostView::OnBnClickedAddSample()
 {
-	int n = m_ResultListCtrl.GetItemCount();
+	int n = m_ResultListCtrl.GetItemCount(); 
+	CString strNO;
+	int maxcnt = pCLYHostCtrl->pRdb->attrib.m_MaxSampleCnt;
+	strNO.Format(_T("%d"),n%maxcnt+1);
 	m_ResultListCtrl.InsertItem(n,_T(""));
-	m_ResultListCtrl.SetItemText(n,2,COleDateTime::GetCurrentTime().Format(_T("%Y-%m-%d %H:%M:%S")));
-	m_ResultListCtrl.SetItemText(n,3,_T("50"));
-	m_ResultListCtrl.SetItemText(n,4,_T("0"));
+	m_ResultListCtrl.SetItemText(n,2,strNO);
+	//m_ResultListCtrl.SetComboBox(n,2,TRUE,&comboArray,n,n%maxcnt+1,FALSE);
+ 
+
+	m_ResultListCtrl.SetItemText(n,3,COleDateTime::GetCurrentTime().Format(_T("%Y-%m-%d %H:%M:%S")));
+	m_ResultListCtrl.SetItemText(n,4,_T("50"));
+	m_ResultListCtrl.SetItemText(n,5,_T("0"));
 	m_ResultListCtrl.EnsureVisible(n,FALSE);
 	m_ResultListCtrl.SetItemState(n,LVIS_SELECTED, LVIS_SELECTED);
 
@@ -539,8 +560,7 @@ void CClyHostView::OnAddRecord()
 
 }
 void CClyHostView::OnDeleteRecord()
-{
-	// TODO: Add your command handler code here
+{ 
 	/*
 	DWORD dwPos = GetMessagePos(); 
 	CPoint point(LOWORD(dwPos),HIWORD(dwPos)); 
@@ -556,7 +576,11 @@ void CClyHostView::OnDeleteRecord()
 	int nItemIndex;
 	CString strAutoNO;
 	int *iNO = &pCLYHostCtrl->pRdb->result.m_ResultNO;
-
+	if(GetFocus()!=&m_ResultListCtrl)   //防止在编辑状态删除记录
+	{
+		GetFocus()->SendMessage(WM_KEYDOWN, VK_DELETE, 0 );//
+		return;
+	}
 	if((nItemIndex = m_ResultListCtrl.GetNextItem(-1,LVNI_SELECTED))!=-1)
 	{
 		if(((strAutoNO=m_ResultListCtrl.GetItemText(nItemIndex,0))!=_T(""))&&
@@ -591,9 +615,11 @@ void CClyHostView::GetParamFromDlg(CClyRDB * pRDB)
 	int i = pRDB->result.m_ResultNO;
 	pRDB->result.BuildAutoNO();  
 	pRDB->result.m_szSampleNO		= m_ResultListCtrl.GetItemText(i,1); //样品编号
-	CString strPickDate				= m_ResultListCtrl.GetItemText(i,2); //取样日期
-	pRDB->result.m_dSampleWeight	= _tcstod(m_ResultListCtrl.GetItemText(i,3),NULL); //样品重量
-	pRDB->result.m_dWater			= _tcstod(m_ResultListCtrl.GetItemText(i,4),NULL); //分析水
+	CString strSampleNO				= m_ResultListCtrl.GetItemText(i,2); //样位位置 
+	pRDB->result.m_pos				= _tcstol(strSampleNO,NULL,10);
+	CString strPickDate				= m_ResultListCtrl.GetItemText(i,3); //取样日期
+	pRDB->result.m_dSampleWeight	= _tcstod(m_ResultListCtrl.GetItemText(i,4),NULL); //样品重量
+	pRDB->result.m_dWater			= _tcstod(m_ResultListCtrl.GetItemText(i,5),NULL); //分析水
 	pRDB->result.m_dtTestDate		= COleDateTime::GetCurrentTime();			//测试时刻
 	pRDB->result.m_szName			= pRDB->m_szName;
 	COleVariant vDateTime(strPickDate);
@@ -611,7 +637,6 @@ void CClyHostView::GetParamFromDlg(CClyRDB * pRDB)
 
 void CClyHostView::OnBnClickedButtonR()
 {
-	// TODO: Add your control notification handler code here
 	SendMessage(WM_CALC_DATA,0,0);
 }
 
@@ -621,21 +646,21 @@ void CClyHostView::UpdateRDBResult(CClyRDB * pRDB)
 	CString strTemp ; 
 	m_ResultListCtrl.SetItemText(*iNO,0,pRDB->result.m_szTestAutoNO);
 	strTemp.Format(_T("%.3f%%"),pRDB->result.m_dStad);
-	m_ResultListCtrl.SetItemText(*iNO,5,strTemp)	 ;	//分析基硫	
+	m_ResultListCtrl.SetItemText(*iNO,6,strTemp)	 ;	//分析基硫	
 	strTemp.Format(_T("%.3f%%"),pRDB->result.m_dStd);
-	m_ResultListCtrl.SetItemText(*iNO,6,strTemp); 
+	m_ResultListCtrl.SetItemText(*iNO,7,strTemp); 
 	strTemp = pRDB->result.m_dtAnalysisTime.Format(_T("%M:%S"));	//实验时间			//
-	m_ResultListCtrl.SetItemText(*iNO,7,strTemp); 	
+	m_ResultListCtrl.SetItemText(*iNO,8,strTemp); 	
 	strTemp.Format(_T("%.3f"),pRDB->result.m_fCoulomb_ByVF); //电量
-	m_ResultListCtrl.SetItemText(*iNO,8,strTemp); 
-	strTemp.Format(_T("%.3f"),pRDB->result.m_fCoulomb_ByDA); //电量
 	m_ResultListCtrl.SetItemText(*iNO,9,strTemp); 
-	m_ResultListCtrl.SetItemText(*iNO,10,pRDB->result.m_szName); //设备名称
+	strTemp.Format(_T("%.3f"),pRDB->result.m_fCoulomb_ByDA); //电量
+	m_ResultListCtrl.SetItemText(*iNO,10,strTemp); 
+	m_ResultListCtrl.SetItemText(*iNO,11,pRDB->result.m_szName); //设备名称
 	strTemp = pRDB->result.m_dtTestDate.Format(_T("%Y-%m-%d %H:%M:%S"));//测试时刻
-	m_ResultListCtrl.SetItemText(*iNO,11,strTemp);  
-	m_ResultListCtrl.SetItemText(*iNO,12,pRDB->result.m_bFix?_T("是"):_T("否")); //修正
+	m_ResultListCtrl.SetItemText(*iNO,12,strTemp);  
+	m_ResultListCtrl.SetItemText(*iNO,13,pRDB->result.m_bFix?_T("是"):_T("否")); //修正
 	strTemp.Format(_T("%d"),pRDB->result.m_lPingXingNO);//平行样编号
-	m_ResultListCtrl.SetItemText(*iNO,13,strTemp); 
+	m_ResultListCtrl.SetItemText(*iNO,14,strTemp); 
 	(*iNO)  ++; 
 	if(((*iNO)>=m_ResultListCtrl.GetItemCount())
 		||!(pCLYHostCtrl->pRdb->attrib.m_bAutoCly))       //所有样品测试完毕

@@ -342,7 +342,8 @@ void CClyRDB::Result::SaveResult2DB()
 void CClyRDB::Result::UpdateResultToDB()
 {
 	try
-	{ 
+	{  
+		pRsResult->PutCollect("样位",_variant_t(m_pos));		//样品编号	
 		pRsResult->PutCollect("样品编号",_variant_t(m_szSampleNO));		//样品编号	
 		pRsResult->PutCollect("试验日期",_variant_t(m_PickSampleDate));		//取样日期
 		pRsResult->PutCollect("全硫Stad",_variant_t(m_dStad));				//全硫Stad
@@ -564,6 +565,8 @@ void CClyRDB::InitRDB(CClyImageSlave *ImageSlave)
 	ImageSlave->DownloadWorkParam.cRightToMiddle1 = attrib.m_sPreDecomposePos1;    //放样位到预分解1 0.01s检查一次
 	ImageSlave->DownloadWorkParam.cRightToMiddle2 = attrib.m_sPreDecomposePos2;    //放样位到预分解2
 	ImageSlave->DownloadWorkParam.cRightToLeft	  = attrib.m_sDecomposePos;        //放样位到高温位
+	ImageSlave->DownloadWorkParam.cTimeoutSamplePos1 = attrib.m_sPos1TimeOutTime;
+	ImageSlave->DownloadWorkParam.cTimeoutSamplePosN = attrib.m_sPosNTimeOutTime;
        //样车运行时间
 	ImageSlave->DownloadWorkParam.cTimeDecompose1 = attrib.m_sPreDecomposeTim1;    //分解时间1            
 	ImageSlave->DownloadWorkParam.cTimeDecompose2 = attrib.m_sPreDecomposeTim2;    //分解时间2
@@ -574,7 +577,8 @@ void CClyRDB::InitRDB(CClyImageSlave *ImageSlave)
 	//FLOAT			m_fEndDJVol;			//结束电解电压
 	ImageSlave->DownloadWorkParam.lDStartDJADValue= PolVoltoAD(attrib.m_fStartDJVol+0.1);						;
 	ImageSlave->DownloadWorkParam.lDEndDJADValue  = PolVoltoAD(attrib.m_fEndDJVol+0.1); 
-	ImageSlave->bAutoCly							= attrib.m_bAutoCly;
+	ImageSlave->DownloadWorkParam.bAutoCly		  = attrib.m_bAutoCly;
+	ImageSlave->DownloadWorkParam.sMaxTestTime	  = attrib.sMaxTestTime;	
 	//int max  =	VoltoAD();
 	//result.m_szName  = m_szName; 
 	//result.m_sDJCoff = attrib.m_sDJCoff;
@@ -653,6 +657,7 @@ double CClyRDB::TempADtoVol(long ADVAlue)
 	 pRsDev->PutCollect("预分解1时间(S)",pAtt->m_sPreDecomposeTim1);
 	 pRsDev->PutCollect("预分解2位置(S)",pAtt->m_sPreDecomposePos2);
 	 pRsDev->PutCollect("预分解2时间(S)",pAtt->m_sPreDecomposeTim2);
+	 pRsDev->PutCollect("最大测试时间(S)",pAtt->sMaxTestTime);
 	 pRsDev->PutCollect("分解位置(S)",pAtt->m_sDecomposePos);
 	 pRsDev->PutCollect("分解结束延时(S)",pAtt->m_sEndDecomposDelay);
 	 pRsDev->PutCollect("分解温度(℃)",pAtt->m_sDestTemp);
@@ -666,7 +671,7 @@ double CClyRDB::TempADtoVol(long ADVAlue)
 	 pRsDev->PutCollect("自动测硫仪",_variant_t(pAtt->m_bAutoCly?VARIANT_TRUE:VARIANT_FALSE));
 	 pRsDev->PutCollect("硫起始值(mV)",_variant_t(pAtt->m_fStartDJVol));
 	 pRsDev->PutCollect("硫终止值(mV)",_variant_t(pAtt->m_fEndDJVol));
-	 pRsDev->PutCollect("电解系数(%)",_variant_t(pAtt->m_sDJCoff));   
+ 	 pRsDev->PutCollect("电解系数(%)",_variant_t(pAtt->m_sDJCoff));   
 	 pRsDev->PutCollect("蜂鸣时间(mS)",_variant_t(pAtt->m_sBeepTime)); 
 	 /*  
 	升温速率  
@@ -706,6 +711,8 @@ BOOL CClyRDB::UpdateParamFromDB()
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		attrib.m_sPos1TimeOutTime   = _tcstol(VariantToStr(pRsDev->Fields->GetItem(_T("样位1超时时间"))->Value),NULL,10);	//样位1超时时间
 		attrib.m_sPosNTimeOutTime   = _tcstol(VariantToStr(pRsDev->Fields->GetItem(_T("样位N超时时间"))->Value),NULL,10);	//样位1超时时间
+		attrib.m_MaxSampleCnt		= _tcstol(VariantToStr(pRsDev->Fields->GetItem(_T("最大样品数目"))->Value),NULL,10);	//样位1超时时间
+		attrib.sMaxTestTime			= _tcstol(VariantToStr(pRsDev->Fields->GetItem(_T("最大测试时间(S)"))->Value),NULL,10);	//最大测试时间
 		attrib.m_bAutoCly			= V_BOOL(&pRsDev->Fields->GetItem(_T("自动测硫仪"))->Value)?TRUE:FALSE;
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		attrib.m_sWarmUpSpeed		= _tcstol(VariantToStr(pRsDev->Fields->GetItem(_T("升温速率"))->Value),NULL,10)		;	//升温速度

@@ -115,7 +115,9 @@ public:
 		//////////////////////////////////////////////////////////////
 		SHORT           m_sPos1TimeOutTime;     //样位1超时时间
 		SHORT           m_sPosNTimeOutTime;		//样位N超时时间 
+		BYTE			m_MaxSampleCnt;			//最大样位数目
 		BOOL			m_bAutoCly;				//自动测硫仪
+		USHORT			sMaxTestTime;			//最大测试时间
 		//////////////////////////////////////////////////////////////
 		SHORT			m_sWarmUpSpeed;			//升温速度
 		SHORT			m_sDestTemp;			//目标温度
@@ -135,6 +137,7 @@ public:
 		
 	public:  
 		BOOL			m_bReadResult;
+		BYTE			m_pos;					//样位信息
 		int				m_ResultNO;				//在列表中第几行
 		CString			m_szSampleNO;			//样品编号	
 		COleDateTime	m_PickSampleDate;		//取样日期
@@ -229,19 +232,24 @@ public:
 	{                  
         USHORT  cRightToMiddle1;    //放样位到预分解1
         USHORT  cRightToMiddle2;    //放样位到预分解2
-        USHORT  cRightToLeft;       //放样位到高温位             
-        //样车运行时间                                   
-        USHORT   cTimeDecompose1;    //分解时间1    
-        USHORT   cTimeDecompose2;    //分解时间2
-        USHORT   cTimeDelay;         //结束延时
+        USHORT  cRightToLeft;       //放样位到高温位   //样车运行时间                                   
+        USHORT  cTimeDecompose1;    //分解时间1    
+
+        USHORT  cTimeDecompose2;    //分解时间2
+        USHORT  cTimeDelay;         //结束延时
+		USHORT  sMaxTestTime;		//最大实验时间
+		UCHAR   bAutoCly;			//自动测硫仪
+		UCHAR	bReserve;			//保留
+
+		ULONG  sReserve[10];			//保留
         //
         ULONG    lDestTempADValue;  //目标温度AD值 	
 		ULONG    lDStartDJADValue;
 		ULONG    lDEndDJADValue;    
 		//////////////////////////////////////////
 		USHORT  cTimeoutSamplePosN;    //样盘移动一位的超时时间
-		USHORT  cTimeoutSamplePos1;    //样盘移动到第一位的超时时间
-
+		USHORT  cTimeoutSamplePos1;    //样盘移动到第一位的超时时间	
+		
     }DownloadWorkParam;	
 	//16 byte
 	/////////////////////////////////////
@@ -263,17 +271,7 @@ public:
         UINT   cCoil32;                  
 	}OutputCoil;
     union _InputStatus
-    {
-		/*
-        struct
-        {
-            UINT    DC_POS_PUT_SAMPLE       :1;
-            UINT    DC_POS_HIGH_TEMP        :1;
-            UINT    DC_SAMPLE_NO0           :1;  
-            UINT    DC_SAMPLE_NON           :1;
-            UINT    DC_InputRes1            :12;
-        };
-		*/
+    { 
 		struct
 		{
 			UINT    DC_MANUAL_KEY				:1;
@@ -339,7 +337,8 @@ public:
 	/////////////////////////////////////////////////// 
 	UCHAR	cID;                					//IED站号  
 	UCHAR	cTestState;
-	UCHAR   bAutoCly;								//自动测硫仪
+	UCHAR   cReserve;
+	//UCHAR   bAutoCly;								//自动测硫仪
 	UCHAR   cResetState;
 	UINT	cStateTime;
 	UINT	cTestTimer;							   //总共的测量时间		

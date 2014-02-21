@@ -46,11 +46,12 @@
 using namespace Gdiplus; 
 
 //ADO数据库
-#import "c:\Program Files\Common Files\System\ADO\msado15.dll" \
-   no_namespace rename("EOF", "adoEOF")
+
+#import "c:\Program Files\Common Files\System\ADO\msado15.dll" no_namespace rename("EOF", "adoEOF")
+//#import   "C:\Program Files\Common Files\System\ado\msadox.dll" no_namespace
 //导入    MSJRO  压缩数据库    
-#import   "C:\PROGRAM FILES\COMMON FILES\System\ado\MSJRO.DLL"   no_namespace  
-#import   "C:\Program Files\Common Files\System\ado\msadox.dll"
+#import   "C:\PROGRAM FILES\COMMON FILES\System\ado\MSJRO.DLL" no_namespace  
+
 #include <XTToolkitPro.h>   // Codejock Software Components 
 #include <afxcview.h>
 #include <afx.h>
@@ -60,6 +61,12 @@ using namespace Gdiplus;
 #undef TRACE
 #endif
 #define TRACE AfxTrace 
+//
+/*
+"_CrtDbgReport: String too long or IO Error"
+*/
+
+
 
 #endif // _AFX_NO_AFXCMN_SUPPORT
 

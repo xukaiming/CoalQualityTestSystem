@@ -29,6 +29,8 @@ void CGyfxyDebugView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_RIGHT_POS_BOT, m_bRightStoveBot);
 	DDX_Control(pDX, IDC_WATER_STOVE_POS_TOP, m_bWaterStoveTop);
 	DDX_Control(pDX, IDC_WATER_STOVE_POS_BOT, m_bWaterStoveBot);  
+	DDX_Control(pDX, IDC_PIN1, m_bPin1);  
+	
 }
 
 BEGIN_MESSAGE_MAP(CGyfxyDebugView, CFormView)
@@ -66,9 +68,10 @@ void CGyfxyDebugView::Dump(CDumpContext& dc) const
 {
 	CFormView::Dump(dc);
 }
-#endif
-#endif //_DEBUG
+#endif 
 
+
+#endif //_DEBUG  
 
 // CGyfxyDebugView message handlers
 
@@ -82,8 +85,7 @@ void CGyfxyDebugView::OnInitialUpdate()
 
 	///////////////////////////////////////////////
 	GetParentFrame()->RecalcLayout();
-	ResizeParentToFit(FALSE);
-	// TODO: Add your specialized code here and/or call the base class
+	ResizeParentToFit(FALSE); 
 	InitParam();
 	CFormView::OnInitialUpdate();
 }
@@ -92,10 +94,13 @@ void CGyfxyDebugView::OnInitialUpdate()
 
 void CGyfxyDebugView::OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*pHint*/)
 {
-	// TODO: Add your specialized code here and/or call the base class
+	
 	CWnd *pWnd = GetDlgItem(IDC_STATIC_TEMP);
 
-	pGyfxyRdb = &((CGyfxyHostDoc*)GetDocument())->GyfxyRDB;
+	pGyfxyRdb = &((CGyfxyHostDoc*)GetDocument())->GyfxyRDB; 
+	
+	CString szSystemType  = pGyfxyRdb->attrib.m_szSystemType;
+
 	CString strText;
 	
 	int i = pGyfxyRdb->status.Temperature[LEFT]+0.5f;
@@ -127,6 +132,17 @@ void CGyfxyDebugView::OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*
 	GetDlgItem(IDC_BUTTON_SAMPLE_ROUND)->SetWindowText(pGyfxyRdb->status.bSampleDiskMoving?_T("停止"):_T("旋转"));
 	GetDlgItem(IDC_BUTTON_SAMPLENO_MOVE)->SetWindowText(pGyfxyRdb->status.bSampleDiskMoving?_T("停止"):_T("移动"));
 	
+	if(szSystemType==_T("G5000"))
+	{ 
+		GetDlgItem(IDC_BUTTON_LEFT_WARM)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON_RIGHT_WARM)->EnableWindow(FALSE);
+
+		GetDlgItem(IDC_BUTTON_LEFT_UP)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON_LEFT_DN)->EnableWindow(FALSE);
+
+		GetDlgItem(IDC_BUTTON_RIGHT_UP)->EnableWindow(FALSE);
+		GetDlgItem(IDC_BUTTON_RIGHT_DN)->EnableWindow(FALSE);
+	}
 	
 	CGyfxyImageSlave::_InputStatus * pInport	=  &pHostCtrl->pImageSlave->InputStatus;
 	m_bLeftStoveTop.Load(pInport->LEFT_STOVE_TOP?IDB_PNG_ORG:IDB_PNG_GREY); 
@@ -135,12 +151,22 @@ void CGyfxyDebugView::OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*
 	m_bRightStoveBot.Load(pInport->RIGHT_STOVE_BOT?IDB_PNG_ORG:IDB_PNG_GREY);
 	m_bWaterStoveTop.Load(pInport->WATER_STOVE_PUT?IDB_PNG_ORG:IDB_PNG_GREY);
 	m_bWaterStoveBot.Load(pInport->WATER_STOVE_WEIGH?IDB_PNG_ORG:IDB_PNG_GREY);
+	m_bPin1.Load(pInport->SAMPLE_POS_1?IDB_PNG_ORG:IDB_PNG_GREY);
 
 	CGyfxyImageSlave::_OutputCoil * pOutport	=  &pHostCtrl->pImageSlave->OutputCoil;
 	GetDlgItem(IDC_BUTTON_LEFT_OXYGEN)->SetWindowText(pOutport->LEFT_OXYGEN?_T("氧气关"):_T("氧气开"));
-	GetDlgItem(IDC_BUTTON_RIGHT_OXYGEN)->SetWindowText(pOutport->RIGHT_OXYGEN?_T("氮气关"):_T("氮气开"));
-	GetDlgItem(IDC_BUTTON_LEFT_FAN)->SetWindowText(pOutport->LEFT_STOVE_FAN?_T("左炉风扇关"):_T("左炉风扇开"));
-	GetDlgItem(IDC_BUTTON_RIGHT_FAN)->SetWindowText(pOutport->RIGHT_STOVE_FAN?_T("右炉风扇关"):_T("右炉风扇开"));
+	GetDlgItem(IDC_BUTTON_RIGHT_OXYGEN)->SetWindowText(pOutport->RIGHT_NITROGEN?_T("氮气关"):_T("氮气开"));
+
+	if(szSystemType==_T("G5200"))
+	{
+		GetDlgItem(IDC_BUTTON_LEFT_FAN)->SetWindowText(pOutport->LEFT_STOVE_FAN_COVER?_T("左炉风扇关"):_T("左炉风扇开"));
+		GetDlgItem(IDC_BUTTON_RIGHT_FAN)->SetWindowText(pOutport->RIGHT_STOVE__DRAFT_FAN?_T("右炉风扇关"):_T("右炉风扇开"));
+	}
+	else if(szSystemType==_T("G5000"))
+	{
+		GetDlgItem(IDC_BUTTON_LEFT_FAN)->SetWindowText(pOutport->LEFT_STOVE_FAN_COVER?_T("关炉盖"):_T("开炉盖"));
+		GetDlgItem(IDC_BUTTON_RIGHT_FAN)->SetWindowText(pOutport->RIGHT_STOVE__DRAFT_FAN?_T("排风扇关"):_T("排风扇开"));
+	}
 	GetDlgItem(IDC_BUTTON_WATER_STOVE)->SetWindowText(pOutport->WATER_STOVE_FAN?_T("恒温炉风扇关"):_T("恒温炉风扇开"));
 
  	GetDlgItem(IDC_BUTTON_LEFT_UP)->SetWindowText(pOutport->LEFT_MOTOR_UP?_T("停止"):_T("上升"));
@@ -164,15 +190,14 @@ void CGyfxyDebugView::OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*
 		pListBox->DeleteString(MAX_WEIGHT_BUF-1);
 	}
 	pListBox->InsertString(0,strText);
-
-
 }
 
 void CGyfxyDebugView::InitParam(void)
 {
 	CComboBox * pWnd = ((CComboBox*)GetDlgItem(IDC_COMBO_DEST));
 	pWnd->AddString(_T("下一工位"));
-	for(int i=1;i<25;i++)
+	int samplecnt = pGyfxyRdb->attrib.m_btMaxSampleCnt; 
+	for(int i=1;i<samplecnt+1;i++)
 	{
 		CString str;
 		str.Format(_T("%d"),i);
@@ -197,7 +222,7 @@ void CGyfxyDebugView::OnBnClickedButtonTare()
 void CGyfxyDebugView::OnBnClickedButtonRightOxygen()
 {
 	CGyfxyImageSlave::_OutputCoil * pOutport	=  &pHostCtrl->pImageSlave->OutputCoil;  
-	pHostCtrl->AddCommand(COMMAND_JDQ,COIL_RIGHT_NITROGEN,pOutport->RIGHT_OXYGEN?0:1);
+	pHostCtrl->AddCommand(COMMAND_JDQ,COIL_RIGHT_NITROGEN,pOutport->RIGHT_NITROGEN?0:1);
 }
 
 void CGyfxyDebugView::OnBnClickedButtonLeftOxygen()
@@ -233,7 +258,7 @@ void CGyfxyDebugView::OnBnClickedButtonLeftUp()
 	if(GetAsyncKeyState(VK_LCONTROL))
 		pHostCtrl->AddCommand(COMMAND_JDQ,COIL_LEFT_MOTOR_UP,pOutport->LEFT_MOTOR_UP?0:1);
 	else
-		pHostCtrl->AddCommand(COMMAND_MTR,LEFT_STOVE,pOutport->LEFT_MOTOR_DN+pOutport->LEFT_MOTOR_UP?0:1,CGyfxyRDB_G5200::CStatus::POS_TOP);
+		pHostCtrl->AddCommand(COMMAND_MTR,LEFT_STOVE,pOutport->LEFT_MOTOR_DN+pOutport->LEFT_MOTOR_UP?0:1,CGyfxyRDB_BaseRdb::CStatus::POS_TOP);
 }
 
 
@@ -243,7 +268,7 @@ void CGyfxyDebugView::OnBnClickedButtonLeftDn()
 	if(GetAsyncKeyState(VK_LCONTROL))
 		pHostCtrl->AddCommand(COMMAND_JDQ,COIL_LEFT_MOTOR_DN,pOutport->LEFT_MOTOR_DN?0:1);
 	else
-		pHostCtrl->AddCommand(COMMAND_MTR,LEFT_STOVE,pOutport->LEFT_MOTOR_DN+pOutport->LEFT_MOTOR_UP?0:1,CGyfxyRDB_G5200::CStatus::POS_BOT);
+		pHostCtrl->AddCommand(COMMAND_MTR,LEFT_STOVE,pOutport->LEFT_MOTOR_DN+pOutport->LEFT_MOTOR_UP?0:1,CGyfxyRDB_BaseRdb::CStatus::POS_BOT);
 }
 
 void CGyfxyDebugView::OnBnClickedButtonWaterStoveUp()
@@ -252,7 +277,7 @@ void CGyfxyDebugView::OnBnClickedButtonWaterStoveUp()
 	if(GetAsyncKeyState(VK_LCONTROL))
 		pHostCtrl->AddCommand(COMMAND_JDQ,COIL_BALANCE_MOTOR_UP,pOutport->BALANCE_MOTOR_UP?0:1);
 	else
-		pHostCtrl->AddCommand(COMMAND_MTR,WATER_STOVE,pOutport->BALANCE_MOTOR_UP+pOutport->BALANCE_MOTOR_DN?0:1,CGyfxyRDB_G5200::CStatus::POS_TOP);
+		pHostCtrl->AddCommand(COMMAND_MTR,WATER_STOVE,pOutport->BALANCE_MOTOR_UP+pOutport->BALANCE_MOTOR_DN?0:1,CGyfxyRDB_BaseRdb::CStatus::POS_TOP);
 }
 
 void CGyfxyDebugView::OnBnClickedButtonWaterStoveDn()
@@ -261,7 +286,7 @@ void CGyfxyDebugView::OnBnClickedButtonWaterStoveDn()
 	if(GetAsyncKeyState(VK_LCONTROL))
 		pHostCtrl->AddCommand(COMMAND_JDQ,COIL_BALANCE_MOTOR_DN,pOutport->BALANCE_MOTOR_DN?0:1);
 	else
-		pHostCtrl->AddCommand(COMMAND_MTR,WATER_STOVE,pOutport->BALANCE_MOTOR_UP+pOutport->BALANCE_MOTOR_DN?0:1,CGyfxyRDB_G5200::CStatus::POS_BOT);
+		pHostCtrl->AddCommand(COMMAND_MTR,WATER_STOVE,pOutport->BALANCE_MOTOR_UP+pOutport->BALANCE_MOTOR_DN?0:1,CGyfxyRDB_BaseRdb::CStatus::POS_BOT);
 	//
 }
 
@@ -272,7 +297,7 @@ void CGyfxyDebugView::OnBnClickedButtonRightUp()
 	if(GetAsyncKeyState(VK_LCONTROL))
 		pHostCtrl->AddCommand(COMMAND_JDQ,COIL_RIGHT_MOTOR_UP,pOutport->RIGHT_MOTOR_UP?0:1);
 	else
-		pHostCtrl->AddCommand(COMMAND_MTR,RIGHT_STOVE,pOutport->RIGHT_MOTOR_DN+pOutport->RIGHT_MOTOR_UP?0:1,CGyfxyRDB_G5200::CStatus::POS_TOP);
+		pHostCtrl->AddCommand(COMMAND_MTR,RIGHT_STOVE,pOutport->RIGHT_MOTOR_DN+pOutport->RIGHT_MOTOR_UP?0:1,CGyfxyRDB_BaseRdb::CStatus::POS_TOP);
 }
 
 void CGyfxyDebugView::OnBnClickedButtonRightDn()
@@ -282,20 +307,20 @@ void CGyfxyDebugView::OnBnClickedButtonRightDn()
 	if(GetAsyncKeyState(VK_LCONTROL))
 		pHostCtrl->AddCommand(COMMAND_JDQ,COIL_RIGHT_MOTOR_DN,pOutport->RIGHT_MOTOR_DN?0:1);
 	else
-		pHostCtrl->AddCommand(COMMAND_MTR,RIGHT_STOVE,pOutport->RIGHT_MOTOR_DN+pOutport->RIGHT_MOTOR_UP?0:1,CGyfxyRDB_G5200::CStatus::POS_BOT);
+		pHostCtrl->AddCommand(COMMAND_MTR,RIGHT_STOVE,pOutport->RIGHT_MOTOR_DN+pOutport->RIGHT_MOTOR_UP?0:1,CGyfxyRDB_BaseRdb::CStatus::POS_BOT);
 }
 
 
 void CGyfxyDebugView::OnBnClickedButtonLeftFan()
 {
 	CGyfxyImageSlave::_OutputCoil * pOutport	=  &pHostCtrl->pImageSlave->OutputCoil;  
-	pHostCtrl->AddCommand(COMMAND_JDQ,COIL_LEFT_STOVE_FAN,pOutport->LEFT_STOVE_FAN?0:1);
+	pHostCtrl->AddCommand(COMMAND_JDQ,COIL_LEFT_STOVE_FAN,pOutport->LEFT_STOVE_FAN_COVER?0:1);
 }
 
 void CGyfxyDebugView::OnBnClickedButtonRightFan()
 {
 	CGyfxyImageSlave::_OutputCoil * pOutport	=  &pHostCtrl->pImageSlave->OutputCoil;  
-	pHostCtrl->AddCommand(COMMAND_JDQ,COIL_RIGHT_STOVE_FAN,pOutport->RIGHT_STOVE_FAN?0:1);
+	pHostCtrl->AddCommand(COMMAND_JDQ,COIL_RIGHT_STOVE_FAN,pOutport->RIGHT_STOVE__DRAFT_FAN?0:1);
 }
 
 void CGyfxyDebugView::OnBnClickedButtonWaterStove()
@@ -312,11 +337,11 @@ void CGyfxyDebugView::OnBnClickedButtonSampleRound()
  
 void CGyfxyDebugView::OnBnClickedButtonSamplenoMove()
 {
-		CComboBox *pWnd = (CComboBox *)GetDlgItem(IDC_COMBO_DEST);
-		int i = pWnd->GetCurSel();
-		if(i==0)	 
-			i = pGyfxyRdb->status.cSampleDiskCurrPos+1;	
-		pHostCtrl->AddCommand(COMMAND_MTR_POS,i,pGyfxyRdb->status.bSampleDiskMoving?0:1); 
+	CComboBox *pWnd = (CComboBox *)GetDlgItem(IDC_COMBO_DEST);
+	int i = pWnd->GetCurSel();
+	if(i==0)	 
+		i = pGyfxyRdb->status.cSampleDiskCurrPos+1;	
+	pHostCtrl->AddCommand(COMMAND_MTR_POS,i,pGyfxyRdb->status.bSampleDiskMoving?0:1); 
 }
 
 void CGyfxyDebugView::OnBnClickedButtonLeftWarm()
@@ -355,4 +380,11 @@ void CGyfxyDebugView::OnBnClickedButtonSetid()
 	pHostCtrl->RemoveAllCommand();
 	pHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_SETID,id);
 
+}
+
+//  
+CGyfxyHostDoc* CGyfxyDebugView::GetDocument(void)
+{ 
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CGyfxyHostDoc)));
+	return (CGyfxyHostDoc*)m_pDocument;
 }

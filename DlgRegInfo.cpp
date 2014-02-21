@@ -36,8 +36,7 @@ END_MESSAGE_MAP()
 // CDlgRegInfo message handlers
 
 void CDlgRegInfo::OnBnClickedOk()
-{
-	// TODO: Add your control notification handler code here
+{ 
 	OnOK();
 }
 

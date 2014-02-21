@@ -102,7 +102,7 @@ CString CIEDDocument::GetCurrentSeleString(CString &strParent)
 }
 BOOL CIEDDocument::SaveModified() 
 {
-	// TODO: Add your specialized code here and/or call the base class
+	
 	CString strIEDName; 
 	//ASSERT(pRDB!=(void*)0xcdcdcdcd);		//没有初始化
 	strIEDName.Format(_T("确定停止%s实验并退出吗？"),pRDB->m_szName);
@@ -114,4 +114,14 @@ BOOL CIEDDocument::SaveModified()
 	}
 	else
 		return FALSE;
+}
+
+BOOL CIEDDocument::OnOpenDocument(LPCTSTR lpszPathName)
+{
+	if (!CDocument::OnOpenDocument(lpszPathName))
+		return FALSE;
+
+	// TODO:  Add your specialized creation code here
+
+	return TRUE;
 }

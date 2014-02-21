@@ -226,7 +226,8 @@ int CGyfxyHostCtrl::CommandCode(UCHAR  buf[], UCHAR cCommand,UCHAR cCommandParam
 			(sizeof(pImageSlave->Cmd))/sizeof(SHORT), 
 			(unsigned short *)&pImageSlave->Cmd 
 			);  
-		if((WaitT35()==WAIT_TIMEOUT)&&((length=pModbusMaster->Respond(buf))!=0))
+		if((WaitT35()==WAIT_TIMEOUT)
+			&&((length=pModbusMaster->Respond(buf))!=0))
 		{			
 			if((iResult = pModbusMaster->DecodeWriteMultipleRegister(buf,length))>=0)
 			{  
@@ -289,7 +290,8 @@ void CGyfxyHostCtrl::StateProc()
 		UploadQuality();
 		break;
 	case CGyfxyImageSlave::T_WATER_END:
-		//TODO:关闭天平窗口
+		//TODO:关闭天平窗口 
+		//TODO:刷新临时数据库中的记录
 		PostM(_T("水分测试完毕!"),0,0); 
 		break;
 	//////////////////////////////////////////////////////////////
@@ -305,6 +307,7 @@ void CGyfxyHostCtrl::StateProc()
 		break;
 	case CGyfxyImageSlave::T_VOL_END: 
 		//TODO:关闭天平窗口
+		//TODO:刷新临时数据库中的记录
 		PostM(_T("挥发分测试完毕"),0,0); 
 		break;
 	//////////////////////////////////////////////////////////
@@ -321,11 +324,12 @@ void CGyfxyHostCtrl::StateProc()
 		UploadQuality();  
 		break;
 	case CGyfxyImageSlave::T_ASH_END:
-
+		//TODO:刷新临时数据库中的记录
 		PostM(_T("灰分测试完毕"),0,0); 
 		break;
 	case CGyfxyImageSlave::T_END:
 		//TODO:计算,校正,写入数据库
+		pRdb->SampleArray.SaveResult2DB();
 		PostM(_T("实验完毕"),0,0); 
 		break;
 	default:
@@ -368,7 +372,6 @@ void CGyfxyHostCtrl::UploadQuality(void)
 		break;
 	case CGyfxyImageSlave::M_END:
 		PostM(_T("称量完毕 "),0,0);  
-		//m_pOwner->SendMessage(WM_CALC_DATA,0,0);
 		break;//称量状态	
 	default:
 		break;
@@ -378,7 +381,7 @@ void CGyfxyHostCtrl::UploadQuality(void)
 //  
 void CGyfxyHostCtrl::SetRDB(CRDB * pRdb)
 {
-	this->pRdb = (CGyfxyRDB_G5200*)pRdb;
+	this->pRdb = (CGyfxyRDB_BaseRdb*)pRdb;
 	CHostCtrl::SetRDB(pRdb);
 }
 
@@ -402,7 +405,7 @@ void CGyfxyHostCtrl::ProcCustomCmd(UCHAR cCommandParam1,
 			&DestTemp[LEFT_STOVE]);       //目标温度AD
 			*/
 			if(cCommandParam3)
-				pImageSlave->Cmd.CmdReserve	= CGyfxyRDB_G5200::TemptoAD(*(LONG*)pCommandParam);
+				pImageSlave->Cmd.CmdReserve	= CGyfxyRDB::TemptoAD(*(LONG*)pCommandParam);
 			break; 
 		default:
 			break;
@@ -427,7 +430,12 @@ int CGyfxyHostCtrl::GetQuality(UCHAR  buf[],int SampleNO)
 		if((WaitT35()==WAIT_TIMEOUT)&&((length=pModbusMaster->Respond(buf))!=0))			
 		{
 			iResult = pModbusMaster->DecodeReadREGISTER(buf,length,(unsigned short *)&pImageSlave->Sample[SampleNO>0?SampleNO-1:0]);			
-			pRdb->SampleArray.RefreshSampleData(pImageSlave,SampleNO); 
+			pRdb->SampleArray.RefreshSampleData(pImageSlave,SampleNO);    
+			// 增加计算过程
+			pRdb->SampleArray.CalcResult(SampleNO);
+			pRdb->SampleArray.UpdateResult2TempTab(SampleNO);
+			//保存数据到临时数据库
+			//update database 
 
 		}  
 		if(IsWindow(m_pOwner->m_hWnd))
@@ -474,13 +482,15 @@ int CGyfxyHostCtrl::SetQuality(UCHAR  buf[],int SampleNO)
 
 void CGyfxyHostCtrl::UploadAllSample(void)
 {	
-	for(int i=1;i<=MAX_SAMPLE_CNT;i++)
+	int cnt = pRdb->attrib.m_btMaxSampleCnt;
+	for(int i=1;i<=cnt;i++)
 		AddCommand(COMMAND_GETQUALITY,i); 
 	
 }
 
 void CGyfxyHostCtrl::DownloadAllSample(void)
 {
-	for(int i=1;i<=MAX_SAMPLE_CNT;i++)
+	int cnt = pRdb->attrib.m_btMaxSampleCnt;
+	for(int i=1;i<=cnt;i++)
 		AddCommand(COMMAND_SETQUALITY,i);
 }

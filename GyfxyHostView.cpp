@@ -6,31 +6,34 @@
 #include "GyfxyHostView.h"
 
 
-// CGyfxyHostView_G5200
+// CGyfxyHostView
 
-IMPLEMENT_DYNCREATE(CGyfxyHostView_G5200, CFormView)
+IMPLEMENT_DYNCREATE(CGyfxyHostView, CFormView) 
+CGyfxyHostView::CGyfxyHostView()
+: CFormView(CGyfxyHostView::IDD)
+{
+}
 
-
-CGyfxyHostView_G5200::CGyfxyHostView_G5200()
-	: CFormView(CGyfxyHostView_G5200::IDD)
+CGyfxyHostView::CGyfxyHostView(UINT nIDTemplate)
+	: CFormView(nIDTemplate)
 {
 	pGyfxyHostCtrl = new CGyfxyHostCtrl();
 	pGyfxyHostCtrl->m_pOwner = this;
 }
 
-CGyfxyHostView_G5200::~CGyfxyHostView_G5200()
+CGyfxyHostView::~CGyfxyHostView()
 {
 	delete pGyfxyHostCtrl;
 }
 
-void CGyfxyHostView_G5200::DoDataExchange(CDataExchange* pDX)
+void CGyfxyHostView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_PROGRESS_STATE, m_ProgBar); 
 	DDX_Control(pDX, IDC_LIST_RESULT, m_ListCtrl);
 }
 
-BEGIN_MESSAGE_MAP(CGyfxyHostView_G5200, CFormView)
+BEGIN_MESSAGE_MAP(CGyfxyHostView, CFormView)
 	ON_WM_SIZE()
 	ON_MESSAGE(WM_CALC_DATA,OnCalcData)
 	ON_MESSAGE(WM_IMAGE_DATA_CHANGE,OnImageDataChange)
@@ -41,7 +44,7 @@ BEGIN_MESSAGE_MAP(CGyfxyHostView_G5200, CFormView)
 	ON_BN_CLICKED(ID_WEIGHT_POT,  OnBnClickedWeightPot)
 	ON_BN_CLICKED(ID_WEIGHT_SAMPLE,  OnBnClickedWeightSample) 
 	ON_BN_CLICKED(IDC_RESET, OnBnClickedReset)
-//	ON_NOTIFY(NM_CUSTOMDRAW, IDC_LIST_RESULT, &CGyfxyHostView_G5200::OnNMCustomdrawListResult)
+//	ON_NOTIFY(NM_CUSTOMDRAW, IDC_LIST_RESULT, &CGyfxyHostView::OnNMCustomdrawListResult)
 	ON_REGISTERED_MESSAGE(WM_XLISTCTRL_CHECKBOX_CLICKED, OnCheckbox)
 	ON_REGISTERED_MESSAGE(WM_XLISTCTRL_EDIT_END, OnEditEnd)
 	ON_BN_CLICKED(IDC_BUTTON_AUTO_NO,  OnBnClickedButtonAutoNo)
@@ -49,53 +52,46 @@ BEGIN_MESSAGE_MAP(CGyfxyHostView_G5200, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON_SAMPLE_DN,  OnBnClickedButtonSampleDn)
 	ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST_RESULT,OnLvnColumnclickListResult)
 	ON_WM_TIMER()
-	ON_BN_CLICKED(IDC_TEST_STOP, OnBnClickedTestStop)
+	ON_BN_CLICKED(IDC_TEST_STOP, OnBnClickedTestStop) 
 END_MESSAGE_MAP()
 
 
-// CGyfxyHostView_G5200 diagnostics
+// CGyfxyHostView diagnostics
 
 #ifdef _DEBUG
-void CGyfxyHostView_G5200::AssertValid() const
+void CGyfxyHostView::AssertValid() const
 {
 	CFormView::AssertValid();
 }
 
 
-CGyfxyHostDoc_G5200  * CGyfxyHostView_G5200::GetDocument() 
+CGyfxyHostDoc  * CGyfxyHostView::GetDocument() 
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CGyfxyHostDoc)));
-	return (CGyfxyHostDoc_G5200*)m_pDocument;
+	return (CGyfxyHostDoc*)m_pDocument;
 } 
 
 #ifndef _WIN32_WCE
-void CGyfxyHostView_G5200::Dump(CDumpContext& dc) const
+void CGyfxyHostView::Dump(CDumpContext& dc) const
 {
 	CFormView::Dump(dc);
 } 
 #endif
 #else
-CGyfxyHostDoc_G5200  * CGyfxyHostView_G5200::GetDocument() 
+CGyfxyHostDoc  * CGyfxyHostView::GetDocument() 
 {
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CGyfxyHostDoc_G5200)));
-	return (CGyfxyHostDoc_G5200*)m_pDocument;
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CGyfxyHostDoc)));
+	return (CGyfxyHostDoc*)m_pDocument;
 } 
 #endif //_DEBUG
 
 
-// CGyfxyHostView_G5200 message handlers
+// CGyfxyHostView message handlers
 
-void CGyfxyHostView_G5200::OnInitialUpdate()
-{
-	CFormView::OnInitialUpdate();
-
-	// TODO: Add your specialized code here and/or call the base class
-	GetParentFrame()->RecalcLayout();
-	ResizeParentToFit(FALSE);
-	// TODO: Add your specialized code here and/or call the base class
-	CGyfxyHostDoc_G5200 *pDoc	= GetDocument();	
+void CGyfxyHostView::OnInitialUpdate()
+{	
+	CGyfxyHostDoc *pDoc	= GetDocument();	
 	pDoc->pHostCtrl		= pGyfxyHostCtrl;
-
 	if(!pGyfxyHostCtrl->InitDevice(pDoc->pRDB))
 	{
 #ifndef _DEBUG 
@@ -106,21 +102,30 @@ void CGyfxyHostView_G5200::OnInitialUpdate()
 	pRdb = pGyfxyHostCtrl->pRdb;
 	pImg = pGyfxyHostCtrl->pImageSlave;
 	pSample = pGyfxyHostCtrl->pRdb->SampleArray.Sample;
-#ifdef _DEBUG
-	GetDlgItem(ID_WEIGHT_SAMPLE)->EnableWindow(TRUE);
-	GetDlgItem(IDC_TEST_START)->EnableWindow(TRUE);
-#endif
-
-	InitListHeadCtrl(); 
-	pRdb->SampleArray.SetDefaultSample(m_ListCtrl);
+	////////////////////////////////////////////////////////////
+	CFormView::OnInitialUpdate();
+	/////////////////////////////////////////////////////////////
+	GetParentFrame()->RecalcLayout();
+	ResizeParentToFit(FALSE);
+	InitUI();
 	//SendMessage(WM_COMMAND,IDC_BUTTON_SAMPLE_DN,0);
-
 	/////////////////////////////////
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
 }
 
-void CGyfxyHostView_G5200::InitListHeadCtrl(void)
+void CGyfxyHostView::InitUI()
+{
+#ifdef _DEBUG	
+	GetDlgItem(ID_WEIGHT_SAMPLE)->EnableWindow(TRUE);
+	GetDlgItem(IDC_TEST_START)->EnableWindow(TRUE);
+#endif 
+	InitListHeadCtrl(); 
+	int rowcnt = pRdb->attrib.m_btMaxSampleCnt;
+	pRdb->SampleArray.SetDefaultSample(m_ListCtrl,rowcnt);
+}
+
+void CGyfxyHostView::InitListHeadCtrl(void)
 {
 	int i =0;
 	int iStrLen = 0;
@@ -185,8 +190,8 @@ void CGyfxyHostView_G5200::InitListHeadCtrl(void)
 		}
 
 		///////////////////////////////////////////////////////////////
-		
-		for(int i=0;i<24;i++)        //增加24个样品
+		int rowcnt = pRdb->attrib.m_btMaxSampleCnt;
+		for(int i=0;i<rowcnt;i++)        //增加24个样品
 		{			
 			m_ListCtrl.InsertItem(i,_T(""));		
 			//增加样位好
@@ -246,7 +251,7 @@ void CGyfxyHostView_G5200::InitListHeadCtrl(void)
 }
 
 
-void CGyfxyHostView_G5200::OnSize(UINT nType, int cx, int cy)
+void CGyfxyHostView::OnSize(UINT nType, int cx, int cy)
 {
 	CFormView::OnSize(nType, cx, cy);
 
@@ -457,13 +462,13 @@ void CGyfxyHostView_G5200::OnSize(UINT nType, int cx, int cy)
 }
 
 
-LRESULT CGyfxyHostView_G5200::OnCalcData(WPARAM wp, LPARAM lP)
+LRESULT CGyfxyHostView::OnCalcData(WPARAM wp, LPARAM lP)
 { 
 	return 0;
 }
 
 
-void CGyfxyHostView_G5200::OnBnClickedTestStart()
+void CGyfxyHostView::OnBnClickedTestStart()
 {
 	int i = 0;
 	i = pRdb->attrib.m_szalgorithm==_T("快速")?
@@ -476,10 +481,10 @@ void CGyfxyHostView_G5200::OnBnClickedTestStart()
 	// TODO: Add your control notification handler code here
 }
 
-LRESULT CGyfxyHostView_G5200::OnImageDataChange(WPARAM sText, LPARAM lP)
+LRESULT CGyfxyHostView::OnImageDataChange(WPARAM sText, LPARAM lP)
 {
-	CGyfxyHostDoc_G5200  *pDoc = GetDocument(); 
-	pDoc->UpdateAllViews(this);
+	CGyfxyHostDoc  *pDoc = GetDocument(); 
+	pDoc->UpdateAllViews(NULL);
 	////////////////////////////////////////////////////
 	////////////////////////////////////////////////////		
 	return 0; 
@@ -487,18 +492,14 @@ LRESULT CGyfxyHostView_G5200::OnImageDataChange(WPARAM sText, LPARAM lP)
 
 
 //更新重量信息
-LRESULT CGyfxyHostView_G5200::OnUpdateQuality(WPARAM cSamplePos, LPARAM lP)
-{ 
-	// 增加计算过程
-	pRdb->SampleArray.CalcResult(cSamplePos);
-	pRdb->SampleArray.OnUpdateQuality(cSamplePos,&m_ListCtrl);
-	pRdb->SampleArray.UpdateResult2TempTab(cSamplePos);
-	//保存数据到临时数据库
-	//update database 
+LRESULT CGyfxyHostView::OnUpdateQuality(WPARAM cSamplePos, LPARAM lP)
+{  
+	//更新列表数据
+	pRdb->SampleArray.OnUpdateQuality(cSamplePos,&m_ListCtrl); 
 	return 0;
 }
 
-void CGyfxyHostView_G5200::StartProgBar(CString sText, int iMax)
+void CGyfxyHostView::StartProgBar(CString sText, int iMax)
 { 
 	if((m_strProgBarText!=sText)&&(m_iTimer!=0))
 	{ 
@@ -526,7 +527,7 @@ void CGyfxyHostView_G5200::StartProgBar(CString sText, int iMax)
 	}
 }
 
-LRESULT CGyfxyHostView_G5200::OnStartProgBar(WPARAM sText, LPARAM lP)
+LRESULT CGyfxyHostView::OnStartProgBar(WPARAM sText, LPARAM lP)
 {
 	int iMax=lP&0x0000ffff;
 	int iCommand= (lP>>16)&0x0000ffff;
@@ -563,7 +564,7 @@ LRESULT CGyfxyHostView_G5200::OnStartProgBar(WPARAM sText, LPARAM lP)
 	return 0;
 }
 
-void CGyfxyHostView_G5200::OnDestroy()
+void CGyfxyHostView::OnDestroy()
 {
 	KillTimer(TIME_EVENT_PROCBAR);
 	KillTimer(TIME_EVENT_CLOSEWINDOWS);
@@ -575,42 +576,42 @@ void CGyfxyHostView_G5200::OnDestroy()
 }
  
 
-void CGyfxyHostView_G5200::OnBnClickedWeightPot()
+void CGyfxyHostView::OnBnClickedWeightPot()
 {
 	//pRdb->SampleArray.GetSampleDataFromDlg(m_ListCtrl,pImg); 
 	//pGyfxyHostCtrl->DownloadAllSample();
-	pGyfxyHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_WEIGHT,CGyfxyHostCtrl::POT );
+	pGyfxyHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_WEIGHT,CGyfxyHostCtrl::T_POT );
 }
 
-void CGyfxyHostView_G5200::OnBnClickedWeightSample()
+void CGyfxyHostView::OnBnClickedWeightSample()
 {
 	if(GetAsyncKeyState(VK_LCONTROL))	//快速称样	
-		pGyfxyHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_WEIGHT,CGyfxyHostCtrl::SAMPLE,1 );
+		pGyfxyHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_WEIGHT,CGyfxyHostCtrl::T_SAMPLE,1 );
 	else								//TODO: 此处修改为由数据库设置
-		pGyfxyHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_WEIGHT,CGyfxyHostCtrl::SAMPLE, 0);
+		pGyfxyHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_WEIGHT,CGyfxyHostCtrl::T_SAMPLE, 0);
 }
 
 
-void CGyfxyHostView_G5200::OnBnClickedReset()
+void CGyfxyHostView::OnBnClickedReset()
 {
 	pGyfxyHostCtrl->AddCommand(COMMAND_DLD,0);  
 	pGyfxyHostCtrl->AddCommand(COMMAND_USER_DEFINE,CGyfxyHostCtrl::CMD_RESET_INST);  //复位设备
 	
 }
 
-LRESULT CGyfxyHostView_G5200::OnCheckbox(WPARAM nItem, LPARAM nSubItem)
+LRESULT CGyfxyHostView::OnCheckbox(WPARAM nItem, LPARAM nSubItem)
 { 
 	pRdb->SampleArray.GetSampleDataFromDlg(nItem,nSubItem,m_ListCtrl,pImg);
 	pGyfxyHostCtrl->AddCommand(COMMAND_SETQUALITY,nItem+1);	
 	return 0;
 }
 
-LRESULT CGyfxyHostView_G5200::OnEditEnd(WPARAM nItem, LPARAM nSubItem)
+LRESULT CGyfxyHostView::OnEditEnd(WPARAM nItem, LPARAM nSubItem)
 {
 	return 0;
 }
 
-void CGyfxyHostView_G5200::OnBnClickedButtonAutoNo()
+void CGyfxyHostView::OnBnClickedButtonAutoNo()
 {
 	pDlg.pRdb = pRdb;
 	pDlg.pImg = pImg;
@@ -621,12 +622,12 @@ void CGyfxyHostView_G5200::OnBnClickedButtonAutoNo()
 	}
 }
 
-void CGyfxyHostView_G5200::OnBnClickedButtonSampleUd()
+void CGyfxyHostView::OnBnClickedButtonSampleUd()
 {
 	pGyfxyHostCtrl->AddCommand(COMMAND_GETQUALITY,0);	
 }
 
-void CGyfxyHostView_G5200::OnBnClickedButtonSampleDn()
+void CGyfxyHostView::OnBnClickedButtonSampleDn()
 { 
 
 	pRdb->SampleArray.GetSampleDataFromDlg(m_ListCtrl,pImg);
@@ -635,7 +636,7 @@ void CGyfxyHostView_G5200::OnBnClickedButtonSampleDn()
 
 
 
-void CGyfxyHostView_G5200::OnLvnColumnclickListResult(NMHDR *pNMHDR, LRESULT *pResult)
+void CGyfxyHostView::OnLvnColumnclickListResult(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
 	// TODO: Add your control notification handler code here
@@ -649,7 +650,7 @@ void CGyfxyHostView_G5200::OnLvnColumnclickListResult(NMHDR *pNMHDR, LRESULT *pR
 	*pResult = 0;
 }
  
-BOOL   CALLBACK   CGyfxyHostView_G5200::EnumChildProc(HWND   hwndChild,LPARAM   lParam)
+BOOL   CALLBACK   CGyfxyHostView::EnumChildProc(HWND   hwndChild,LPARAM   lParam)
 {
 	TCHAR   szWnd[1024]; 
 	GetClassName(hwndChild,szWnd,1024);	
@@ -659,13 +660,13 @@ BOOL   CALLBACK   CGyfxyHostView_G5200::EnumChildProc(HWND   hwndChild,LPARAM   
 	return TRUE;
 }
 
-void CGyfxyHostView_G5200::EnableAllParmCtrl(bool bEnable)
+void CGyfxyHostView::EnableAllParmCtrl(bool bEnable)
 {
 	EnumChildWindows(m_hWnd,(WNDENUMPROC)EnumChildProc,LPARAM(bEnable));
 }
 
 
-void CGyfxyHostView_G5200::OnTimer(UINT_PTR nIDEvent)
+void CGyfxyHostView::OnTimer(UINT_PTR nIDEvent)
 {
 	CString Percent;
 	switch(nIDEvent)
@@ -708,9 +709,10 @@ void CGyfxyHostView_G5200::OnTimer(UINT_PTR nIDEvent)
 }
 
 
-void CGyfxyHostView_G5200::OnBnClickedTestStop()
+void CGyfxyHostView::OnBnClickedTestStop()
 {
 	pGyfxyHostCtrl->AddCommand(COMMAND_CTZ,0);	
 }
 
 
+ 

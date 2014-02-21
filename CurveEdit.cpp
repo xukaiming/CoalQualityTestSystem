@@ -64,8 +64,7 @@ END_MESSAGE_MAP()
 
 void CCurveEdit::OnPaint()
 {
-	CPaintDC dc(this); // device context for painting
-	// TODO: Add your message handler code here
+	CPaintDC dc(this); // device context for painting 
 	// Do not call CWnd::OnPaint() for painting messages
 	Gdiplus::SolidBrush StaffBrush(StaffBackgroundColor);
 	Gdiplus::SolidBrush CurveBrush(CurveBackgroundColor);	
@@ -109,8 +108,7 @@ void CCurveEdit::OnPaint()
 }
 
 BOOL CCurveEdit::OnEraseBkgnd(CDC* pDC)
-{
-	// TODO: Add your message handler code here and/or call default
+{ 
 	return TRUE;
 	//return CWnd::OnEraseBkgnd(pDC);
 }
@@ -367,8 +365,7 @@ void CCurveEdit::DrawRoundedRectangle(Graphics*  pGraphics, int iWidth, int iHei
 }
 
 void CCurveEdit::OnTimer(UINT_PTR nIDEvent)
-{
-	// TODO: Add your message handler code here and/or call default
+{ 
 	static int i=0;
 	
 	//if (nIDEvent==GRID_TIMER)
@@ -381,8 +378,7 @@ void CCurveEdit::OnTimer(UINT_PTR nIDEvent)
 }
 
 //BOOL CCurveEdit::PreCreateWindow(CREATESTRUCT& cs)
-//{
-//	// TODO: Add your specialized code here and/or call the base class
+//{ 
 //	
 //	return CWnd::PreCreateWindow(cs);
 //}
@@ -391,8 +387,7 @@ void CCurveEdit::OnTimer(UINT_PTR nIDEvent)
 //{
 //	if (CWnd::OnCreate(lpCreateStruct) == -1)
 //		return -1;
-//
-//	// TODO:  Add your specialized creation code here
+// 
 //	SetTimer(0,1000,NULL);
 //	return 0;
 //}

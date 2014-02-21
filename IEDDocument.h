@@ -50,6 +50,8 @@ protected:
 private:
 	CString GetCurrentSeleString(CString &strParent);
 	virtual BOOL GetHostParam(CString sDeviceName,CString sDeviceType);
+public:
+	virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -50,7 +50,7 @@ public:
 	CXListCtrl m_ListWaterAsh;
 	CXListCtrl m_ListVol;
 
-	CGyfxyRDB_G5200		*pRdb;
+	CGyfxyRDB_BaseRdb		*pRdb;
 	CGyfxyImageSlave *pImg;
 	
 	

@@ -13,7 +13,7 @@ IMPLEMENT_DYNAMIC(CGyfxyDlgDeviceSetup, CDlgInstrumentSet)
 CGyfxyDlgDeviceSetup::CGyfxyDlgDeviceSetup(CWnd* pParent /*=NULL*/)
 	: CDlgInstrumentSet(CGyfxyDlgDeviceSetup::IDD, pParent)
 { 
-	Rdb = new CGyfxyRDB_G5200();
+	Rdb = new CGyfxyRDB();
 	m_bInitListCtl = FALSE;
 }
 
@@ -75,7 +75,7 @@ void CGyfxyDlgDeviceSetup::UpdateWinText(void)
 
 void CGyfxyDlgDeviceSetup::GetParamFromDlg(void)
 {  
-	CGyfxyRDB_G5200 *pRdb = (CGyfxyRDB_G5200*)Rdb;
+	CGyfxyRDB *pRdb = (CGyfxyRDB*)Rdb;
 	GetDlgItem(IDC_DEVICE_NAME) ->GetWindowText(pRdb->m_szName);
 	GetDlgItem(IDC_DEVICE_TYPE)->GetWindowText(pRdb->m_szType);
 	///////////////////////////////////////////////////////////////// 

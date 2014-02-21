@@ -92,7 +92,8 @@ void CFileTrace::Write(const void* lpBuf, UINT nCount)
 		::SendMessage(hTraceWnd, WM_COPYDATA, (WPARAM)hWnd, (LPARAM)&cds); 
 	}
 	// Also do normal debug thing
-	::OutputDebugString((LPCTSTR)lpBuf);
+	LPCTSTR pinfo = (LPCTSTR)lpBuf;
+	//::OutputDebugString(pinfo);
 }
 
 /////////////////

@@ -4,20 +4,20 @@
 #include "stdafx.h"
 #include "LRYCTRL.h"
 #include "Gyfxy1RDB.h"
-// CGyfxyRDB_G5200
-IMPLEMENT_DYNCREATE(CGyfxyRDB_G5200, CRDB)
-CGyfxyRDB_G5200::CGyfxyRDB_G5200()
+// CGyfxyRDB_BaseRdb
+IMPLEMENT_DYNCREATE(CGyfxyRDB_BaseRdb, CGyfxyRDB)
+CGyfxyRDB_BaseRdb::CGyfxyRDB_BaseRdb()
 {  
 }
 
-CGyfxyRDB_G5200::~CGyfxyRDB_G5200()
+CGyfxyRDB_BaseRdb::~CGyfxyRDB_BaseRdb()
 {
 }
 
 
-// CGyfxyRDB_G5200 member functions
+// CGyfxyRDB_BaseRdb member functions
 
-BOOL CGyfxyRDB_G5200::UpdateParamFromDB(void)
+BOOL CGyfxyRDB_BaseRdb::UpdateParamFromDB(void)
 {
 	BOOL bResult  = TRUE;
 	if(pRsDev->RecordCount>0)
@@ -29,17 +29,17 @@ BOOL CGyfxyRDB_G5200::UpdateParamFromDB(void)
 		m_sComPort			= (short)_tcstol(VariantToStr(pRsDev->Fields->GetItem(_T("串行口号"))->Value),NULL,10);;;				//串口号	
 		m_lScanPriod_mS		= _tcstol(VariantToStr(pRsDev->Fields->GetItem(_T("扫描周期(mS)"))->Value),NULL,10);     //扫描周期;
 		
-		attrib.m_sTimePut2weigh			= pRsDev->Fields->GetItem(_T("放样到称样时间(0_01S)"))->Value.iVal;//;	SHORT
-		attrib.m_sTimePut2HighTemp		= pRsDev->Fields->GetItem(_T("放样到高温时间(0_01S)"))->Value.iVal;//SHORT
+		attrib.m_sTimePut2weigh			= pRsDev->Fields->GetItem(_T("放样到称样时间(0_01S)"))->Value.lVal;//;	SHORT
+		attrib.m_sTimePut2HighTemp		= pRsDev->Fields->GetItem(_T("放样到高温时间(0_01S)"))->Value.lVal;//SHORT
 		attrib.m_sPulsePerRound1Spit	= pRsDev->Fields->GetItem(_T("样盘一圈脉冲数"))->Value.iVal;//;		SHORT
 		attrib.m_btDriverSpitCnt		= pRsDev->Fields->GetItem(_T("驱动器细分数"))->Value.bVal;;//;		BYTE
 		attrib.m_btMaxSampleCnt			= pRsDev->Fields->GetItem(_T("样盘的样位个数"))->Value.bVal;;//	BYTE
 		attrib.m_fBalanceMaxErr			= pRsDev->Fields->GetItem(_T("称样判值(g)"))->Value.fltVal;;//;FLOAT
 
-		attrib.m_fVolSampleMax				= pRsDev->Fields->GetItem(_T("挥发分样品重量上限(g)"))->Value.fltVal;;//;FLOAT
-		attrib.m_fVolSampleMin				= pRsDev->Fields->GetItem(_T("挥发分样品重量下限(g)"))->Value.fltVal;;//;FLOAT
-		attrib.m_fWaterAshSampleMax			= pRsDev->Fields->GetItem(_T("水分灰分样品重量上限(g)"))->Value.fltVal;;//;FLOAT
-		attrib.m_fWaterAshSampleMin			= pRsDev->Fields->GetItem(_T("水分灰分样品重量下限(g)"))->Value.fltVal;;//;FLOAT
+		attrib.m_fVolSampleMax			= pRsDev->Fields->GetItem(_T("挥发分样品重量上限(g)"))->Value.fltVal;;//;FLOAT
+		attrib.m_fVolSampleMin			= pRsDev->Fields->GetItem(_T("挥发分样品重量下限(g)"))->Value.fltVal;;//;FLOAT
+		attrib.m_fWaterAshSampleMax		= pRsDev->Fields->GetItem(_T("水分灰分样品重量上限(g)"))->Value.fltVal;;//;FLOAT
+		attrib.m_fWaterAshSampleMin		= pRsDev->Fields->GetItem(_T("水分灰分样品重量下限(g)"))->Value.fltVal;;//;FLOAT
 		//SHORT
 		attrib.m_sLowStoveTempSpeed		= pRsDev->Fields->GetItem(_T("低温炉升温速率"))->Value.iVal;;//
 		attrib.m_sHighStoveTempSpeed	= pRsDev->Fields->GetItem(_T("高温炉升温速率"))->Value.iVal;;//;
@@ -79,7 +79,7 @@ BOOL CGyfxyRDB_G5200::UpdateParamFromDB(void)
 	return TRUE;
 }
 
-void CGyfxyRDB_G5200::InitRDB(CGyfxyImageSlave* ImageSlave)
+void CGyfxyRDB_BaseRdb::InitRDB(CGyfxyImageSlave* ImageSlave)
 {
 	enum enum_IED_type{G_NONE = 0,G5000,G5200,G5500}; 
 	CGyfxyImageSlave::SDownParam *pImg = &ImageSlave->DownloadWorkParam;
@@ -170,13 +170,14 @@ void CGyfxyRDB_G5200::InitRDB(CGyfxyImageSlave* ImageSlave)
 }
 
 
-int CGyfxyRDB_G5200::ALLSample::QualityWater = 5;    //水分残重位置
-int CGyfxyRDB_G5200::ALLSample::ResultWater  = 2;		//水分计算结果位置	
+int CGyfxyRDB_BaseRdb::ALLSample::QualityWater = 5;    //水分残重位置
+int CGyfxyRDB_BaseRdb::ALLSample::ResultWater  = 2;		//水分计算结果位置	
 
 
-void CGyfxyRDB_G5200::ALLSample::SetDefaultSample(CXListCtrl &m_pListCtrl)
+void CGyfxyRDB_BaseRdb::ALLSample::SetDefaultSample(CXListCtrl &m_pListCtrl,int iRowCnt )
 {
-	for(int i = 0;i<MAX_SAMPLE_CNT;i++)
+	iSampleCnt = iRowCnt;
+	for(int i = 0;i<iRowCnt;i++)
 	{
 		/*
 		if((i/2)%2!=0)
@@ -198,9 +199,10 @@ void CGyfxyRDB_G5200::ALLSample::SetDefaultSample(CXListCtrl &m_pListCtrl)
 	}
 }
 
-void CGyfxyRDB_G5200::ALLSample::GetSampleDataFromDlg(CXListCtrl &m_ListCtrl,CGyfxyImageSlave *pImg)
+void CGyfxyRDB_BaseRdb::ALLSample::GetSampleDataFromDlg(CXListCtrl &m_ListCtrl,CGyfxyImageSlave *pImg)
 {
-	for (int i=0;i<MAX_SAMPLE_CNT;i++)
+
+	for (int i=0;i<iSampleCnt;i++)
 	{
 		for (int j=0;j<3;j++)
 		{
@@ -211,7 +213,7 @@ void CGyfxyRDB_G5200::ALLSample::GetSampleDataFromDlg(CXListCtrl &m_ListCtrl,CGy
 
 
 
-void CGyfxyRDB_G5200::ALLSample::GetSampleDataFromDlg(int nItem, int nSubItem,CXListCtrl &m_ListCtrl,CGyfxyImageSlave *pImg)
+void CGyfxyRDB_BaseRdb::ALLSample::GetSampleDataFromDlg(int nItem, int nSubItem,CXListCtrl &m_ListCtrl,CGyfxyImageSlave *pImg)
 {
 	int EnableMask=0,  DisableMask=0;
 	int WorkType;
@@ -226,26 +228,28 @@ void CGyfxyRDB_G5200::ALLSample::GetSampleDataFromDlg(int nItem, int nSubItem,CX
 
 
 
-void CGyfxyRDB_G5200::ALLSample::OnUpdateQuality(int cSamplePos,CXListCtrl *m_pListCtrl )
+void CGyfxyRDB_BaseRdb::ALLSample::OnUpdateQuality(int cSamplePos,CXListCtrl *m_pListCtrl )
 {
 	CString str; 
 	int i=cSamplePos-1;	
 	S_Sample *pSample = Sample;
 	if(cSamplePos>0)
 	{ 
-		if (pSample[cSamplePos-1].cItem&CGyfxyRDB_G5200::ALLSample::TEST_WATER)
+		if (pSample[cSamplePos-1].cItem&
+			CGyfxyRDB_BaseRdb::ALLSample::TEST_WATER)
 		{
 			m_pListCtrl->SetCheckbox(i, ResultWater, 1); 
 			str.Format(_T("%3.3f%%"),pSample[cSamplePos-1].m_fMad);
-			m_pListCtrl->SetItemText(i, ResultWater,str); 
+			m_pListCtrl->SetItemText(i, ResultWater,str );  
 		}
 		else
 		{
-			m_pListCtrl->SetCheckbox(i, ResultWater, 0);
+			m_pListCtrl->SetCheckbox(i, ResultWater, 0);  
 			m_pListCtrl->SetItemText(i, ResultWater,_T("0.000%")); 
 		}
 		////////////////////////////////////////////////////////////////////
-		if (pSample[cSamplePos-1].cItem&CGyfxyRDB_G5200::ALLSample::TEST_VOL)
+		if (pSample[cSamplePos-1].cItem&
+			CGyfxyRDB_BaseRdb::ALLSample::TEST_VOL)
 		{
 			m_pListCtrl->SetCheckbox(i, ResultWater+1, 1); 
 			str.Format(_T("%3.3f%%"),pSample[cSamplePos-1].m_fVad);
@@ -257,7 +261,8 @@ void CGyfxyRDB_G5200::ALLSample::OnUpdateQuality(int cSamplePos,CXListCtrl *m_pL
 			m_pListCtrl->SetItemText(i, ResultWater+1,_T("0.000%")); 
 		}
 		////////////////////////////////////////////////////////////////////
-		if (pSample[cSamplePos-1].cItem&CGyfxyRDB_G5200::ALLSample::TEST_ASH)
+		if (pSample[cSamplePos-1].cItem&
+			CGyfxyRDB_BaseRdb::ALLSample::TEST_ASH)
 		{
 			m_pListCtrl->SetCheckbox(i, ResultWater+2, 1);		 
 			str.Format(_T("%3.3f%%"),pSample[cSamplePos-1].m_fAad);
@@ -297,12 +302,16 @@ void CGyfxyRDB_G5200::ALLSample::OnUpdateQuality(int cSamplePos,CXListCtrl *m_pL
 			{ 
 				str.Format(_T("%.4f"),(pSample[cSamplePos-1].UQuality.Quality[i]));
 			}
-			m_pListCtrl->SetItemText(cSamplePos-1,QualityWater+i,str); 
+			//m_pListCtrl->SetItemText(cSamplePos-1,QualityWater+i,str); 
+
+			m_pListCtrl->SetItemText(cSamplePos-1,QualityWater+i,str,RGB(0,0,0), 
+				pSample[cSamplePos-1].cStabState&(1L<<i)? //不稳定的样品背景色变红
+				RGB(255,0,0):RGB(255,255,255));  
 		}   
 	} 
 	else
 	{ 
-		for (int j= 1;j<=MAX_SAMPLE_CNT;j++)
+		for (int j= 1;j<=iSampleCnt;j++)
 		{
 			OnUpdateQuality(j,m_pListCtrl);
 		} 
@@ -310,7 +319,7 @@ void CGyfxyRDB_G5200::ALLSample::OnUpdateQuality(int cSamplePos,CXListCtrl *m_pL
 }
 
 
-void CGyfxyRDB_G5200::ALLSample::RefreshSampleData(OUT CGyfxyImageSlave *pImageSlave,
+void CGyfxyRDB_BaseRdb::ALLSample::RefreshSampleData(OUT CGyfxyImageSlave *pImageSlave,
 											 IN int SampleNO,
 											 IN int EnableMask,
 											 IN int DisableMask)
@@ -325,7 +334,7 @@ void CGyfxyRDB_G5200::ALLSample::RefreshSampleData(OUT CGyfxyImageSlave *pImageS
 
 
 
-void CGyfxyRDB_G5200::ALLSample::RefreshSampleData(OUT CGyfxyImageSlave *pImageSlave,IN int SampleNO,IN int WorkType )
+void CGyfxyRDB_BaseRdb::ALLSample::RefreshSampleData(OUT CGyfxyImageSlave *pImageSlave,IN int SampleNO,IN int WorkType )
 {
 	ASSERT(SampleNO>0);
 	SampleNO-=1;   
@@ -346,19 +355,21 @@ void CGyfxyRDB_G5200::ALLSample::RefreshSampleData(OUT CGyfxyImageSlave *pImageS
 	SamplePtr[SampleNO].cSta	= Sample[SampleNO].cSta    ;
 	SamplePtr[SampleNO].cCSta	= Sample[SampleNO].cCSta   ;
 	SamplePtr[SampleNO].cItem	= Sample[SampleNO].cItem   ;
-	SamplePtr[SampleNO].reserve	= Sample[SampleNO].reserve  ; 
+	SamplePtr[SampleNO].cStabState	= Sample[SampleNO].cStabState  ; 
 }
 
-void CGyfxyRDB_G5200::ALLSample::RefreshSampleData(IN CGyfxyImageSlave *pImageSlave)
+void CGyfxyRDB_BaseRdb::ALLSample::RefreshSampleData(IN CGyfxyImageSlave *pImageSlave)
 {
 	CGyfxyImageSlave::YP_DATA *SamplePtr = pImageSlave->Sample;
-	for (int i=1;i<=MAX_SAMPLE_CNT;i++)
+	if(iSampleCnt>MAX_SAMPLE_CNT)
+		iSampleCnt = MAX_SAMPLE_CNT;
+	for (int i=1;i<=iSampleCnt;i++)
 	{
 		RefreshSampleData(pImageSlave,  i);
 	} 
 }
 
-void CGyfxyRDB_G5200::ALLSample::RefreshSampleData(IN CGyfxyImageSlave *pImageSlave,IN int SampleNO)
+void CGyfxyRDB_BaseRdb::ALLSample::RefreshSampleData(IN CGyfxyImageSlave *pImageSlave,IN int SampleNO)
 {
 	ASSERT(SampleNO>0);
 	SampleNO-=1;        //这里没有减一,造成指针越界,搞死我了
@@ -366,6 +377,8 @@ void CGyfxyRDB_G5200::ALLSample::RefreshSampleData(IN CGyfxyImageSlave *pImageSl
 	Sample[SampleNO].cSta  = SamplePtr[SampleNO].cSta;
 	Sample[SampleNO].cCSta = SamplePtr[SampleNO].cCSta;
 	Sample[SampleNO].cItem = SamplePtr[SampleNO].cItem;
+
+	Sample[SampleNO].cStabState = SamplePtr[SampleNO].cStabState;
 	int StructSize = sizeof(CGyfxyImageSlave::YP_DATA::UQUALITY)/sizeof(long);
 	for (int j=0;j<StructSize;j++)
 	{
@@ -383,7 +396,7 @@ void CGyfxyRDB_G5200::ALLSample::RefreshSampleData(IN CGyfxyImageSlave *pImageSl
 	}
 }
 
-void CGyfxyRDB_G5200::RefreshRDBTab(CGyfxyImageSlave *pImageSlave)
+void CGyfxyRDB_BaseRdb::RefreshRDBTab(CGyfxyImageSlave *pImageSlave)
 {
 	memcpy(status.TempAdValue,pImageSlave->ADValue.ad,sizeof(status.TempAdValue));		//炉子温度AD值
 	status.InstTempValue	= pImageSlave->ADValue.adInstTemp;			//环境温度
@@ -423,7 +436,7 @@ void CGyfxyRDB_G5200::RefreshRDBTab(CGyfxyImageSlave *pImageSlave)
 
 
 
-void CGyfxyRDB_G5200::ALLSample::BuildAutoNO()
+void CGyfxyRDB_BaseRdb::ALLSample::BuildAutoNO()
 { 
 	COleDateTime  dtEnd;									//查询结束日期
 	COleDateTime  dtStart=COleDateTime::GetCurrentTime( );  //得到今天的日期
@@ -475,7 +488,7 @@ void CGyfxyRDB_G5200::ALLSample::BuildAutoNO()
 	//m_szTestAutoNO = AutoNo;
 }
 
-CGyfxyRDB_G5200::ALLSample::ALLSample()
+CGyfxyRDB_BaseRdb::ALLSample::ALLSample()
 { 
 	try
 	{  
@@ -492,15 +505,15 @@ CGyfxyRDB_G5200::ALLSample::ALLSample()
 }
 
 
-void CGyfxyRDB_G5200::ALLSample::SetInstName(CString strInstName) 
+void CGyfxyRDB_BaseRdb::ALLSample::SetInstName(CString strInstName) 
 {
 	IEDResult::SetInstName(strInstName);
-	for(int i=0;i<sizeof(Sample)/sizeof(S_Sample);i++)
+	for(int i=0;i<iSampleCnt;i++)
 		Sample[i].m_strInstName = strInstName;
 }
 
 
-void CGyfxyRDB_G5200::ALLSample::UpdateResult2TempTab(int cSamplePos)
+void CGyfxyRDB_BaseRdb::ALLSample::UpdateResult2TempTab(int cSamplePos)
 {
 	//为0 将该台设备的临时计算结果全部恢复为默认设置  添加空记录
 	if(cSamplePos>0)
@@ -514,7 +527,7 @@ void CGyfxyRDB_G5200::ALLSample::UpdateResult2TempTab(int cSamplePos)
 	//
 }
 
-void CGyfxyRDB_G5200::ALLSample::ClearTempTab(void) //设备名称
+void CGyfxyRDB_BaseRdb::ALLSample::ClearTempTab(void) //设备名称
 {
 	//SetInstName(m_strInstName);
 	try
@@ -533,17 +546,22 @@ void CGyfxyRDB_G5200::ALLSample::ClearTempTab(void) //设备名称
 				pRsTempDB->Close();
 			//添加空白记录 
 			strTempDBSQL.Format(_T("select * from 工分临时数据表 where 设备名称='%s'"),this->m_szName) ;  //清除数据表中数据
+			pRsTempDB->CursorLocation = adUseClientBatch;   //adUseServer 只支持一个更新
 			pRsTempDB->Open(strTempDBSQL.AllocSysString(),
 				theApp.pConn.GetInterfacePtr(),
-				adOpenKeyset,
+				adOpenStatic,
 				adLockBatchOptimistic, 
-				-1);   
-			for (int i=1;i<=MAX_SAMPLE_CNT;i++)
+				adCmdText);   
+
+			if(iSampleCnt>MAX_SAMPLE_CNT)
+				iSampleCnt = MAX_SAMPLE_CNT;
+			for (int i=1;i<=iSampleCnt;i++)
 			{ 
 				pRsTempDB->AddNew();
-				UpdateTempTabField(i); 
-				pRsTempDB->UpdateBatch(adAffectAll); 
+				UpdateTempTabField(i);    
+				
 			}  
+			pRsTempDB->UpdateBatch(adAffectAll);   
 			if(pRsTempDB->State == adStateOpen)
 				pRsTempDB->Close(); 
 		} 
@@ -560,7 +578,7 @@ void CGyfxyRDB_G5200::ALLSample::ClearTempTab(void) //设备名称
 	}
 }
 
-void CGyfxyRDB_G5200::ALLSample::CreateTempTab(void)
+void CGyfxyRDB_BaseRdb::ALLSample::CreateTempTab(void)
 { 
 	//
 	//TODO:貌似有种更好的办法,可以连数据库表的属性一起复制
@@ -584,7 +602,7 @@ void CGyfxyRDB_G5200::ALLSample::CreateTempTab(void)
 	}
 }
 
-void CGyfxyRDB_G5200::ALLSample::LoadSampleFromTempTab(int cSamplePos)
+void CGyfxyRDB_BaseRdb::ALLSample::LoadSampleFromTempTab(int cSamplePos)
 {
 	cSamplePos = cSamplePos-1;
 	Sample[cSamplePos].m_strTestAutoNO	= VariantToStr(pRsTempDB->Fields->GetItem(_T("试验编号"))->Value);
@@ -613,7 +631,7 @@ void CGyfxyRDB_G5200::ALLSample::LoadSampleFromTempTab(int cSamplePos)
 	Sample[cSamplePos].cCSta				= _tcstol(VariantToStr(pRsTempDB->Fields->GetItem(_T("已完成项目"))->Value),NULL,10);  
 }
 
-void CGyfxyRDB_G5200::ALLSample::UpdateTempTabField(int cSamplePos)
+void CGyfxyRDB_BaseRdb::ALLSample::UpdateTempTabField(int cSamplePos)
 { 
 	cSamplePos = cSamplePos-1;
 	pRsTempDB->PutCollect("试验编号",_variant_t(Sample[cSamplePos].m_strTestAutoNO));		
@@ -622,7 +640,7 @@ void CGyfxyRDB_G5200::ALLSample::UpdateTempTabField(int cSamplePos)
 	pRsTempDB->PutCollect("方法",_variant_t(Sample[cSamplePos].m_TestType)); 
 	pRsTempDB->PutCollect("样品质量",_variant_t(Sample[cSamplePos].m_SampleWeight));
 	pRsTempDB->PutCollect("试验日期",_variant_t(Sample[cSamplePos].m_dtTestDateTime));
-	pRsTempDB->PutCollect("样位",_variant_t(Sample[cSamplePos].SampleNO)); 
+	
 	pRsTempDB->PutCollect("水分",_variant_t(Sample[cSamplePos].m_fMad));
 	pRsTempDB->PutCollect("挥发分",_variant_t(Sample[cSamplePos].m_fVad));
 	pRsTempDB->PutCollect("灰分",_variant_t(Sample[cSamplePos].m_fAad)); 
@@ -639,12 +657,14 @@ void CGyfxyRDB_G5200::ALLSample::UpdateTempTabField(int cSamplePos)
 	pRsTempDB->PutCollect("矿物质",_variant_t(Sample[cSamplePos].m_fMineral)); 
 	pRsTempDB->PutCollect("测试项目",_variant_t(Sample[cSamplePos].cSta)); 
 	pRsTempDB->PutCollect("已完成项目",_variant_t(Sample[cSamplePos].cCSta)); 
+	pRsTempDB->PutCollect("样位",_variant_t(Sample[cSamplePos].SampleNO));  //批量更新样位出错
 }
 
 
 
-void CGyfxyRDB_G5200::ALLSample::AppendResult2TempTab(int cSamplePos)
+void CGyfxyRDB_BaseRdb::ALLSample::AppendResult2TempTab(int cSamplePos)
 { 
+	int Recordcnt;
 	try
 	{
 		if(pRsTempDB->State == adStateOpen)
@@ -656,7 +676,8 @@ void CGyfxyRDB_G5200::ALLSample::AppendResult2TempTab(int cSamplePos)
 			adOpenStatic,
 			adLockOptimistic,   
 			-1);
-		if(pRsTempDB->RecordCount>0)
+		Recordcnt = pRsTempDB->RecordCount;
+		if(Recordcnt>0)
 		{
 			pRsTempDB->MoveFirst();
 			UpdateTempTabField(cSamplePos);
@@ -664,7 +685,7 @@ void CGyfxyRDB_G5200::ALLSample::AppendResult2TempTab(int cSamplePos)
 		}
 		else
 		{
-			AfxMessageBox(_T("该样位无数据!\n"),MB_OK+MB_ICONERROR); 
+			TRACE(_T("该样位无数据!\n")); 
 		}
 	}
 	catch(_com_error &e)
@@ -673,7 +694,7 @@ void CGyfxyRDB_G5200::ALLSample::AppendResult2TempTab(int cSamplePos)
 	} 
 }
 
-void CGyfxyRDB_G5200::ALLSample::LoadResultFromTempTab(int cSamplePos)
+void CGyfxyRDB_BaseRdb::ALLSample::LoadResultFromTempTab(int cSamplePos)
 { 
 	try
 	{ 
@@ -689,7 +710,11 @@ void CGyfxyRDB_G5200::ALLSample::LoadResultFromTempTab(int cSamplePos)
 		if(!pRsTempDB->adoEOF)
 			pRsTempDB->MoveLast();
 		int i = 0;
-		while((!pRsTempDB->BOF)&&(i++<MAX_SAMPLE_CNT))
+
+		if(iSampleCnt>MAX_SAMPLE_CNT)
+			iSampleCnt = MAX_SAMPLE_CNT;
+		for (int i=1;i<=iSampleCnt;i++)
+		while((!pRsTempDB->BOF)&&(i++<iSampleCnt))
 		{		 
 			LoadSampleFromTempTab(i);
 			pRsTempDB->MovePrevious();
@@ -704,23 +729,56 @@ void CGyfxyRDB_G5200::ALLSample::LoadResultFromTempTab(int cSamplePos)
 	}
 }
 
-void CGyfxyRDB_G5200::ALLSample::SaveResult2DB(void)
+void CGyfxyRDB_BaseRdb::ALLSample::SaveResult2DB(void)
 {
-	ASSERT(FALSE); 
+	// 
+	
+	strTempDBSQL.Format(_T("INSERT into 工业分析仪数据\
+							select * from 工分临时数据表\
+							where 设备名称='%s' and  测试项目>0"),m_szName);
+
+	try
+	{ 
+		if(pRsTempDB->State == adStateOpen) 
+			pRsTempDB->Close(); 
+		pRsTempDB->Open(strTempDBSQL.AllocSysString(),
+			theApp.pConn.GetInterfacePtr(),
+			adOpenStatic,
+			adLockOptimistic,
+			-1);
+		if(pRsTempDB->State == adStateOpen)
+			pRsTempDB->Close();
+		strTempDBSQL.Format(_T("delete from 工分临时数据表\
+							   where 设备名称='%s'"),m_szName);
+		pRsTempDB->Open(strTempDBSQL.AllocSysString(),
+			theApp.pConn.GetInterfacePtr(),
+			adOpenStatic,
+			adLockOptimistic,
+			-1);
+		if(pRsTempDB->State == adStateOpen)
+			pRsTempDB->Close();
+
+	}
+	catch(_com_error &e)
+	{
+		dump_com_error(e);
+	}
+	
+	//ASSERT(FALSE); 
 	//UpdateBatch
 }
 
-void CGyfxyRDB_G5200::ALLSample::UpdateResultToDB(void)
+void CGyfxyRDB_BaseRdb::ALLSample::UpdateResultToDB(void)
 {
 	ASSERT(FALSE); 
 }
 
-void CGyfxyRDB_G5200::ALLSample::CalResult(CImageSlave *pClyImageSlave)
+void CGyfxyRDB_BaseRdb::ALLSample::CalResult(CImageSlave *pClyImageSlave)
 {
 	ASSERT(FALSE); 
 }
 
-void CGyfxyRDB_G5200::ALLSample::BatchUpdateDB2TempTab(CString m_strInstName)
+void CGyfxyRDB_BaseRdb::ALLSample::BatchUpdateDB2TempTab(CString m_strInstName)
 { 
 	_RecordsetPtr pRsTestNO;
 	CString strSQL;
@@ -805,7 +863,7 @@ void CGyfxyRDB_G5200::ALLSample::BatchUpdateDB2TempTab(CString m_strInstName)
 		End Sub
 		*/ 
 
-void CGyfxyRDB_G5200::ALLSample::S_Sample::CalResultMAV()
+void CGyfxyRDB_BaseRdb::ALLSample::S_Sample::CalResultMAV()
 {	
 	S_Sample calSample(*this); //复制一份以免修正是修改原始记录
 	double m_dWaterWeight = 0;
@@ -866,28 +924,28 @@ void CGyfxyRDB_G5200::ALLSample::S_Sample::CalResultMAV()
 	}
 }
 
-void CGyfxyRDB_G5200::ALLSample::S_Sample::LoadResultFromDB(CString strAutoNO)
+void CGyfxyRDB_BaseRdb::ALLSample::S_Sample::LoadResultFromDB(CString strAutoNO)
 {
 
 }
 
-void CGyfxyRDB_G5200::ALLSample::CalcAllResult()
+void CGyfxyRDB_BaseRdb::ALLSample::CalcAllResult()
 {
 
 }
 
-void CGyfxyRDB_G5200::ALLSample::CalcResult(int cSamplePos)
+void CGyfxyRDB_BaseRdb::ALLSample::CalcResult(int cSamplePos)
 {
 	if(cSamplePos>0)
 		Sample[cSamplePos-1].CalResultMAV();  
 }
 
-void CGyfxyRDB_G5200::ALLSample::LoadResultFromDB(CString strAutoNO)
+void CGyfxyRDB_BaseRdb::ALLSample::LoadResultFromDB(CString strAutoNO)
 {
 	ASSERT(FALSE); 
 }
 
-void CGyfxyRDB_G5200::ALLSample::DelResultFromDB(CString strAutoNO)
+void CGyfxyRDB_BaseRdb::ALLSample::DelResultFromDB(CString strAutoNO)
 {
 	ASSERT(FALSE); 
 }

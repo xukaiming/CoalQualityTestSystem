@@ -87,8 +87,7 @@ void CDBQryDocument::Serialize(CArchive& ar)
 // CDBQryDocument commands
 
 void CDBQryDocument::OnCloseDocument()
-{
-	// TODO: Add your specialized code here and/or call the base class
+{ 
 	if(Rs->State==adStateOpen)
 		Rs->Close();
 	if(RsPrintData->State==adStateOpen)
